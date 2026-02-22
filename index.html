@@ -145,39 +145,76 @@
             </div>
         </section>
 
-        <!-- ====== Block Map ====== -->
+        <!-- ====== Palamu Block Map ====== -->
         <section id="blocks" class="section-white">
             <div class="container">
-                <h2 class="sec-title">ब्लोक विवरण</h2>
-                <div class="block-row">
+                <h2 class="sec-title">पलामू जिला - ब्लॉक मानचित्र</h2>
+                <div class="block-map-container">
                     <div class="block-map-box">
-                        <div class="map-piece" style="background:#ef9a9a;top:12%;left:18%;"
-                            onclick="showBlock('क्षेत्र 1')">क्षेत्र 1</div>
-                        <div class="map-piece" style="background:#a5d6a7;top:8%;left:52%;"
-                            onclick="showBlock('क्षेत्र 2')">क्षेत्र 2</div>
-                        <div class="map-piece" style="background:#90caf9;top:38%;left:12%;"
-                            onclick="showBlock('क्षेत्र 3')">क्षेत्र 3</div>
-                        <div class="map-piece" style="background:#fff59d;top:34%;left:48%;"
-                            onclick="showBlock('क्षेत्र 4')">क्षेत्र 4</div>
-                        <div class="map-piece" style="background:#ce93d8;top:58%;left:28%;"
-                            onclick="showBlock('क्षेत्र 5')">क्षेत्र 5</div>
-                        <div class="map-piece" style="background:#ffcc80;top:54%;left:62%;"
-                            onclick="showBlock('क्षेत्र 6')">क्षेत्र 6</div>
-                        <div class="map-label">BLOCK MAP<br><span>जोक पानियव</span></div>
+                        <div class="map-piece" style="background:#ef9a9a;top:10%;left:25%;"
+                            onclick="showBlock('हुसैनाबाद')">हुसैनाबाद</div>
+                        <div class="map-piece" style="background:#a5d6a7;top:15%;left:45%;"
+                            onclick="showBlock('पिपरा')">पिपरा</div>
+                        <div class="map-piece" style="background:#90caf9;top:18%;left:65%;"
+                            onclick="showBlock('हरिहरगंज')">हरिहरगंज</div>
+                        <div class="map-piece" style="background:#fff59d;top:35%;left:15%;"
+                            onclick="showBlock('हैदरनगर')">हैदरनगर</div>
+                        <div class="map-piece" style="background:#ce93d8;top:38%;left:35%;"
+                            onclick="showBlock('पांडू')">पांडू</div>
+                        <div class="map-piece" style="background:#ffcc80;top:40%;left:55%;"
+                            onclick="showBlock('छतरपुर')">छतरपुर</div>
+                        <div class="map-piece" style="background:#cfd8dc;top:55%;left:20%;"
+                            onclick="showBlock('चैनपुर')">चैनपुर</div>
+                        <div class="map-piece" style="background:#b39ddb;top:58%;left:40%;"
+                            onclick="showBlock('मेदिनीनगर')">मेदिनीनगर</div>
+                        <div class="map-piece" style="background:#ffe0b2;top:60%;left:68%;"
+                            onclick="showBlock('मनातू')">मनातू</div>
+                        <div class="map-piece" style="background:#f48fb1;top:75%;left:30%;"
+                            onclick="showBlock('सतबरवा')">सतबरवा</div>
+                        <div class="map-piece" style="background:#80cbc4;top:78%;left:50%;"
+                            onclick="showBlock('पांकी')">पांकी</div>
+                        <div class="map-label">पलामू जिला मानचित्र (प्रतीकात्मक)<br><span>मानचित्र पर क्लिक कर विवरण
+                                देखें</span></div>
                     </div>
-                    <div class="block-list-box">
-                        <div class="bl-header">Block Map</div>
-                        <ul class="bl-list" id="blockList">
-                            <li onclick="showBlock('मेदिनीनगर')"><span class="bl-dot"></span> मेदिनीनगर <i
-                                    class="fas fa-chevron-right bl-arrow"></i></li>
-                            <li onclick="showBlock('चैनपुर')"><span class="bl-dot"></span> चैनपुर <i
-                                    class="fas fa-chevron-right bl-arrow"></i></li>
-                            <li onclick="showBlock('हुसैनाबाद')"><span class="bl-dot"></span> हुसैनाबाद <i
-                                    class="fas fa-chevron-right bl-arrow"></i></li>
-                            <li onclick="showBlock('पांकी')"><span class="bl-dot"></span> पांकी <i
-                                    class="fas fa-chevron-right bl-arrow"></i></li>
-                        </ul>
-                        <button class="view-all-btn" onclick="openModal('allBlocksModal')">View All Blocks &gt;</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== Block Directory ====== -->
+        <section id="block-list" class="section-gray">
+            <div class="container">
+                <h2 class="sec-title">ब्लॉक विवरण सूची</h2>
+                <div class="block-directory-box">
+                    <div class="bl-header">सभी 21 ब्लॉक की सूची</div>
+                    <ul class="bl-grid-list" id="blockList">
+                        <li onclick="showBlock('मेदिनीनगर')"><span class="bl-dot"></span> मेदिनीनगर <i
+                                class="fas fa-arrow-right bl-arrow"></i></li>
+                        <li onclick="showBlock('चैनपुर')"><span class="bl-dot"></span> चैनपुर <i
+                                class="fas fa-arrow-right bl-arrow"></i></li>
+                        <li onclick="showBlock('हुसैनाबाद')"><span class="bl-dot"></span> हुसैनाबाद <i
+                                class="fas fa-arrow-right bl-arrow"></i></li>
+                        <li onclick="showBlock('छतरपुर')"><span class="bl-dot"></span> छतरपुर <i
+                                class="fas fa-arrow-right bl-arrow"></i></li>
+                        <li onclick="showBlock('हरिहरगंज')"><span class="bl-dot"></span> हरिहरगंज <i
+                                class="fas fa-arrow-right bl-arrow"></i></li>
+                        <li onclick="showBlock('हैदरनगर')"><span class="bl-dot"></span> हैदरनगर <i
+                                class="fas fa-arrow-right bl-arrow"></i></li>
+                        <li onclick="showBlock('लेस्लीगंज')"><span class="bl-dot"></span> लेस्लीगंज <i
+                                class="fas fa-arrow-right bl-arrow"></i></li>
+                        <li onclick="showBlock('मनातू')"><span class="bl-dot"></span> मनातू <i
+                                class="fas fa-arrow-right bl-arrow"></i></li>
+                        <li onclick="showBlock('मोहम्मदगंज')"><span class="bl-dot"></span> मोहम्मदगंज <i
+                                class="fas fa-arrow-right bl-arrow"></i></li>
+                        <li onclick="showBlock('पाटन')"><span class="bl-dot"></span> पाटन <i
+                                class="fas fa-arrow-right bl-arrow"></i></li>
+                        <li onclick="showBlock('पांकी')"><span class="bl-dot"></span> पांकी <i
+                                class="fas fa-arrow-right bl-arrow"></i></li>
+                        <li onclick="showBlock('पांडू')"><span class="bl-dot"></span> पांडू <i
+                                class="fas fa-arrow-right bl-arrow"></i></li>
+                    </ul>
+                    <div class="view-more-container">
+                        <button class="view-all-btn" onclick="openModal('allBlocksModal')">सभी ब्लॉक देखें / View All 21
+                            Blocks <i class="fas fa-plus"></i></button>
                     </div>
                 </div>
             </div>
