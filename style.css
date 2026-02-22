@@ -668,60 +668,30 @@ button {
 }
 
 .block-map-box {
-    background: #f1f8f1;
-    /* Light tinted background from screenshot */
-    border-radius: 30px;
-    /* More rounded corners */
-    padding: 2.5rem;
+    background: #fff;
+    border-radius: 8px;
+    padding: 10px;
     min-height: 580px;
-    /* Increased for 21 blocks */
     position: relative;
-    border: 1px solid rgba(46, 125, 50, .1);
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.05);
-    /* Softer shadow */
+    border: 1.5px solid #ccc;
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.05);
     overflow: hidden;
-}
-
-.map-piece {
-    position: absolute;
-    padding: 8px 16px;
-    /* Slightly more compact */
-    border-radius: 12px;
-    font-size: .85rem;
-    /* Slightly smaller for 21 items */
-    font-weight: 800;
-    color: var(--text);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    /* Pronounced shadow per screenshot */
-    cursor: pointer;
-    transition: all 0.4s cubic-bezier(.4, 0, .2, 1);
-    border: none;
-    /* No border in screenshot */
-    white-space: nowrap;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.map-piece:hover {
-    transform: scale(1.1) translateY(-3px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    z-index: 50;
+.official-map-static {
+    width: 100%;
+    height: auto;
+    max-height: 560px;
+    object-fit: contain;
+    border-radius: 4px;
+    transition: transform 0.3s ease;
 }
 
-.map-label {
-    position: absolute;
-    bottom: 25px;
-    left: 25px;
-    font-size: 1.5rem;
-    font-weight: 900;
-    color: var(--green-dark);
-}
-
-.map-label span {
-    font-size: .85rem;
-    font-weight: 600;
-    color: var(--text-light);
+.official-map-static:hover {
+    transform: scale(1.02);
 }
 
 /* Side List Styling */
