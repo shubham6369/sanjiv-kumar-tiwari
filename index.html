@@ -952,12 +952,74 @@
                     <div class="form-group">
                         <label>समस्या का प्रकार / Issue Type *</label>
                         <select required>
-                            <option value="">-- चुनें --</option>
-                            <option>सड़क खराब</option>
-                            <option>पानी की समस्या</option>
-                            <option>बिजली कटौती</option>
-                            <option>सफाई समस्या</option>
-                            <option>अवैध निर्माण</option>
+                            <option value="">-- समस्या का प्रकार चुनें --</option>
+                            <optgroup label="1) बुनियादी सुविधाएँ (Basic Infrastructure)">
+                                <option>टूटी/कच्ची सड़कें, गड्ढे</option>
+                                <option>बिजली कटौती, लो-वोल्टेज</option>
+                                <option>पीने के पानी की कमी/दूषित पानी</option>
+                                <option>जलनिकासी/नाला जाम, जलभराव</option>
+                                <option>स्ट्रीट लाइट की कमी</option>
+                                <option>सार्वजनिक शौचालयों की कमी/खराब स्थिति</option>
+                                <option>कचरा संग्रहण व साफ-सफाई की समस्या</option>
+                            </optgroup>
+                            <optgroup label="2) शिक्षा (Education)">
+                                <option>शिक्षकों की कमी</option>
+                                <option>स्कूल भवन/कक्षाओं की कमी</option>
+                                <option>लैब, लाइब्रेरी, खेल सामग्री का अभाव</option>
+                                <option>छात्रवृत्ति/ड्रेस/पुस्तक वितरण में देरी</option>
+                                <option>ड्रॉप-आउट दर, बाल श्रम</option>
+                            </optgroup>
+                            <optgroup label="3) स्वास्थ्य (Healthcare)">
+                                <option>डॉक्टर/नर्स/दवाइयों की कमी</option>
+                                <option>एम्बुलेंस की कमी/देरी</option>
+                                <option>मातृ-शिशु स्वास्थ्य सेवाओं का अभाव</option>
+                                <option>सरकारी अस्पतालों में भीड़/सुविधाओं की कमी</option>
+                                <option>टीकाकरण/जागरूकता की कमी</option>
+                            </optgroup>
+                            <optgroup label="4) रोजगार व आजीविका (Employment & Livelihood)">
+                                <option>बेरोजगारी/अर्ध-रोजगार</option>
+                                <option>कौशल प्रशिक्षण की कमी</option>
+                                <option>मजदूरी का बकाया/न्यूनतम मजदूरी मुद्दे</option>
+                                <option>स्वरोज़गार/ऋण सुविधा की कमी</option>
+                                <option>पलायन (Migration)</option>
+                            </optgroup>
+                            <optgroup label="5) कृषि व ग्रामीण समस्याएँ">
+                                <option>सिंचाई सुविधा का अभाव</option>
+                                <option>बीज/खाद की कमी या महंगाई</option>
+                                <option>फसल बीमा क्लेम में देरी</option>
+                                <option>न्यूनतम समर्थन मूल्य (MSP) पर खरीद की समस्या</option>
+                                <option>पशुपालन/मत्स्य संसाधनों की कमी</option>
+                            </optgroup>
+                            <optgroup label="6) सामाजिक सुरक्षा व कल्याण">
+                                <option>राशन कार्ड/पेंशन में गड़बड़ी</option>
+                                <option>लाभार्थी चयन में पारदर्शिता की कमी</option>
+                                <option>विधवा/विकलांग/वृद्ध पेंशन में देरी</option>
+                                <option>आवास योजना में पात्रता/भ्रष्टाचार शिकायतें</option>
+                            </optgroup>
+                            <optgroup label="7) कानून-व्यवस्था व सुरक्षा">
+                                <option>चोरी/डकैती/साइबर ठगी</option>
+                                <option>महिलाओं की सुरक्षा</option>
+                                <option>नशाखोरी/अवैध शराब</option>
+                                <option>भूमि विवाद</option>
+                            </optgroup>
+                            <optgroup label="8) परिवहन व कनेक्टिविटी">
+                                <option>बस सेवा की कमी</option>
+                                <option>रेलवे/सड़क कनेक्टिविटी कमजोर</option>
+                                <option>पुल/पुलिया जर्जर</option>
+                                <option>इंटरनेट/मोबाइल नेटवर्क कमजोर</option>
+                            </optgroup>
+                            <optgroup label="9) पर्यावरण व आपदा">
+                                <option>बाढ़/सूखा</option>
+                                <option>जंगल कटाई</option>
+                                <option>प्रदूषण (वायु/जल/ध्वनि)</option>
+                                <option>वन्यजीव-मानव संघर्ष</option>
+                            </optgroup>
+                            <optgroup label="10) प्रशासनिक व नागरिक सेवाएँ">
+                                <option>प्रमाणपत्र/दस्तावेज़ में देरी</option>
+                                <option>ऑनलाइन सेवाओं में तकनीकी दिक्कत</option>
+                                <option>भ्रष्टाचार/रिश्वत की शिकायत</option>
+                                <option>जन-शिकायत निवारण में देरी</option>
+                            </optgroup>
                             <option>अन्य</option>
                         </select>
                     </div>
