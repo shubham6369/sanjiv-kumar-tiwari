@@ -409,6 +409,143 @@ button {
     right: 16px
 }
 
+/* ========== MISSION 2029 ========== */
+.mission-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #ffffff 0%, #f1f8e9 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.mission-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.mission-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    background: var(--saffron-glow);
+    color: var(--saffron-dark);
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+    border: 1px solid var(--saffron);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.mission-quote {
+    font-size: 2.8rem;
+    font-weight: 900;
+    line-height: 1.25;
+    color: var(--navy);
+    margin-bottom: 30px;
+}
+
+.mission-subtext {
+    font-size: 1.4rem;
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 40px;
+    border-left: 5px solid var(--green);
+    padding-left: 20px;
+    font-style: italic;
+}
+
+.highlight-saffron {
+    color: var(--saffron);
+}
+
+.highlight-green {
+    color: var(--green);
+    font-weight: 800;
+}
+
+.cta-primary-btn {
+    background: linear-gradient(135deg, var(--green), var(--green-dark));
+    color: #fff;
+    border: none;
+    padding: 18px 45px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 1.1rem;
+    box-shadow: var(--shadow-green);
+    transition: var(--tr);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.cta-primary-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(46, 125, 50, 0.4);
+}
+
+.mission-visual {
+    position: relative;
+}
+
+.mission-image-wrapper {
+    position: relative;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    border: 10px solid #fff;
+    transform: rotate(2deg);
+    transition: var(--tr);
+}
+
+.mission-image-wrapper:hover {
+    transform: rotate(0deg) scale(1.02);
+}
+
+.mission-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.img-overlay-accent {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background: linear-gradient(to top, rgba(27, 94, 32, 0.4), transparent);
+}
+
+@media (max-width: 992px) {
+    .mission-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+    }
+
+    .mission-subtext {
+        border-left: none;
+        padding-left: 0;
+    }
+
+    .mission-cta {
+        display: flex;
+        justify-content: center;
+    }
+
+    .mission-quote {
+        font-size: 2.22rem;
+    }
+
+    .mission-image-wrapper {
+        transform: rotate(0deg);
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
 /* ========== QUICK ACTIONS ========== */
 .quick-actions {
     padding: 24px 0;
