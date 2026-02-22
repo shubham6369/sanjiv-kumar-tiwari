@@ -211,15 +211,16 @@
                         <h4>अधिकारी खोजें</h4>
                         <p>Find Officers</p>
                     </div>
-                    <div class="svc-card" onclick="openModal('revenueModal')">
-                        <div class="svc-icon bg-orange"><i class="fas fa-landmark"></i></div>
-                        <h4>ब्लॉक खोजें</h4>
-                        <p>Revenue</p>
-                    </div>
+
                     <div class="svc-card" onclick="openModal('reportIssueModal')">
                         <div class="svc-icon bg-red"><i class="fas fa-triangle-exclamation"></i></div>
                         <h4>मुद्दा रिपोर्ट्स करें</h4>
                         <p>Report Issue</p>
+                    </div>
+                    <div class="svc-card" onclick="openModal('villageListModal')">
+                        <div class="svc-icon bg-gold"><i class="fas fa-house-chimney-window"></i></div>
+                        <h4>गाँव की सूची</h4>
+                        <p>Village Directory</p>
                     </div>
                 </div>
             </div>
@@ -633,7 +634,8 @@
                     <a href="https://www.facebook.com/share/17xubYBMTd/" class="social-icon fb" target="_blank"><i
                             class="fab fa-facebook-f"></i></a>
                     <a href="#" class="social-icon tw"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-icon in"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.instagram.com/sanjeev_tiwari19" class="social-icon in" target="_blank"><i
+                            class="fab fa-instagram"></i></a>
                     <a href="https://wa.me/919431389947" class="social-icon wa" target="_blank"><i
                             class="fab fa-whatsapp"></i></a>
                 </div>
@@ -1350,6 +1352,174 @@
                             </tr>
                         </tbody>
                     </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Village Directory Modal -->
+    <div class="modal-overlay" id="villageListModal">
+        <div class="modal modal-lg">
+            <div class="modal-header bg-gold">
+                <h3><i class="fas fa-city"></i> पलामू जिला — प्रखंड‑वार गाँवों की सूची (Village Directory)</h3>
+                <button class="modal-close" onclick="closeModal('villageListModal')">&times;</button>
+            </div>
+            <div class="modal-body village-body">
+                <div class="village-summary-box">
+                    <p><i class="fas fa-info-circle"></i> पलामू जिले में कुल लगभग <strong>1,915 गाँव</strong> हैं। नीचे
+                        प्रखंड-वार सूची और विस्तृत जानकारी के लिंक दिए गए हैं।</p>
+                    <p><small><a href="https://jsac.jharkhand.gov.in/map_sheet/palamu.html" target="_blank"
+                                style="color:#a67c00; font-weight:700;">आधिकारिक पलामू मैप शीट देखें (JSAC) <i
+                                    class="fas fa-map"></i></a></small></p>
+                </div>
+                <div class="village-grid">
+                    <!-- Block 1 -->
+                    <div class="village-block-card">
+                        <div class="vb-header">Bishrampur</div>
+                        <div class="vb-count">लगभग 67 गाँव</div>
+                        <a href="https://vlist.in/block/3602.html" target="_blank" class="vb-link-btn">विस्तृत सूची
+                            देखें <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <!-- Block 2 -->
+                    <div class="village-block-card">
+                        <div class="vb-header">Chainpur</div>
+                        <div class="vb-count">लगभग 182 गाँव</div>
+                        <a href="https://vlist.in/block/3607.html" target="_blank" class="vb-link-btn">विस्तृत सूची
+                            देखें <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <!-- Block 3 -->
+                    <div class="village-block-card">
+                        <div class="vb-header">Chhatarpur</div>
+                        <div class="vb-count">लगभग 142 गाँव</div>
+                        <a href="https://vlist.in/block/3594.html" target="_blank" class="vb-link-btn">विस्तृत सूची
+                            देखें <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <!-- Block 4 -->
+                    <div class="village-block-card">
+                        <div class="vb-header">Haidernagar</div>
+                        <div class="vb-count">लगभग 56 गाँव</div>
+                        <a href="https://vlist.in/block/3593.html" target="_blank" class="vb-link-btn">विस्तृत सूची
+                            देखें <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <!-- Block 5 -->
+                    <div class="village-block-card">
+                        <div class="vb-header">Hariharganj</div>
+                        <div class="vb-count">लगभग 95 गाँव</div>
+                        <a href="https://vlist.in/block/3595.html" target="_blank" class="vb-link-btn">विस्तृत सूची
+                            देखें <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <!-- Block 6 -->
+                    <div class="village-block-card">
+                        <div class="vb-header">Hussainabad</div>
+                        <div class="vb-count">लगभग 176 गाँव</div>
+                        <a href="https://vlist.in/block/3592.html" target="_blank" class="vb-link-btn">विस्तृत सूची
+                            देखें <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <!-- Block 7 -->
+                    <div class="village-block-card">
+                        <div class="vb-header">Manatu</div>
+                        <div class="vb-count">लगभग 84 गाँव</div>
+                        <a href="https://www.census2011.co.in/data/subdistrict/2628-manatu-palamu-jharkhand.html"
+                            target="_blank" class="vb-link-btn">विस्तृत सूची देखें <i
+                                class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <!-- Block 8 -->
+                    <div class="village-block-card">
+                        <div class="vb-header">Medininagar</div>
+                        <div class="vb-count">लगभग 57 गाँव</div>
+                        <a href="https://vlist.in/block/3606.html" target="_blank" class="vb-link-btn">विस्तृत सूची
+                            देखें <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <!-- Block 9 -->
+                    <div class="village-block-card">
+                        <div class="vb-header">Mohammadganj</div>
+                        <div class="vb-count">लगभग 43 गाँव</div>
+                        <a href="https://vlist.in/block/3591.html" target="_blank" class="vb-link-btn">विस्तृत सूची
+                            देखें <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <!-- Block 10 -->
+                    <div class="village-block-card">
+                        <div class="vb-header">Nawa Bazar</div>
+                        <div class="vb-count">लगभग 46 गाँव</div>
+                        <a href="https://vlist.in/block/3601.html" target="_blank" class="vb-link-btn">विस्तृत सूची
+                            देखें <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <!-- Block 11 -->
+                    <div class="village-block-card">
+                        <div class="vb-header">Nawadiha Bazar</div>
+                        <div class="vb-count">लगभग 98 गाँव</div>
+                        <a href="https://vlist.in/block/3597.html" target="_blank" class="vb-link-btn">विस्तृत सूची
+                            देखें <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <!-- Block 12 -->
+                    <div class="village-block-card">
+                        <div class="vb-header">Lesliganj</div>
+                        <div class="vb-count">लगभग 118 गाँव</div>
+                        <a href="https://vlist.in/block/3603.html" target="_blank" class="vb-link-btn">विस्तृत सूची
+                            देखें <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <!-- Block 13 -->
+                    <div class="village-block-card">
+                        <div class="vb-header">Padwa</div>
+                        <div class="vb-count">लगभग 34 गाँव</div>
+                        <a href="https://www.census2011.co.in/data/subdistrict/2627-padwa-palamu-jharkhand.html"
+                            target="_blank" class="vb-link-btn">विस्तृत सूची देखें <i
+                                class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <!-- Block 14 -->
+                    <div class="village-block-card">
+                        <div class="vb-header">Pandu</div>
+                        <div class="vb-count">लगभग 55 गाँव</div>
+                        <a href="https://www.census2011.co.in/data/subdistrict/2622-pandu-palamu-jharkhand.html"
+                            target="_blank" class="vb-link-btn">विस्तृत सूची देखें <i
+                                class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <!-- Block 15 -->
+                    <div class="village-block-card">
+                        <div class="vb-header">Panki</div>
+                        <div class="vb-count">लगभग 200 गाँव</div>
+                        <a href="https://www.census2011.co.in/data/subdistrict/2630-panki-palamu-jharkhand.html"
+                            target="_blank" class="vb-link-btn">विस्तृत सूची देखें <i
+                                class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <!-- Block 16 -->
+                    <div class="village-block-card">
+                        <div class="vb-header">Patan</div>
+                        <div class="vb-count">लगभग 152 गाँव</div>
+                        <a href="https://www.census2011.co.in/data/subdistrict/2626-patan-palamu-jharkhand.html"
+                            target="_blank" class="vb-link-btn">विस्तृत सूची देखें <i
+                                class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <!-- Block 17 -->
+                    <div class="village-block-card">
+                        <div class="vb-header">Pipra</div>
+                        <div class="vb-count">लगभग 83 गाँव</div>
+                        <a href="https://www.census2011.co.in/data/subdistrict/2619-pipra-palamu-jharkhand.html"
+                            target="_blank" class="vb-link-btn">विस्तृत सूची देखें <i
+                                class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <!-- Block 18 -->
+                    <div class="village-block-card">
+                        <div class="vb-header">Satbarwa</div>
+                        <div class="vb-count">लगभग 58 गाँव</div>
+                        <a href="https://www.census2011.co.in/data/subdistrict/2631-satbarwa-palamu-jharkhand.html"
+                            target="_blank" class="vb-link-btn">विस्तृत सूची देखें <i
+                                class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <!-- Block 19 -->
+                    <div class="village-block-card">
+                        <div class="vb-header">Tarhasi</div>
+                        <div class="vb-count">लगभग 106 गाँव</div>
+                        <a href="https://vlist.in/block/3605.html" target="_blank" class="vb-link-btn">विस्तृत सूची
+                            देखें <i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                    <!-- Block 20 -->
+                    <div class="village-block-card">
+                        <div class="vb-header">Untari Road</div>
+                        <div class="vb-count">लगभग 27 गाँव</div>
+                        <a href="https://vlist.in/block/3590.html" target="_blank" class="vb-link-btn">विस्तृत सूची
+                            देखें <i class="fas fa-external-link-alt"></i></a>
+                    </div>
                 </div>
             </div>
         </div>

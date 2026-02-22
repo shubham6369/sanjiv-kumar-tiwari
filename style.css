@@ -953,6 +953,24 @@ button {
     gap: 18px
 }
 
+@media (max-width: 1200px) {
+    .svc-row {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .svc-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .svc-row {
+        grid-template-columns: 1fr;
+    }
+}
+
 .svc-card {
     background: #fff;
     border-radius: var(--radius-lg);
@@ -1027,6 +1045,10 @@ button {
 
 .bg-red {
     background: linear-gradient(135deg, #e53935, #c62828)
+}
+
+.bg-gold {
+    background: linear-gradient(135deg, #ffb300, #ffa000)
 }
 
 .svc-card h4 {
@@ -1985,6 +2007,88 @@ button {
     background: var(--green);
     color: #fff;
     transform: translateY(-2px);
+}
+
+/* Village Directory Specifics */
+.village-body {
+    padding: 2rem;
+}
+
+.village-summary-box {
+    background: #fff8e1;
+    border-left: 5px solid #ffb300;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    color: #5d4037;
+}
+
+.village-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.village-block-card {
+    background: #fff;
+    border: 1.5px solid #eaeaea;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+}
+
+.village-block-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255, 179, 0, 0.1);
+    border-color: #ffb300;
+}
+
+.vb-header {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.vb-count {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.vb-link-btn {
+    display: block;
+    background: #fdf2d0;
+    color: #a67c00;
+    padding: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 800;
+    transition: all 0.3s ease;
+    border: 1px solid #ffecb3;
+}
+
+.vb-link-btn:hover {
+    background: #ffb300;
+    color: #fff;
+    border-color: #ffb300;
+}
+
+.bg-gold {
+    background: linear-gradient(135deg, #ffb300, #ff8f00) !important;
+}
+
+.modal-header.bg-gold {
+    background: linear-gradient(135deg, #ffb300, #ff8f00);
+    color: #fff;
 }
 
 /* Footer Bottom */
