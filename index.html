@@ -63,6 +63,7 @@
                 <li><a href="#blocks" data-en="ब्लॉक खोजें" data-hi="ब्लॉक खोजें">ब्लॉक खोजें</a></li>
                 <li><a href="#officers" data-en="अधिकारी डायरेक्ट्री" data-hi="अधिकारी डायरेक्ट्री">अधिकारी
                         डायरेक्ट्री</a></li>
+                <li><a href="#departments" data-en="सरकारी विभाग" data-hi="सरकारी विभाग">सरकारी विभाग</a></li>
                 <li><a href="#services" data-en="त्वरय करें" data-hi="त्वरय करें">त्वरय करें</a></li>
                 <li><a href="#reports" data-en="रिपोर्ट्स" data-hi="रिपोर्ट्स">रिपोर्ट्स</a></li>
                 <li><a href="#contact" data-en="संपर्क करें" data-hi="संपर्क करें">संपर्क करें</a></li>
@@ -143,13 +144,13 @@
                     <div class="block-list-box">
                         <div class="bl-header">Block Map</div>
                         <ul class="bl-list" id="blockList">
-                            <li onclick="showBlock('Block 1')"><span class="bl-dot"></span> Block 1 <i
+                            <li onclick="showBlock('मेदिनीनगर')"><span class="bl-dot"></span> मेदिनीनगर <i
                                     class="fas fa-chevron-right bl-arrow"></i></li>
-                            <li onclick="showBlock('Block 2')"><span class="bl-dot"></span> Block 2 <i
+                            <li onclick="showBlock('चैनपुर')"><span class="bl-dot"></span> चैनपुर <i
                                     class="fas fa-chevron-right bl-arrow"></i></li>
-                            <li onclick="showBlock('Block 3')"><span class="bl-dot"></span> Block 3 <i
+                            <li onclick="showBlock('हुसैनाबाद')"><span class="bl-dot"></span> हुसैनाबाद <i
                                     class="fas fa-chevron-right bl-arrow"></i></li>
-                            <li onclick="showBlock('Block 4')"><span class="bl-dot"></span> Block 4 <i
+                            <li onclick="showBlock('पांकी')"><span class="bl-dot"></span> पांकी <i
                                     class="fas fa-chevron-right bl-arrow"></i></li>
                         </ul>
                         <button class="view-all-btn" onclick="openModal('allBlocksModal')">View All Blocks &gt;</button>
@@ -226,6 +227,281 @@
                     <button class="view-all-btn" onclick="openModal('allOfficersModal')">View All Officers / सभी अधिकारी
                         देंखे</button>
                 </div>
+            </div>
+        </section>
+
+        <!-- ====== Government Departments Section ====== -->
+        <section id="departments" class="section-gray">
+            <div class="container">
+                <h2 class="sec-title">पलामू जिला — सरकारी विभाग<br><small
+                        style="font-size:.55em;font-weight:500;color:var(--text-light)">Government Departments, Palamu
+                        District (Jharkhand)</small></h2>
+
+                <!-- Category 1: प्रमुख प्रशासनिक विभाग -->
+                <div class="dept-category">
+                    <div class="dept-cat-header">
+                        <div class="dept-cat-icon bg-dept-admin"><i class="fas fa-landmark"></i></div>
+                        <h3>प्रमुख प्रशासनिक विभाग</h3>
+                    </div>
+                    <div class="dept-grid">
+                        <div class="dept-card dept-admin">
+                            <div class="dept-card-icon"><i class="fas fa-building-columns"></i></div>
+                            <h4>उपायुक्त कार्यालय</h4>
+                            <p>Deputy Commissioner Office</p>
+                        </div>
+                        <div class="dept-card dept-admin">
+                            <div class="dept-card-icon"><i class="fas fa-shield-halved"></i></div>
+                            <h4>पुलिस विभाग</h4>
+                            <p>Superintendent of Police Office</p>
+                        </div>
+                        <div class="dept-card dept-admin">
+                            <div class="dept-card-icon"><i class="fas fa-boxes-stacked"></i></div>
+                            <h4>जिला आपूर्ति विभाग</h4>
+                            <p>District Supply Department</p>
+                        </div>
+                        <div class="dept-card dept-admin">
+                            <div class="dept-card-icon"><i class="fas fa-people-roof"></i></div>
+                            <h4>जिला पंचायती राज विभाग</h4>
+                            <p>Panchayati Raj Department</p>
+                        </div>
+                        <div class="dept-card dept-admin">
+                            <div class="dept-card-icon"><i class="fas fa-chart-pie"></i></div>
+                            <h4>जिला योजना विभाग</h4>
+                            <p>District Planning Department</p>
+                        </div>
+                        <div class="dept-card dept-admin">
+                            <div class="dept-card-icon"><i class="fas fa-bullhorn"></i></div>
+                            <h4>जिला जनसंपर्क कार्यालय (DPRO)</h4>
+                            <p>District Public Relations Office</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 2: शिक्षा विभाग -->
+                <div class="dept-category">
+                    <div class="dept-cat-header">
+                        <div class="dept-cat-icon bg-dept-edu"><i class="fas fa-graduation-cap"></i></div>
+                        <h3>शिक्षा विभाग</h3>
+                    </div>
+                    <div class="dept-grid">
+                        <div class="dept-card dept-edu">
+                            <div class="dept-card-icon"><i class="fas fa-chalkboard-user"></i></div>
+                            <h4>जिला शिक्षा पदाधिकारी (DEO) कार्यालय</h4>
+                            <p>District Education Officer</p>
+                        </div>
+                        <div class="dept-card dept-edu">
+                            <div class="dept-card-icon"><i class="fas fa-user-graduate"></i></div>
+                            <h4>जिला शिक्षा अधीक्षक (DSE) कार्यालय</h4>
+                            <p>District Superintendent of Education</p>
+                        </div>
+                        <div class="dept-card dept-edu">
+                            <div class="dept-card-icon"><i class="fas fa-book-open"></i></div>
+                            <h4>सर्व शिक्षा अभियान (SSA)</h4>
+                            <p>Sarva Shiksha Abhiyan</p>
+                        </div>
+                        <div class="dept-card dept-edu">
+                            <div class="dept-card-icon"><i class="fas fa-utensils"></i></div>
+                            <h4>मध्याह्न भोजन योजना विभाग</h4>
+                            <p>Mid-Day Meal Scheme</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 3: स्वास्थ्य विभाग -->
+                <div class="dept-category">
+                    <div class="dept-cat-header">
+                        <div class="dept-cat-icon bg-dept-health"><i class="fas fa-heart-pulse"></i></div>
+                        <h3>स्वास्थ्य विभाग</h3>
+                    </div>
+                    <div class="dept-grid">
+                        <div class="dept-card dept-health">
+                            <div class="dept-card-icon"><i class="fas fa-stethoscope"></i></div>
+                            <h4>सिविल सर्जन कार्यालय</h4>
+                            <p>Civil Surgeon Office</p>
+                        </div>
+                        <div class="dept-card dept-health">
+                            <div class="dept-card-icon"><i class="fas fa-hospital"></i></div>
+                            <h4>जिला स्वास्थ्य समिति</h4>
+                            <p>District Health Committee</p>
+                        </div>
+                        <div class="dept-card dept-health">
+                            <div class="dept-card-icon"><i class="fas fa-hand-holding-medical"></i></div>
+                            <h4>राष्ट्रीय स्वास्थ्य मिशन (NHM)</h4>
+                            <p>National Health Mission</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 4: राजस्व एवं भूमि विभाग -->
+                <div class="dept-category">
+                    <div class="dept-cat-header">
+                        <div class="dept-cat-icon bg-dept-revenue"><i class="fas fa-map-location-dot"></i></div>
+                        <h3>राजस्व एवं भूमि विभाग</h3>
+                    </div>
+                    <div class="dept-grid">
+                        <div class="dept-card dept-revenue">
+                            <div class="dept-card-icon"><i class="fas fa-scale-balanced"></i></div>
+                            <h4>भूमि सुधार उप समाहर्ता (LRDC) कार्यालय</h4>
+                            <p>Land Reforms Deputy Collector</p>
+                        </div>
+                        <div class="dept-card dept-revenue">
+                            <div class="dept-card-icon"><i class="fas fa-map"></i></div>
+                            <h4>अंचल कार्यालय (CO Office)</h4>
+                            <p>Circle Officer Office</p>
+                        </div>
+                        <div class="dept-card dept-revenue">
+                            <div class="dept-card-icon"><i class="fas fa-file-signature"></i></div>
+                            <h4>निबंधन कार्यालय (Registry Office)</h4>
+                            <p>Registration Office</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 5: ग्रामीण विकास विभाग -->
+                <div class="dept-category">
+                    <div class="dept-cat-header">
+                        <div class="dept-cat-icon bg-dept-rural"><i class="fas fa-tractor"></i></div>
+                        <h3>ग्रामीण विकास विभाग</h3>
+                    </div>
+                    <div class="dept-grid">
+                        <div class="dept-card dept-rural">
+                            <div class="dept-card-icon"><i class="fas fa-person-digging"></i></div>
+                            <h4>मनरेगा (MGNREGA) विभाग</h4>
+                            <p>MGNREGA Department</p>
+                        </div>
+                        <div class="dept-card dept-rural">
+                            <div class="dept-card-icon"><i class="fas fa-house-chimney"></i></div>
+                            <h4>प्रधानमंत्री आवास योजना (PMAY)</h4>
+                            <p>PM Housing Scheme</p>
+                        </div>
+                        <div class="dept-card dept-rural">
+                            <div class="dept-card-icon"><i class="fas fa-broom"></i></div>
+                            <h4>स्वच्छ भारत मिशन (SBM)</h4>
+                            <p>Swachh Bharat Mission</p>
+                        </div>
+                        <div class="dept-card dept-rural">
+                            <div class="dept-card-icon"><i class="fas fa-building-wheat"></i></div>
+                            <h4>जिला ग्रामीण विकास अभिकरण (DRDA)</h4>
+                            <p>District Rural Development Agency</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 6: कृषि एवं पशुपालन विभाग -->
+                <div class="dept-category">
+                    <div class="dept-cat-header">
+                        <div class="dept-cat-icon bg-dept-agri"><i class="fas fa-wheat-awn"></i></div>
+                        <h3>कृषि एवं पशुपालन विभाग</h3>
+                    </div>
+                    <div class="dept-grid">
+                        <div class="dept-card dept-agri">
+                            <div class="dept-card-icon"><i class="fas fa-seedling"></i></div>
+                            <h4>जिला कृषि पदाधिकारी कार्यालय</h4>
+                            <p>District Agriculture Officer</p>
+                        </div>
+                        <div class="dept-card dept-agri">
+                            <div class="dept-card-icon"><i class="fas fa-cow"></i></div>
+                            <h4>पशुपालन विभाग</h4>
+                            <p>Animal Husbandry Department</p>
+                        </div>
+                        <div class="dept-card dept-agri">
+                            <div class="dept-card-icon"><i class="fas fa-fish"></i></div>
+                            <h4>मत्स्य विभाग</h4>
+                            <p>Fisheries Department</p>
+                        </div>
+                        <div class="dept-card dept-agri">
+                            <div class="dept-card-icon"><i class="fas fa-handshake"></i></div>
+                            <h4>सहकारिता विभाग</h4>
+                            <p>Cooperative Department</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 7: सामाजिक कल्याण विभाग -->
+                <div class="dept-category">
+                    <div class="dept-cat-header">
+                        <div class="dept-cat-icon bg-dept-welfare"><i class="fas fa-hands-holding-child"></i></div>
+                        <h3>सामाजिक कल्याण विभाग</h3>
+                    </div>
+                    <div class="dept-grid">
+                        <div class="dept-card dept-welfare">
+                            <div class="dept-card-icon"><i class="fas fa-users-gear"></i></div>
+                            <h4>समाज कल्याण विभाग</h4>
+                            <p>Social Welfare Department</p>
+                        </div>
+                        <div class="dept-card dept-welfare">
+                            <div class="dept-card-icon"><i class="fas fa-children"></i></div>
+                            <h4>बाल विकास परियोजना (ICDS)</h4>
+                            <p>Integrated Child Development Services</p>
+                        </div>
+                        <div class="dept-card dept-welfare">
+                            <div class="dept-card-icon"><i class="fas fa-people-group"></i></div>
+                            <h4>जिला कल्याण विभाग (SC/ST/OBC)</h4>
+                            <p>District Welfare Dept (SC/ST/OBC)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 8: अन्य महत्वपूर्ण विभाग -->
+                <div class="dept-category">
+                    <div class="dept-cat-header">
+                        <div class="dept-cat-icon bg-dept-other"><i class="fas fa-gears"></i></div>
+                        <h3>अन्य महत्वपूर्ण विभाग</h3>
+                    </div>
+                    <div class="dept-grid">
+                        <div class="dept-card dept-other">
+                            <div class="dept-card-icon"><i class="fas fa-briefcase"></i></div>
+                            <h4>श्रम विभाग</h4>
+                            <p>Labour Department</p>
+                        </div>
+                        <div class="dept-card dept-other">
+                            <div class="dept-card-icon"><i class="fas fa-bus"></i></div>
+                            <h4>परिवहन विभाग (DTO Office)</h4>
+                            <p>Transport Department</p>
+                        </div>
+                        <div class="dept-card dept-other">
+                            <div class="dept-card-icon"><i class="fas fa-bolt"></i></div>
+                            <h4>विद्युत विभाग (JBVNL)</h4>
+                            <p>Electricity Department</p>
+                        </div>
+                        <div class="dept-card dept-other">
+                            <div class="dept-card-icon"><i class="fas fa-faucet-drip"></i></div>
+                            <h4>पेयजल एवं स्वच्छता विभाग (PHED)</h4>
+                            <p>Drinking Water & Sanitation</p>
+                        </div>
+                        <div class="dept-card dept-other">
+                            <div class="dept-card-icon"><i class="fas fa-tree"></i></div>
+                            <h4>वन विभाग</h4>
+                            <p>Forest Department</p>
+                        </div>
+                        <div class="dept-card dept-other">
+                            <div class="dept-card-icon"><i class="fas fa-industry"></i></div>
+                            <h4>उद्योग विभाग</h4>
+                            <p>Industries Department</p>
+                        </div>
+                        <div class="dept-card dept-other">
+                            <div class="dept-card-icon"><i class="fas fa-city"></i></div>
+                            <h4>नगर परिषद / नगर निगम कार्यालय</h4>
+                            <p>Municipal Council / Corporation</p>
+                        </div>
+                        <div class="dept-card dept-other">
+                            <div class="dept-card-icon"><i class="fas fa-fire-extinguisher"></i></div>
+                            <h4>अग्निशमन विभाग</h4>
+                            <p>Fire Department</p>
+                        </div>
+                        <div class="dept-card dept-other">
+                            <div class="dept-card-icon"><i class="fas fa-house-flood-water"></i></div>
+                            <h4>आपदा प्रबंधन विभाग</h4>
+                            <p>Disaster Management</p>
+                        </div>
+                        <div class="dept-card dept-other">
+                            <div class="dept-card-icon"><i class="fas fa-vault"></i></div>
+                            <h4>कोषागार (Treasury) विभाग</h4>
+                            <p>Treasury Department</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -306,13 +582,82 @@
         </section>
     </main>
 
-    <!-- ====== Footer ====== -->
+    <!-- ====== Comprehensive Footer ====== -->
     <footer class="site-footer">
-        <div class="container footer-inner">
-            <a href="#">Address</a><span>|</span>
-            <a href="#">Phone</a><span>|</span>
-            <a href="#">Privacy Policy</a><span>|</span>
-            <a href="#">Disclaimer</a>
+        <div class="container footer-grid">
+            <!-- Brand & About -->
+            <div class="footer-col footer-about">
+                <div class="footer-logo">
+                    <div class="logo-circle-sm">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <span>संजीव कुमार तिवारी</span>
+                </div>
+                <p class="about-text">
+                    पलामू की प्रगति और जन-जन की समस्याओं का समाधान ही हमारा एकमात्र लक्ष्य है। हम एक पारदर्शी और सशक्त
+                    पलामू बनाने के लिए निरंतर प्रयासरत हैं।
+                </p>
+                <div class="social-links">
+                    <a href="#" class="social-icon fb"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon tw"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon in"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon yt"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-col footer-links">
+                <h4>महत्वपूर्ण लिंक</h4>
+                <ul>
+                    <li><a href="#home"><i class="fas fa-chevron-right"></i> मुख्य पृष्ठ / Home</a></li>
+                    <li><a href="#blocks"><i class="fas fa-chevron-right"></i> ब्लॉक विवरण / Blocks</a></li>
+                    <li><a href="#officers"><i class="fas fa-chevron-right"></i> अधिकारी खोजें / Officers</a></li>
+                    <li><a href="#departments"><i class="fas fa-chevron-right"></i> सरकारी विभाग / Depts</a></li>
+                    <li><a href="#services"><i class="fas fa-chevron-right"></i> त्वरित सेवायें / Services</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="footer-col footer-contact">
+                <h4>संपर्क सूत्र</h4>
+                <div class="contact-item">
+                    <i class="fas fa-location-dot"></i>
+                    <p>मेदिनीनगर, पलामू,<br>झारखंड - 822101</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <p>+91 98765 43210<br>+91 12345 67890</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>contact@sanjeevtiwari.com<br>helpdesk@palamu.gov</p>
+                </div>
+            </div>
+
+            <!-- Emergency & Support -->
+            <div class="footer-col footer-support">
+                <h4>सहायता एवं शिकायत</h4>
+                <div class="support-box">
+                    <p>किसी भी आपात स्थिति में सीधे संपर्क करें</p>
+                    <a href="tel:100" class="emergency-link">पुलि‍स सहायता: 100</a>
+                    <a href="tel:108" class="emergency-link">एम्बुलेंस: 108</a>
+                    <button class="footer-complaint-btn" onclick="openModal('complaintModal')">
+                        शिकायत दर्ज करें / Complaint
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container footer-bottom-inner">
+                <p>&copy; 2026 संजीव कुमार तिवारी | सर्वाधिकार सुरक्षित</p>
+                <div class="bottom-links">
+                    <a href="#">गोपनीयता नीति</a>
+                    <a href="#">नियम एवं शर्तें</a>
+                    <a href="#">सपोर्ट</a>
+                </div>
+            </div>
         </div>
     </footer>
 
@@ -342,10 +687,27 @@
                             <label>ब्लॉक / Block *</label>
                             <select required>
                                 <option value="">-- ब्लॉक चुनें --</option>
-                                <option>Block 1</option>
-                                <option>Block 2</option>
-                                <option>Block 3</option>
-                                <option>Block 4</option>
+                                <option>मेदिनीनगर</option>
+                                <option>चैनपुर</option>
+                                <option>छतरपुर</option>
+                                <option>हरिहरगंज</option>
+                                <option>हैदरनगर</option>
+                                <option>हुसैनाबाद</option>
+                                <option>लेस्लीगंज</option>
+                                <option>मनातू</option>
+                                <option>मोहम्मदगंज</option>
+                                <option>नौडीहा बाजार</option>
+                                <option>पाटन</option>
+                                <option>पांकी</option>
+                                <option>पांडू</option>
+                                <option>सतबरवा</option>
+                                <option>तरहसी</option>
+                                <option>विश्रामपुर</option>
+                                <option>उंटारी रोड</option>
+                                <option>रामगढ़</option>
+                                <option>पिपरा</option>
+                                <option>नावाबाजार</option>
+                                <option>बरवाडीह</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -357,13 +719,60 @@
                         <label>विभाग / Department *</label>
                         <select required>
                             <option value="">-- विभाग चुनें --</option>
-                            <option>पुलिस</option>
-                            <option>स्वास्थ्य</option>
-                            <option>शिक्षा</option>
-                            <option>बिजली</option>
-                            <option>सडक</option>
-                            <option>नगर पालिका</option>
-                            <option>अन्य</option>
+                            <optgroup label="प्रशासनिक विभाग">
+                                <option>उपायुक्त कार्यालय</option>
+                                <option>पुलिस विभाग</option>
+                                <option>जिला आपूर्ति विभाग</option>
+                                <option>जिला पंचायती राज विभाग</option>
+                                <option>जिला योजना विभाग</option>
+                                <option>जिला जनसंपर्क कार्यालय (DPRO)</option>
+                            </optgroup>
+                            <optgroup label="शिक्षा विभाग">
+                                <option>जिला शिक्षा पदाधिकारी (DEO)</option>
+                                <option>जिला शिक्षा अधीक्षक (DSE)</option>
+                                <option>सर्व शिक्षा अभियान (SSA)</option>
+                                <option>मध्याह्न भोजन योजना विभाग</option>
+                            </optgroup>
+                            <optgroup label="स्वास्थ्य विभाग">
+                                <option>सिविल सर्जन कार्यालय</option>
+                                <option>जिला स्वास्थ्य समिति</option>
+                                <option>राष्ट्रीय स्वास्थ्य मिशन (NHM)</option>
+                            </optgroup>
+                            <optgroup label="राजस्व एवं भूमि">
+                                <option>भूमि सुधार उप समाहर्ता (LRDC)</option>
+                                <option>अंचल कार्यालय (CO Office)</option>
+                                <option>निबंधन कार्यालय (Registry)</option>
+                            </optgroup>
+                            <optgroup label="ग्रामीण विकास">
+                                <option>मनरेगा (MGNREGA)</option>
+                                <option>प्रधानमंत्री आवास योजना (PMAY)</option>
+                                <option>स्वच्छ भारत मिशन (SBM)</option>
+                                <option>जिला ग्रामीण विकास अभिकरण (DRDA)</option>
+                            </optgroup>
+                            <optgroup label="कृषि एवं पशुपालन">
+                                <option>कृषि विभाग</option>
+                                <option>पशुपालन विभाग</option>
+                                <option>मत्स्य विभाग</option>
+                                <option>सहकारिता विभाग</option>
+                            </optgroup>
+                            <optgroup label="सामाजिक कल्याण">
+                                <option>समाज कल्याण विभाग</option>
+                                <option>बाल विकास परियोजना (ICDS)</option>
+                                <option>जिला कल्याण विभाग (SC/ST/OBC)</option>
+                            </optgroup>
+                            <optgroup label="अन्य विभाग">
+                                <option>श्रम विभाग</option>
+                                <option>परिवहन विभाग (DTO)</option>
+                                <option>विद्युत विभाग (JBVNL)</option>
+                                <option>पेयजल एवं स्वच्छता (PHED)</option>
+                                <option>वन विभाग</option>
+                                <option>उद्योग विभाग</option>
+                                <option>नगर परिषद / नगर निगम</option>
+                                <option>अग्निशमन विभाग</option>
+                                <option>आपदा प्रबंधन विभाग</option>
+                                <option>कोषागार (Treasury) विभाग</option>
+                                <option>अन्य</option>
+                            </optgroup>
                         </select>
                     </div>
                     <div class="form-group">
@@ -415,10 +824,14 @@
                     <input type="text" id="blockSearchInput" placeholder="खोजें..." oninput="filterBlocks()">
                 </div>
                 <ul class="search-results" id="blockSearchResults">
-                    <li onclick="showBlock('Block 1 - रामपुर')">Block 1 - रामपुर, सोनाल्डा, हरिपुर</li>
-                    <li onclick="showBlock('Block 2 - शिवपुर')">Block 2 - शिवपुर, गंगापुर, देवनगर</li>
-                    <li onclick="showBlock('Block 3 - कृष्णपुर')">Block 3 - कृष्णपुर, लक्ष्मीपुर, नवादा</li>
-                    <li onclick="showBlock('Block 4 - विष्णुपुर')">Block 4 - विष्णुपुर, जनकपुर, सीतापुर</li>
+                    <li onclick="showBlock('मेदिनीनगर')">मेदिनीनगर</li>
+                    <li onclick="showBlock('चैनपुर')">चैनपुर</li>
+                    <li onclick="showBlock('छतरपुर')">छतरपुर</li>
+                    <li onclick="showBlock('हरिहरगंज')">हरिहरगंज</li>
+                    <li onclick="showBlock('हुसैनाबाद')">हुसैनाबाद</li>
+                    <li onclick="showBlock('पांकी')">पांकी</li>
+                    <li onclick="showBlock('पाटन')">पाटन</li>
+                    <li onclick="showBlock('विश्रामपुर')">विश्रामपुर</li>
                 </ul>
             </div>
         </div>
@@ -452,10 +865,11 @@
                             <label>ब्लॉक / Block *</label>
                             <select required>
                                 <option value="">-- चुनें --</option>
-                                <option>Block 1</option>
-                                <option>Block 2</option>
-                                <option>Block 3</option>
-                                <option>Block 4</option>
+                                <option>मेदिनीनगर</option>
+                                <option>चैनपुर</option>
+                                <option>छतरपुर</option>
+                                <option>हुसैनाबाद</option>
+                                <option>पांकी</option>
                             </select>
                         </div>
                     </div>
@@ -575,18 +989,27 @@
             </div>
             <div class="modal-body">
                 <div class="all-blocks-grid">
-                    <div class="ab-card" onclick="showBlock('Block 1')"><strong>Block 1</strong><br>गाँव: रामपुर,
-                        सोनाल्डा, हरिपुर<br><small>जनसंख्या: 45,000</small></div>
-                    <div class="ab-card" onclick="showBlock('Block 2')"><strong>Block 2</strong><br>गाँव: शिवपुर,
-                        गंगापुर, देवनगर<br><small>जनसंख्या: 38,000</small></div>
-                    <div class="ab-card" onclick="showBlock('Block 3')"><strong>Block 3</strong><br>गाँव: कृष्णपुर,
-                        लक्ष्मीपुर, नवादा<br><small>जनसंख्या: 52,000</small></div>
-                    <div class="ab-card" onclick="showBlock('Block 4')"><strong>Block 4</strong><br>गाँव: विष्णुपुर,
-                        जनकपुर, सीतापुर<br><small>जनसंख्या: 41,000</small></div>
-                    <div class="ab-card" onclick="showBlock('Block 5')"><strong>Block 5</strong><br>गाँव: भरतपुर,
-                        अयोध्या, प्रयागराज<br><small>जनसंख्या: 36,000</small></div>
-                    <div class="ab-card" onclick="showBlock('Block 6')"><strong>Block 6</strong><br>गाँव: मथुरा,
-                        वृंदावन, गोकुल<br><small>जनसंख्या: 47,000</small></div>
+                    <div class="ab-card" onclick="showBlock('मेदिनीनगर')"><strong>Medininagar</strong></div>
+                    <div class="ab-card" onclick="showBlock('चैनपुर')"><strong>Chainpur</strong></div>
+                    <div class="ab-card" onclick="showBlock('छतरपुर')"><strong>Chhatarpur</strong></div>
+                    <div class="ab-card" onclick="showBlock('हरिहरगंज')"><strong>Hariharganj</strong></div>
+                    <div class="ab-card" onclick="showBlock('हैदरनगर')"><strong>Haidernagar</strong></div>
+                    <div class="ab-card" onclick="showBlock('हुसैनाबाद')"><strong>Hussainabad</strong></div>
+                    <div class="ab-card" onclick="showBlock('लेस्लीगंज')"><strong>Lesliganj</strong></div>
+                    <div class="ab-card" onclick="showBlock('मनातू')"><strong>Manatu</strong></div>
+                    <div class="ab-card" onclick="showBlock('मोहम्मदगंज')"><strong>Mohammadganj</strong></div>
+                    <div class="ab-card" onclick="showBlock('नौडीहा बाजार')"><strong>Nawdiha Bazar</strong></div>
+                    <div class="ab-card" onclick="showBlock('पाटन')"><strong>Patan</strong></div>
+                    <div class="ab-card" onclick="showBlock('पांकी')"><strong>Panki</strong></div>
+                    <div class="ab-card" onclick="showBlock('पांडू')"><strong>Pandu</strong></div>
+                    <div class="ab-card" onclick="showBlock('सतबरवा')"><strong>Satbarwa</strong></div>
+                    <div class="ab-card" onclick="showBlock('तरहसी')"><strong>Tarhasi</strong></div>
+                    <div class="ab-card" onclick="showBlock('विश्रामपुर')"><strong>Vishrampur</strong></div>
+                    <div class="ab-card" onclick="showBlock('उंटारी रोड')"><strong>Untari Road</strong></div>
+                    <div class="ab-card" onclick="showBlock('रामगढ़')"><strong>Ramgarh</strong></div>
+                    <div class="ab-card" onclick="showBlock('पिपरा')"><strong>Pipra</strong></div>
+                    <div class="ab-card" onclick="showBlock('नावाबाजार')"><strong>Nawa Bazar</strong></div>
+                    <div class="ab-card" onclick="showBlock('बरवाडीह')"><strong>Barwadih</strong></div>
                 </div>
             </div>
         </div>
@@ -655,10 +1078,11 @@
                             <label>ब्लॉक / Block *</label>
                             <select required>
                                 <option value="">-- चुनें --</option>
-                                <option>Block 1</option>
-                                <option>Block 2</option>
-                                <option>Block 3</option>
-                                <option>Block 4</option>
+                                <option>मेदिनीनगर</option>
+                                <option>चैनपुर</option>
+                                <option>छतरपुर</option>
+                                <option>हुसैनाबाद</option>
+                                <option>पांकी</option>
                             </select>
                         </div>
                     </div>
