@@ -694,6 +694,134 @@ button {
     transform: scale(1.02);
 }
 
+/* History Button Styling */
+.map-action-box {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.history-btn-premium {
+    background: linear-gradient(135deg, var(--green-dark), #1b5e20);
+    color: #fff;
+    border: none;
+    padding: 14px 30px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(27, 94, 32, 0.3);
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.history-btn-premium:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(27, 94, 32, 0.4);
+    background: linear-gradient(135deg, #1b5e20, #003300);
+}
+
+.history-btn-premium i {
+    font-size: 1.2rem;
+    color: var(--saffron);
+}
+
+/* History Modal Content Styling */
+.history-body {
+    padding: 2.5rem;
+    color: var(--text);
+    line-height: 1.7;
+}
+
+.hist-sec {
+    margin-bottom: 2rem;
+}
+
+.hist-sec h4 {
+    color: var(--green-dark);
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.hist-sec h4 i {
+    color: var(--saffron);
+}
+
+.hist-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.hist-stat-item {
+    background: var(--off-white);
+    padding: 12px 18px;
+    border-radius: 12px;
+    border-left: 4px solid var(--green);
+    font-size: 0.95rem;
+}
+
+.hist-stat-item strong {
+    color: var(--green-dark);
+}
+
+.hist-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin: 2rem 0;
+}
+
+.hist-col {
+    background: #f9fdf9;
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid rgba(46, 125, 50, 0.1);
+}
+
+.hist-col h4 {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.hist-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.hist-col ul li {
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+    font-size: 0.95rem;
+}
+
+.hist-col ul li::before {
+    content: '\f058';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    color: var(--green);
+}
+
+.hist-highlight {
+    background: linear-gradient(135deg, #f1f8f1, #ffffff);
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px dashed var(--green);
+}
+
+.hist-highlight p {
+    margin-bottom: 15px;
+}
+
 /* Side List Styling */
 .block-directory-box {
     background: #fff;
@@ -1750,6 +1878,29 @@ button {
     text-decoration: none
 }
 
+.footer-help-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, var(--saffron), #e65100);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-weight: 800;
+    cursor: pointer;
+    margin-bottom: 12px;
+    transition: var(--tr);
+    font-size: .9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.footer-help-btn:hover {
+    transform: scale(1.03);
+    box-shadow: 0 5px 15px rgba(230, 81, 0, 0.3);
+}
+
 .footer-complaint-btn {
     width: 100%;
     padding: 12px;
@@ -1759,7 +1910,6 @@ button {
     border-radius: 10px;
     font-weight: 800;
     cursor: pointer;
-    margin-top: 10px;
     transition: var(--tr);
     font-size: .9rem
 }
@@ -1767,6 +1917,74 @@ button {
 .footer-complaint-btn:hover {
     transform: scale(1.03);
     box-shadow: 0 5px 15px rgba(46, 125, 50, .3)
+}
+
+/* Helpline Table Styling */
+.helpline-body {
+    padding: 1.5rem;
+}
+
+.helpline-table-container {
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid #eee;
+}
+
+.helpline-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    text-align: left;
+}
+
+.helpline-table th {
+    background: #f8f9fa;
+    padding: 15px;
+    font-weight: 800;
+    color: #333;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.helpline-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    vertical-align: middle;
+}
+
+.helpline-table tr:hover {
+    background: #fcfcfc;
+}
+
+.helpline-table tr.urgent {
+    background: #fff5f5;
+}
+
+.helpline-table tr.urgent td {
+    font-weight: 700;
+}
+
+.helpline-table i {
+    width: 20px;
+    color: var(--green-dark);
+    margin-right: 10px;
+}
+
+.num-link {
+    display: inline-block;
+    padding: 6px 15px;
+    background: var(--off-white);
+    color: var(--green-dark);
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 800;
+    border: 1.5px solid var(--green);
+    transition: all 0.2s ease;
+}
+
+.num-link:hover {
+    background: var(--green);
+    color: #fff;
+    transform: translateY(-2px);
 }
 
 /* Footer Bottom */

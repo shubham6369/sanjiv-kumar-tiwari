@@ -158,6 +158,11 @@
                         <div class="block-map-box image-mode">
                             <img src="palamu-map.jpg" alt="Palamu Block Map" class="official-map-static">
                         </div>
+                        <div class="map-action-box">
+                            <button class="history-btn-premium" onclick="openModal('palamuHistoryModal')">
+                                <i class="fas fa-landmark"></i> पलामू का इतिहास / History
+                            </button>
+                        </div>
                     </div>
 
                     <!-- Right: Block Directory -->
@@ -665,11 +670,12 @@
 
             <!-- Emergency & Support -->
             <div class="footer-col footer-support">
-                <h4>सहायता एवं शिकायत</h4>
+                <h4>सहायता एवं आपातकालीन</h4>
                 <div class="support-box">
-                    <p>किसी भी आपात स्थिति में सीधे संपर्क करें</p>
-                    <a href="tel:100" class="emergency-link">पुलि‍स सहायता: 100</a>
-                    <a href="tel:108" class="emergency-link">एम्बुलेंस: 108</a>
+                    <p>जिला प्रशासन एवं आपातकालीन सेवाओं के महत्वपूर्ण नंबर</p>
+                    <button class="footer-help-btn" onclick="openModal('helplineModal')">
+                        <i class="fas fa-phone-volume"></i> हेल्पलाइन डायरेक्टरी / Helplines
+                    </button>
                     <button class="footer-complaint-btn" onclick="openModal('complaintModal')">
                         शिकायत दर्ज करें / Complaint
                     </button>
@@ -1186,6 +1192,165 @@
                     <button type="submit" class="submit-btn bg-green">आवेदन भेजें <i
                             class="fas fa-paper-plane"></i></button>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Palamu History Modal -->
+    <div class="modal-overlay" id="palamuHistoryModal">
+        <div class="modal modal-lg">
+            <div class="modal-header bg-green">
+                <h3><i class="fas fa-history"></i> पलामू जिला (Palamu District) – विवरण एवं इतिहास</h3>
+                <button class="modal-close" onclick="closeModal('palamuHistoryModal')">&times;</button>
+            </div>
+            <div class="modal-body history-body">
+                <div class="history-content">
+                    <section class="hist-sec">
+                        <h4><i class="fas fa-map-marked-alt"></i> भौगोलिक स्थिति (Geographical Status)</h4>
+                        <p>पलामू जिला झारखंड के उत्तर-पश्चिमी भाग में स्थित है। इसके पूर्व में छत्रा जिला, पश्चिम में
+                            गढ़वा जिला, दक्षिण में लातेहार जिला और उत्तर में बिहार राज्य है।</p>
+                        <div class="hist-stats-grid">
+                            <div class="hist-stat-item"><strong>स्थापना:</strong> 1 जनवरी 1928</div>
+                            <div class="hist-stat-item"><strong>क्षेत्रफल:</strong> 5043.8 वर्ग किमी</div>
+                            <div class="hist-stat-item"><strong>मुख्यालय:</strong> मेदिनीनगर (डाल्टनगंज)</div>
+                            <div class="hist-stat-item"><strong>पंजीकरण:</strong> JH-03</div>
+                        </div>
+                    </section>
+
+                    <section class="hist-sec">
+                        <h4><i class="fas fa-compass"></i> अक्षांश-रेखांश</h4>
+                        <ul>
+                            <li><strong>उत्तर:</strong> 23°50′ – 24°8′</li>
+                            <li><strong>पूर्व:</strong> 83°55′ – 84°30′</li>
+                        </ul>
+                    </section>
+
+                    <section class="hist-sec">
+                        <h4><i class="fas fa-city"></i> प्रशासनिक इतिहास</h4>
+                        <p>जिला मुख्यालय मेदिनीनगर कोयल नदी के किनारे स्थित है। इसका नाम ब्रिटिश काल में कर्नल डाल्टन
+                            (Colonel Dalton) के नाम पर डाल्टनगंज रखा गया था। बाद में इसे महान राजा <strong>मेदिनी
+                                राय</strong> के नाम पर मेदिनीनगर नाम दिया गया।</p>
+                    </section>
+
+                    <div class="hist-two-col">
+                        <div class="hist-col">
+                            <h4><i class="fas fa-seedling"></i> प्राकृतिक संसाधन व कृषि</h4>
+                            <ul>
+                                <li><strong>मुख्य फसलें:</strong> धान और गन्ना</li>
+                                <li><strong>नदियाँ:</strong> सोन, कोयल और औरंगा</li>
+                                <li><strong>खनिज:</strong> लौह अयस्क, बॉक्साइट, लिथियम, डोलोमाइट, कोयला</li>
+                            </ul>
+                        </div>
+                        <div class="hist-col">
+                            <h4><i class="fas fa-industry"></i> उद्योग और शिक्षा</h4>
+                            <ul>
+                                <li>बिहार कॉस्टिक एंड केमिकल्स लिमिटेड</li>
+                                <li>जापला सीमेंट कंपनी</li>
+                                <li>नीलाम्बर पिताम्बर विश्वविद्यालय</li>
+                                <li>जिला पुस्तकालय</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <section class="hist-sec hist-highlight">
+                        <h4><i class="fas fa-fort-awesome"></i> पलामू का इतिहास (Historical Legacy)</h4>
+                        <p>पलामू का नाम यहाँ के ऐतिहासिक किले से जुड़ा है। 16वीं सदी में <strong>राजा मेदिनी
+                                राय</strong> ने यहाँ एक सशक्त राज्य स्थापित किया। मेदिनी राय का शासन काल पलामू का स्वर्ण
+                            युग माना जाता है।</p>
+                        <p>1861 में ब्रिटिश शासन के दौरान कर्नल डाल्टन ने प्रशासनिक सुधार किए। स्वतंत्रता संग्राम में भी
+                            यहाँ के लोगों ने बढ़-चढ़कर भाग लिया और अंग्रेजों के खिलाफ विद्रोह किया।</p>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Helpline Directory Modal -->
+    <div class="modal-overlay" id="helplineModal">
+        <div class="modal modal-lg">
+            <div class="modal-header bg-red">
+                <h3><i class="fas fa-phone-flip"></i> पलामू जिला – सहायता एवं आपातकालीन नंबर</h3>
+                <button class="modal-close" onclick="closeModal('helplineModal')">&times;</button>
+            </div>
+            <div class="modal-body helpline-body">
+                <div class="helpline-table-container">
+                    <table class="helpline-table">
+                        <thead>
+                            <tr>
+                                <th>श्रेणी (Category)</th>
+                                <th>विवरण (Description)</th>
+                                <th>टोल-फ्री / नंबर (Number)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="urgent">
+                                <td><i class="fas fa-shield-halved"></i> पुलिस</td>
+                                <td>जिला पुलिस / आपातकालीन कॉल</td>
+                                <td><a href="tel:100" class="num-link">100</a></td>
+                            </tr>
+                            <tr class="urgent">
+                                <td><i class="fas fa-fire-extinguisher"></i> फायर सर्विस</td>
+                                <td>अग्निकांड / इमरजेंसी</td>
+                                <td><a href="tel:101" class="num-link">101</a></td>
+                            </tr>
+                            <tr class="urgent">
+                                <td><i class="fas fa-ambulance"></i> एम्बुलेंस</td>
+                                <td>सरकारी एम्बुलेंस / मेडिकल इमरजेंसी</td>
+                                <td><a href="tel:102" class="num-link">102</a></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-person-dress"></i> महिला हेल्पलाइन</td>
+                                <td>महिला उत्पीड़न / सुरक्षा</td>
+                                <td><a href="tel:1091" class="num-link">1091</a></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-child"></i> बाल हेल्पलाइन</td>
+                                <td>बाल सुरक्षा / बाल अधिकार</td>
+                                <td><a href="tel:1098" class="num-link">1098</a></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-cloud-bolt"></i> राज्य आपदा</td>
+                                <td>Flood, Cyclone, Disaster (झारखंड)</td>
+                                <td><a href="tel:1070" class="num-link">1070</a></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-virus"></i> राष्ट्रीय हेल्पलाइन</td>
+                                <td>COVID-19 / Govt Helpline (सामान्य)</td>
+                                <td><a href="tel:1075" class="num-link">1075</a></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-bolt-lightning"></i> बिजली शिकायत</td>
+                                <td>JBVNL / बिजली कटौती</td>
+                                <td><a href="tel:1912" class="num-link">1912</a></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-droplet"></i> पानी सप्लाई</td>
+                                <td>PHED / पेयजल समस्या</td>
+                                <td><a href="tel:1916" class="num-link">1916</a></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-users-viewfinder"></i> ग्रामीण शिकायत</td>
+                                <td>District Helpdesk / जनसुनवाई</td>
+                                <td><a href="tel:1962" class="num-link">1962</a></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-handshake-slash"></i> भ्रष्टाचार</td>
+                                <td>Vigilance Helpline / लोक शिकायत</td>
+                                <td><a href="tel:18001801947" class="num-link">1800-180-1947</a></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-car-burst"></i> ट्रैफिक हेल्पलाइन</td>
+                                <td>रोड एक्सीडेंट / Traffic</td>
+                                <td><a href="tel:1033" class="num-link">1033</a></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-house-chimney-crack"></i> राष्ट्रीय आपदा</td>
+                                <td>National Disaster Management Authority</td>
+                                <td><a href="tel:1077" class="num-link">1077</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
