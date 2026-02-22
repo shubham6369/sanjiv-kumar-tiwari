@@ -157,7 +157,28 @@ button {
 .header-left {
     display: flex;
     align-items: center;
-    gap: 18px
+    gap: 20px
+}
+
+.header-flag {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    flex-shrink: 0;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-flag img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 .logo-circle {
@@ -1671,8 +1692,8 @@ button {
     background: #e4405f
 }
 
-.social-icon.yt:hover {
-    background: #ff0000
+.social-icon.wa:hover {
+    background: #25D366
 }
 
 /* Column: Links */
