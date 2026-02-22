@@ -22,7 +22,7 @@ const officersData = [
 ];
 
 const blocksData = {
-    'چैनपुर': { name: 'चैनपुर (Chainpur)', villages: ['रामपुर', 'सोनाल्डा', 'हरिपुर', 'मोहनपुर'], population: 45000, complaints: 120 },
+    'चैनपुर': { name: 'चैनपुर (Chainpur)', villages: ['रामपुर', 'सोनाल्डा', 'हरिपुर', 'मोहनपुर'], population: 45000, complaints: 120 },
     'छतरपुर': { name: 'छतरपुर (Chhatarpur)', villages: ['छतरपुर', 'मदनपुर', 'सरैया', 'बैरगिया'], population: 62000, complaints: 185 },
     'हरिहरगंज': { name: 'हरिहरगंज (Hariharganj)', villages: ['हरिहरगंज', 'ढाब', 'सरस्वती', 'खिरोड़ा'], population: 38000, complaints: 95 },
     'हैदरनगर': { name: 'हैदरनगर (Haidernagar)', villages: ['हैदरनगर', 'परतापुर', 'कुसूमहा', 'बड़ही'], population: 35000, complaints: 78 },
@@ -30,19 +30,18 @@ const blocksData = {
     'लेस्लीगंज': { name: 'लेस्लीगंज (Lesliganj)', villages: ['लेस्लीगंज', 'नीलाम्बर-पीताम्बरपुर', 'कुंदरी'], population: 48000, complaints: 112 },
     'मनातू': { name: 'मनातू (Manatu)', villages: ['मनातू', 'रंगिया', 'बेतला', 'चंगारी'], population: 32000, complaints: 65 },
     'मोहम्मदगंज': { name: 'मोहम्मदगंज (Mohammadganj)', villages: ['मोहम्मदगंज', 'मझिआंव', 'लंगरकाटा'], population: 28000, complaints: 54 },
-    'नौडीहा बाजार': { name: 'नौडीहा बाजार (Nawdiha Bazar)', villages: ['नौडीहा', 'ढेना', 'खरगड़ा'], population: 31000, complaints: 48 },
+    'नौडीहा बाजार': { name: 'नौडीहा बाजार (Nawadih)', villages: ['नौडीहा', 'ढेना', 'खरगड़ा'], population: 31000, complaints: 48 },
     'पाटन': { name: 'पाटन (Patan)', villages: ['पाटन', 'डाल्टेनगंज', 'सगमा'], population: 54000, complaints: 132 },
     'पांकी': { name: 'पांकी (Panki)', villages: ['पांकी', 'लोहरसी', 'सगालीम'], population: 58000, complaints: 145 },
     'पांडू': { name: 'पांडू (Pandu)', villages: ['पांडू', 'मझिआंव', 'कजरू'], population: 29000, complaints: 52 },
     'सतबरवा': { name: 'सतबरवा (Satbarwa)', villages: ['सतबरवा', 'मलय', 'पोल्का'], population: 34000, complaints: 88 },
     'तरहसी': { name: 'तरहसी (Tarhasi)', villages: ['तरहसी', 'गोवा', 'गुरहा'], population: 41000, complaints: 92 },
-    'विश्रामपुर': { name: 'विश्रामपुर (Vishrampur)', villages: ['विश्रामपुर', 'नावागढ़', 'भलुही'], population: 68000, complaints: 195 },
-    'उंटारी रोड': { name: 'उंटारी रोड (Untari Road)', villages: ['उंटारी', 'लुंबा', 'खरौंधी'], population: 26000, complaints: 42 },
-    'रामगढ़': { name: 'रामगढ़ (Ramgarh)', villages: ['रामगढ़', 'बरही', 'चुट्टूपालू'], population: 33000, complaints: 67 },
-    'मेदिनीनगर': { name: 'मेदिनीनगर (Medininagar)', villages: ['मेदिनीनगर', 'शहर', 'सुदना', 'आबादगंज'], population: 145000, complaints: 480 },
+    'विश्रामपुर': { name: 'विश्रामपुर (Bishrampur)', villages: ['विश्रामपुर', 'नावागढ़', 'भलुही'], population: 68000, complaints: 195 },
+    'उंटारी रोड': { name: 'उंटारी रोड (Untari)', villages: ['उंटारी', 'लुंबा', 'खरौंधी'], population: 26000, complaints: 42 },
+    'मेदिनीनगर': { name: 'मेदिनीनगर (Daltonganj)', villages: ['मेदिनीनगर', 'शहर', 'सुदना', 'आबादगंज'], population: 145000, complaints: 480 },
     'पिपरा': { name: 'पिपरा (Pipra)', villages: ['पिपरा', 'दिग्धी', 'भलुआ'], population: 27000, complaints: 45 },
-    'नावाबाजार': { name: 'नावाबाजार (Nawa Bazar)', villages: ['नावाबाजार', 'रजहरा', 'कोल्हुआ'], population: 31000, complaints: 58 },
-    'बरवाडीह': { name: 'बरवाडीह (Barwadih)', villages: ['बरवाडीह', 'छिपदोहर', 'अमझोर'], population: 42000, complaints: 104 },
+    'नावाबाजार': { name: 'नावाबाजार (Nawabazar)', villages: ['नावाबाजार', 'रजहरा', 'कोल्हुआ'], population: 31000, complaints: 58 },
+    'पंडवा': { name: 'पंडवा (Pandwa)', villages: ['पंडवा', 'कडल', 'मझिआंव'], population: 24000, complaints: 38 },
 };
 
 let complaintCount = 1582;
