@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="संजीव कुमार तिवारी - जनसेवा, जनसमस्या समाधान। शिकायत दर्ज करें, अधिकारी खोजें, ब्लॉक जानकारी।">
+    <title>संजीव कुमार तिवारी | जनसेवा, जनसमस्या समाधान</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ====== Top Info Bar ====== -->
+    <div class="topbar">
+        <div class="container topbar-inner">
+            <div class="topbar-left">
+                <span><i class="fas fa-phone-alt"></i> +91 9876543210</span>
+                <span><i class="fas fa-envelope"></i> info@website.com</span>
+            </div>
+            <div class="topbar-right">
+                <button class="lang-btn" id="langBtn">A / अ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== Main Header ====== -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="header-left">
+                <div class="logo-circle">
+                    <i class="fas fa-university"></i>
+                </div>
+                <div class="header-text">
+                    <h1 class="site-name">संजीव कुमार तिवारी</h1>
+                    <p class="site-tagline">जनसेवा, <strong>जनसमस्या समाधान</strong> —</p>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="profile-photo">
+                    <img src="hero-photo.jpg" alt="संजीव कुमार तिवारी"
+                        onerror="this.onerror=null; this.src=''; this.parentElement.classList.add('no-img');">
+                    <i class="fas fa-user fallback-icon"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ====== Navigation ====== -->
+    <nav class="main-nav" id="mainNav">
+        <div class="container nav-container">
+            <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="active" data-en="Home" data-hi="Home">Home</a></li>
+                <li><a href="#" onclick="openModal('complaintModal')" data-en="शिकायत" data-hi="शिकायत">शिकायत</a></li>
+                <li><a href="#blocks" data-en="ब्लॉक खोजें" data-hi="ब्लॉक खोजें">ब्लॉक खोजें</a></li>
+                <li><a href="#officers" data-en="अधिकारी डायरेक्ट्री" data-hi="अधिकारी डायरेक्ट्री">अधिकारी
+                        डायरेक्ट्री</a></li>
+                <li><a href="#services" data-en="त्वरय करें" data-hi="त्वरय करें">त्वरय करें</a></li>
+                <li><a href="#reports" data-en="रिपोर्ट्स" data-hi="रिपोर्ट्स">रिपोर्ट्स</a></li>
+                <li><a href="#contact" data-en="संपर्क करें" data-hi="संपर्क करें">संपर्क करें</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- ====== Slider ====== -->
+        <section id="home" class="slider-section">
+            <div class="slider" id="slider">
+                <div class="slide active-slide" style="background: linear-gradient(135deg, #dcedc8, #f1f8e9, #fff9c4);">
+                    <div class="slide-body">
+                        <h2>जनसेवा ही सच्ची सेवा</h2>
+                        <p>आपकी समस्याओं का समाधान हमारी प्राथमिकता</p>
+                        <button class="slide-btn" onclick="openModal('complaintModal')">शिकायत दर्ज करें</button>
+                    </div>
+                </div>
+                <div class="slide" style="background: linear-gradient(135deg, #fff3e0, #ffe0b2, #e8f5e9);">
+                    <div class="slide-body">
+                        <h2>विकास की ओर एक कदम</h2>
+                        <p>हर गाँव, हर ब्लॉक का विकास हमारा संकल्प</p>
+                        <button class="slide-btn" onclick="location.href='#blocks'">ब्लॉक देखें</button>
+                    </div>
+                </div>
+                <div class="slide" style="background: linear-gradient(135deg, #e3f2fd, #bbdefb, #c8e6c9);">
+                    <div class="slide-body">
+                        <h2>पारदर्शी शासन, स्वच्छ प्रशासन</h2>
+                        <p>जवाबदेही और पारदर्शिता से बनेगा नया भारत</p>
+                        <button class="slide-btn" onclick="location.href='#reports'">रिपोर्ट देखें</button>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-dots" id="sliderDots">
+                <span class="dot active-dot" onclick="goSlide(0)"></span>
+                <span class="dot" onclick="goSlide(1)"></span>
+                <span class="dot" onclick="goSlide(2)"></span>
+            </div>
+            <button class="slider-arrow arrow-left" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button>
+            <button class="slider-arrow arrow-right" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
+        </section>
+
+        <!-- ====== Quick Action Buttons ====== -->
+        <section class="quick-actions">
+            <div class="container actions-row">
+                <button class="action-btn btn-saffron" onclick="openModal('complaintModal')">
+                    <span>शिकायत दर्ज करे</span> <i class="fas fa-chevron-right"></i>
+                </button>
+                <button class="action-btn btn-red" onclick="openModal('searchBlockModal')">
+                    <span>ब्लांक ख्होजें</span> <i class="fas fa-chevron-right"></i>
+                </button>
+                <button class="action-btn btn-green" onclick="openModal('registerModal')">
+                    <span>त्वरय पंजीकरण</span> <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- ====== Block Map ====== -->
+        <section id="blocks" class="section-white">
+            <div class="container">
+                <h2 class="sec-title">ब्लोक विवरण</h2>
+                <div class="block-row">
+                    <div class="block-map-box">
+                        <div class="map-piece" style="background:#ef9a9a;top:12%;left:18%;"
+                            onclick="showBlock('क्षेत्र 1')">क्षेत्र 1</div>
+                        <div class="map-piece" style="background:#a5d6a7;top:8%;left:52%;"
+                            onclick="showBlock('क्षेत्र 2')">क्षेत्र 2</div>
+                        <div class="map-piece" style="background:#90caf9;top:38%;left:12%;"
+                            onclick="showBlock('क्षेत्र 3')">क्षेत्र 3</div>
+                        <div class="map-piece" style="background:#fff59d;top:34%;left:48%;"
+                            onclick="showBlock('क्षेत्र 4')">क्षेत्र 4</div>
+                        <div class="map-piece" style="background:#ce93d8;top:58%;left:28%;"
+                            onclick="showBlock('क्षेत्र 5')">क्षेत्र 5</div>
+                        <div class="map-piece" style="background:#ffcc80;top:54%;left:62%;"
+                            onclick="showBlock('क्षेत्र 6')">क्षेत्र 6</div>
+                        <div class="map-label">BLOCK MAP<br><span>जोक पानियव</span></div>
+                    </div>
+                    <div class="block-list-box">
+                        <div class="bl-header">Block Map</div>
+                        <ul class="bl-list" id="blockList">
+                            <li onclick="showBlock('Block 1')"><span class="bl-dot"></span> Block 1 <i
+                                    class="fas fa-chevron-right bl-arrow"></i></li>
+                            <li onclick="showBlock('Block 2')"><span class="bl-dot"></span> Block 2 <i
+                                    class="fas fa-chevron-right bl-arrow"></i></li>
+                            <li onclick="showBlock('Block 3')"><span class="bl-dot"></span> Block 3 <i
+                                    class="fas fa-chevron-right bl-arrow"></i></li>
+                            <li onclick="showBlock('Block 4')"><span class="bl-dot"></span> Block 4 <i
+                                    class="fas fa-chevron-right bl-arrow"></i></li>
+                        </ul>
+                        <button class="view-all-btn" onclick="openModal('allBlocksModal')">View All Blocks &gt;</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== Quick Services ====== -->
+        <section id="services" class="section-gray">
+            <div class="container">
+                <h2 class="sec-title">Quick Services</h2>
+                <div class="svc-row">
+                    <div class="svc-card" onclick="openModal('complaintModal')">
+                        <div class="svc-icon bg-green"><i class="fas fa-pen-to-square"></i></div>
+                        <h4>शिकायत दर्ज करें</h4>
+                        <p>Register Complaint</p>
+                    </div>
+                    <div class="svc-card" onclick="openModal('statusModal')">
+                        <div class="svc-icon bg-blue"><i class="fas fa-magnifying-glass"></i></div>
+                        <h4>स्टेटर्स दायें</h4>
+                        <p>Check Status</p>
+                    </div>
+                    <div class="svc-card" onclick="openModal('findOfficerModal')">
+                        <div class="svc-icon bg-purple"><i class="fas fa-users"></i></div>
+                        <h4>अधिकारी कोंजें</h4>
+                        <p>Find Officers</p>
+                    </div>
+                    <div class="svc-card" onclick="openModal('revenueModal')">
+                        <div class="svc-icon bg-orange"><i class="fas fa-landmark"></i></div>
+                        <h4>Find Officers</h4>
+                        <p>Revenue</p>
+                    </div>
+                    <div class="svc-card" onclick="openModal('reportIssueModal')">
+                        <div class="svc-icon bg-red"><i class="fas fa-triangle-exclamation"></i></div>
+                        <h4>मास्ता रिपोर्ट्स करें</h4>
+                        <p>Report Issue</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== Officers Directory ====== -->
+        <section id="officers" class="section-white">
+            <div class="container">
+                <h2 class="sec-title">अधिकारी डायरेस्ट्ररी</h2>
+                <div class="officer-row">
+                    <div class="off-card" onclick="showOfficers('पुलिस')">
+                        <div class="off-icon"><i class="fas fa-shield-halved"></i></div>
+                        <span>पुलिस</span>
+                    </div>
+                    <div class="off-card" onclick="showOfficers('स्वास्थ्य')">
+                        <div class="off-icon"><i class="fas fa-heart-pulse"></i></div>
+                        <span>स्वास्थ्य</span>
+                    </div>
+                    <div class="off-card featured-off" onclick="showOfficers('शिक्षा')">
+                        <div class="off-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <span>शिक्षा</span>
+                    </div>
+                    <div class="off-card" onclick="showOfficers('बिजली')">
+                        <div class="off-icon"><i class="fas fa-bolt"></i></div>
+                        <span>बिजली</span>
+                    </div>
+                    <div class="off-card" onclick="showOfficers('सडवस्थ')">
+                        <div class="off-icon"><i class="fas fa-road"></i></div>
+                        <span>सडवस्थ</span>
+                    </div>
+                    <div class="off-card" onclick="showOfficers('नगर पालिका')">
+                        <div class="off-icon"><i class="fas fa-building"></i></div>
+                        <span>नगर पालिका</span>
+                    </div>
+                </div>
+                <div class="center mt-1">
+                    <button class="view-all-btn" onclick="openModal('allOfficersModal')">View All Officers / सभी अधिकारी
+                        देंखे</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== Reports Dashboard ====== -->
+        <section id="reports" class="section-gray">
+            <div class="container">
+                <h2 class="sec-title">लोक रिपोर्ट्स डैशबोर्ड की जरे</h2>
+                <div class="report-row">
+                    <div class="rpt-card rpt-green">
+                        <i class="fas fa-file-lines rpt-ico"></i>
+                        <div class="rpt-num" data-target="1582">0</div>
+                        <div class="rpt-hi">कुल शिकायतें</div>
+                        <div class="rpt-en">Total Complaints</div>
+                    </div>
+                    <div class="rpt-card rpt-yellow">
+                        <i class="fas fa-clock rpt-ico"></i>
+                        <div class="rpt-num" data-target="325">0</div>
+                        <div class="rpt-hi">पेंडिंग मामले</div>
+                        <div class="rpt-en">Pending Issues</div>
+                    </div>
+                    <div class="rpt-card rpt-blue">
+                        <i class="fas fa-circle-check rpt-ico"></i>
+                        <div class="rpt-num" data-target="714">0</div>
+                        <div class="rpt-hi">समाधान पुर्ण</div>
+                        <div class="rpt-en">Resolved</div>
+                    </div>
+                    <div class="rpt-card rpt-orange">
+                        <i class="fas fa-circle-exclamation rpt-ico"></i>
+                        <div class="rpt-num" data-target="178">0</div>
+                        <div class="rpt-hi">गंभीर समस्याएँ</div>
+                        <div class="rpt-en">Critical Issues</div>
+                    </div>
+                    <div class="rpt-card rpt-red">
+                        <i class="fas fa-arrow-trend-up rpt-ico"></i>
+                        <div class="rpt-num" data-target="178">0</div>
+                        <div class="rpt-hi">निंबरी सत्यापित</div>
+                        <div class="rpt-en">Critical Issues</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== Community Reporters ====== -->
+        <section class="section-white" id="contact">
+            <div class="container">
+                <h2 class="sec-title">हमारे जनसमस्या प्रतिनिधि | Our Community Reporters</h2>
+                <div class="rep-row">
+                    <div class="rep-card">
+                        <div class="rep-photo"><i class="fas fa-user"></i></div>
+                        <h4>NAME</h4>
+                        <p>गांव / सोनाल्डा</p>
+                    </div>
+                    <div class="rep-card">
+                        <div class="rep-photo"><i class="fas fa-user"></i></div>
+                        <h4>NAME</h4>
+                        <p>गांव / संगामत</p>
+                    </div>
+                    <div class="rep-card">
+                        <div class="rep-photo"><i class="fas fa-user"></i></div>
+                        <h4>NAME</h4>
+                        <p>गांव / वंनालडा</p>
+                    </div>
+                    <div class="rep-card">
+                        <div class="rep-photo"><i class="fas fa-user"></i></div>
+                        <h4>NAME</h4>
+                        <p>गांव / संभावहरा</p>
+                    </div>
+                    <div class="rep-card">
+                        <div class="rep-photo"><i class="fas fa-user"></i></div>
+                        <h4>NAME</h4>
+                        <p>गांव / सोनालडा</p>
+                    </div>
+                </div>
+                <div class="center mt-1">
+                    <button class="join-btn" onclick="openModal('reporterModal')">Join as Reporter +</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ====== Footer ====== -->
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <a href="#">Address</a><span>|</span>
+            <a href="#">Phone</a><span>|</span>
+            <a href="#">Privacy Policy</a><span>|</span>
+            <a href="#">Disclaimer</a>
+        </div>
+    </footer>
+
+    <!-- ========== MODALS ========== -->
+
+    <!-- Complaint Registration Modal -->
+    <div class="modal-overlay" id="complaintModal">
+        <div class="modal">
+            <div class="modal-header bg-saffron">
+                <h3><i class="fas fa-pen-to-square"></i> शिकायत दर्ज करें / Register Complaint</h3>
+                <button class="modal-close" onclick="closeModal('complaintModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="complaintForm" onsubmit="submitComplaint(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>आपका नाम / Your Name *</label>
+                            <input type="text" required placeholder="पूरा नाम दर्ज करें">
+                        </div>
+                        <div class="form-group">
+                            <label>मोबाइल नंबर / Mobile *</label>
+                            <input type="tel" required placeholder="+91 XXXXX XXXXX" pattern="[0-9]{10}">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>ब्लॉक / Block *</label>
+                            <select required>
+                                <option value="">-- ब्लॉक चुनें --</option>
+                                <option>Block 1</option>
+                                <option>Block 2</option>
+                                <option>Block 3</option>
+                                <option>Block 4</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>गाँव / Village *</label>
+                            <input type="text" required placeholder="गाँव का नाम">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>विभाग / Department *</label>
+                        <select required>
+                            <option value="">-- विभाग चुनें --</option>
+                            <option>पुलिस</option>
+                            <option>स्वास्थ्य</option>
+                            <option>शिक्षा</option>
+                            <option>बिजली</option>
+                            <option>सडक</option>
+                            <option>नगर पालिका</option>
+                            <option>अन्य</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>शिकायत विवरण / Complaint Details *</label>
+                        <textarea required rows="4" placeholder="अपनी शिकायत विस्तार से लिखें..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>फोटो अपलोड करें (Optional)</label>
+                        <input type="file" accept="image/*">
+                    </div>
+                    <button type="submit" class="submit-btn bg-saffron">शिकायत दर्ज करें <i
+                            class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Status Check Modal -->
+    <div class="modal-overlay" id="statusModal">
+        <div class="modal modal-sm">
+            <div class="modal-header bg-blue">
+                <h3><i class="fas fa-magnifying-glass"></i> स्टेटस जांचें / Check Status</h3>
+                <button class="modal-close" onclick="closeModal('statusModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="checkStatus(event)">
+                    <div class="form-group">
+                        <label>शिकायत नंबर / Complaint ID *</label>
+                        <input type="text" id="statusInput" required placeholder="e.g. CMP-2026-001">
+                    </div>
+                    <button type="submit" class="submit-btn bg-blue">स्टेटस जांचें <i
+                            class="fas fa-search"></i></button>
+                </form>
+                <div id="statusResult" class="status-result" style="display:none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Block Modal -->
+    <div class="modal-overlay" id="searchBlockModal">
+        <div class="modal modal-sm">
+            <div class="modal-header bg-red-header">
+                <h3><i class="fas fa-map-location-dot"></i> ब्लॉक खोजें / Search Block</h3>
+                <button class="modal-close" onclick="closeModal('searchBlockModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>ब्लॉक या गाँव का नाम / Block or Village Name</label>
+                    <input type="text" id="blockSearchInput" placeholder="खोजें..." oninput="filterBlocks()">
+                </div>
+                <ul class="search-results" id="blockSearchResults">
+                    <li onclick="showBlock('Block 1 - रामपुर')">Block 1 - रामपुर, सोनाल्डा, हरिपुर</li>
+                    <li onclick="showBlock('Block 2 - शिवपुर')">Block 2 - शिवपुर, गंगापुर, देवनगर</li>
+                    <li onclick="showBlock('Block 3 - कृष्णपुर')">Block 3 - कृष्णपुर, लक्ष्मीपुर, नवादा</li>
+                    <li onclick="showBlock('Block 4 - विष्णुपुर')">Block 4 - विष्णुपुर, जनकपुर, सीतापुर</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Registration Modal -->
+    <div class="modal-overlay" id="registerModal">
+        <div class="modal">
+            <div class="modal-header bg-green">
+                <h3><i class="fas fa-user-plus"></i> त्वरय पंजीकरण / Quick Registration</h3>
+                <button class="modal-close" onclick="closeModal('registerModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="submitRegistration(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>नाम / Name *</label>
+                            <input type="text" required placeholder="पूरा नाम">
+                        </div>
+                        <div class="form-group">
+                            <label>मोबाइल / Mobile *</label>
+                            <input type="tel" required placeholder="+91 XXXXX XXXXX" pattern="[0-9]{10}">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>आधार नंबर / Aadhaar</label>
+                            <input type="text" placeholder="XXXX XXXX XXXX" maxlength="14">
+                        </div>
+                        <div class="form-group">
+                            <label>ब्लॉक / Block *</label>
+                            <select required>
+                                <option value="">-- चुनें --</option>
+                                <option>Block 1</option>
+                                <option>Block 2</option>
+                                <option>Block 3</option>
+                                <option>Block 4</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>गाँव / Village *</label>
+                        <input type="text" required placeholder="गाँव का नाम">
+                    </div>
+                    <button type="submit" class="submit-btn bg-green">पंजीकरण करें <i class="fas fa-check"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Find Officer Modal -->
+    <div class="modal-overlay" id="findOfficerModal">
+        <div class="modal">
+            <div class="modal-header bg-purple">
+                <h3><i class="fas fa-users"></i> अधिकारी खोजें / Find Officers</h3>
+                <button class="modal-close" onclick="closeModal('findOfficerModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>विभाग चुनें / Select Department</label>
+                    <select id="officerDeptSelect" onchange="filterOfficers()">
+                        <option value="all">-- सभी विभाग --</option>
+                        <option value="पुलिस">पुलिस</option>
+                        <option value="स्वास्थ्य">स्वास्थ्य</option>
+                        <option value="शिक्षा">शिक्षा</option>
+                        <option value="बिजली">बिजली</option>
+                        <option value="सडक">सडक</option>
+                        <option value="नगर पालिका">नगर पालिका</option>
+                    </select>
+                </div>
+                <div class="officer-list" id="officerListResults">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Revenue Modal -->
+    <div class="modal-overlay" id="revenueModal">
+        <div class="modal modal-sm">
+            <div class="modal-header bg-orange">
+                <h3><i class="fas fa-landmark"></i> राजस्व / Revenue</h3>
+                <button class="modal-close" onclick="closeModal('revenueModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="revenue-cards">
+                    <div class="rev-item"><i class="fas fa-file-invoice"></i><span>भू-अभिलेख / Land Records</span></div>
+                    <div class="rev-item"><i class="fas fa-map"></i><span>खसरा / खतौनी</span></div>
+                    <div class="rev-item"><i class="fas fa-id-card"></i><span>जाति प्रमाण पत्र</span></div>
+                    <div class="rev-item"><i class="fas fa-home"></i><span>निवास प्रमाण पत्र</span></div>
+                    <div class="rev-item"><i class="fas fa-coins"></i><span>आय प्रमाण पत्र</span></div>
+                    <div class="rev-item"><i class="fas fa-file-signature"></i><span>अन्य सेवाएं</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Report Issue Modal -->
+    <div class="modal-overlay" id="reportIssueModal">
+        <div class="modal">
+            <div class="modal-header bg-red-header">
+                <h3><i class="fas fa-triangle-exclamation"></i> समस्या रिपोर्ट करें / Report Issue</h3>
+                <button class="modal-close" onclick="closeModal('reportIssueModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="submitReport(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>नाम / Name *</label>
+                            <input type="text" required placeholder="आपका नाम">
+                        </div>
+                        <div class="form-group">
+                            <label>मोबाइल / Mobile *</label>
+                            <input type="tel" required placeholder="मोबाइल नंबर" pattern="[0-9]{10}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>समस्या का प्रकार / Issue Type *</label>
+                        <select required>
+                            <option value="">-- चुनें --</option>
+                            <option>सड़क खराब</option>
+                            <option>पानी की समस्या</option>
+                            <option>बिजली कटौती</option>
+                            <option>सफाई समस्या</option>
+                            <option>अवैध निर्माण</option>
+                            <option>अन्य</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>स्थान / Location *</label>
+                        <input type="text" required placeholder="सटीक स्थान बताएं">
+                    </div>
+                    <div class="form-group">
+                        <label>विवरण / Details *</label>
+                        <textarea required rows="3" placeholder="समस्या का विवरण..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>फोटो (Optional)</label>
+                        <input type="file" accept="image/*">
+                    </div>
+                    <button type="submit" class="submit-btn bg-red-btn">रिपोर्ट भेजें <i
+                            class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- All Blocks Modal -->
+    <div class="modal-overlay" id="allBlocksModal">
+        <div class="modal">
+            <div class="modal-header bg-green">
+                <h3><i class="fas fa-map"></i> सभी ब्लॉक / All Blocks</h3>
+                <button class="modal-close" onclick="closeModal('allBlocksModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="all-blocks-grid">
+                    <div class="ab-card" onclick="showBlock('Block 1')"><strong>Block 1</strong><br>गाँव: रामपुर,
+                        सोनाल्डा, हरिपुर<br><small>जनसंख्या: 45,000</small></div>
+                    <div class="ab-card" onclick="showBlock('Block 2')"><strong>Block 2</strong><br>गाँव: शिवपुर,
+                        गंगापुर, देवनगर<br><small>जनसंख्या: 38,000</small></div>
+                    <div class="ab-card" onclick="showBlock('Block 3')"><strong>Block 3</strong><br>गाँव: कृष्णपुर,
+                        लक्ष्मीपुर, नवादा<br><small>जनसंख्या: 52,000</small></div>
+                    <div class="ab-card" onclick="showBlock('Block 4')"><strong>Block 4</strong><br>गाँव: विष्णुपुर,
+                        जनकपुर, सीतापुर<br><small>जनसंख्या: 41,000</small></div>
+                    <div class="ab-card" onclick="showBlock('Block 5')"><strong>Block 5</strong><br>गाँव: भरतपुर,
+                        अयोध्या, प्रयागराज<br><small>जनसंख्या: 36,000</small></div>
+                    <div class="ab-card" onclick="showBlock('Block 6')"><strong>Block 6</strong><br>गाँव: मथुरा,
+                        वृंदावन, गोकुल<br><small>जनसंख्या: 47,000</small></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- All Officers Modal -->
+    <div class="modal-overlay" id="allOfficersModal">
+        <div class="modal">
+            <div class="modal-header bg-green">
+                <h3><i class="fas fa-users"></i> सभी अधिकारी / All Officers</h3>
+                <button class="modal-close" onclick="closeModal('allOfficersModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="officer-list" id="allOfficersList"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Officer Detail Modal -->
+    <div class="modal-overlay" id="officerDetailModal">
+        <div class="modal modal-sm">
+            <div class="modal-header bg-green">
+                <h3 id="officerDetailTitle"><i class="fas fa-user-tie"></i> अधिकारी विवरण</h3>
+                <button class="modal-close" onclick="closeModal('officerDetailModal')">&times;</button>
+            </div>
+            <div class="modal-body" id="officerDetailBody"></div>
+        </div>
+    </div>
+
+    <!-- Block Detail Modal -->
+    <div class="modal-overlay" id="blockDetailModal">
+        <div class="modal modal-sm">
+            <div class="modal-header bg-green">
+                <h3 id="blockDetailTitle"><i class="fas fa-map-pin"></i> ब्लॉक विवरण</h3>
+                <button class="modal-close" onclick="closeModal('blockDetailModal')">&times;</button>
+            </div>
+            <div class="modal-body" id="blockDetailBody"></div>
+        </div>
+    </div>
+
+    <!-- Reporter Join Modal -->
+    <div class="modal-overlay" id="reporterModal">
+        <div class="modal">
+            <div class="modal-header bg-green">
+                <h3><i class="fas fa-id-badge"></i> रिपोर्टर बनें / Join as Reporter</h3>
+                <button class="modal-close" onclick="closeModal('reporterModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="submitReporter(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>नाम / Name *</label>
+                            <input type="text" required placeholder="पूरा नाम">
+                        </div>
+                        <div class="form-group">
+                            <label>मोबाइल / Mobile *</label>
+                            <input type="tel" required placeholder="मोबाइल नंबर" pattern="[0-9]{10}">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>गाँव / Village *</label>
+                            <input type="text" required placeholder="गाँव का नाम">
+                        </div>
+                        <div class="form-group">
+                            <label>ब्लॉक / Block *</label>
+                            <select required>
+                                <option value="">-- चुनें --</option>
+                                <option>Block 1</option>
+                                <option>Block 2</option>
+                                <option>Block 3</option>
+                                <option>Block 4</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>आप क्यों रिपोर्टर बनना चाहते हैं?</label>
+                        <textarea rows="3" placeholder="अपने बारे में बताएं..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>फोटो अपलोड करें</label>
+                        <input type="file" accept="image/*">
+                    </div>
+                    <button type="submit" class="submit-btn bg-green">आवेदन भेजें <i
+                            class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Toast -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMsg">सफलतापूर्वक जमा हुआ!</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
