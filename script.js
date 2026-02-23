@@ -24,121 +24,121 @@ const officersData = [
 const blocksData = {
     'चैनपुर': {
         name: 'चैनपुर (Chainpur)',
-        villages: ['रामपुर', 'सोनाल्डा', 'हरिपुर', 'मोहनपुर', 'अदर', 'अजलातुआ', 'बझारी', 'बांहडीह', 'बहेरा', 'बांहकेटा', 'बंसडीह', 'बनुआ'],
+        villages: ['Adar', 'Ajlatua', 'Ajodhya Kolhua', 'Alagdiha', 'Aragara', 'Ausane', 'Babhandih', 'Baghi', 'Bahera', 'Bahera Khurd', 'Baigadih', 'Bairiya', 'Banalat', 'Banjari', 'Bankheta', 'Bansdih', 'Bansdih Khurd', 'Banua', 'Baranw', 'Barhanian', 'Bariman', 'Barkat', 'Basaria Kalan', 'Basaria Khurd', 'Benidih', 'Berma', 'Bhairwa', 'Bhaonadiri', 'Bharganwan', 'Bhat Kolhua', 'Biwabathan', 'Bokeya Kalan', 'Bokeya Khurd', 'Bori', 'Burhibir', 'Chain Pur (CT)', 'Chak Harbhonga', 'Chakwa', 'Chando', 'Chando Alias(Mayapur)', 'Charka', 'Chauparia', 'Chenrabar', 'Chhatwa', 'Chhitra Alias Sonarakhap', 'Chitabar Alias Dinabar', 'Chorhat', 'Chothasa', 'Chungra Bansdih', 'Datam', 'Dhawa', 'Dhelua', 'Dhurhubar', 'Doki', 'Dokra', 'Duba', 'Dulhi', 'Dulsulma', 'Dumri', 'Gangdhara', 'Gangi', 'Garda', 'Gardu', 'Golpa', 'Gore', 'Gurha', 'Haminpur', 'Hansa', 'Hansgara', 'Harbhonga', 'Harnamar', 'Hisra', 'Horanda Alias Ramgarh', 'Hukwa', 'Hutar', 'Itko', 'Jagarnathpur', 'Jainagra', 'Jhalar', 'Jharha', 'Jhariwa', 'Kachan', 'Kakatua', 'Kaleyanpur', 'Kankari', 'Karakat', 'Karamdih', 'Karma', 'Karso', 'Katuwal Kalan', 'Katuwal Khurd', 'Khambhi', 'Khapia', 'Khauraha', 'Khiribar', 'Khohri', 'Khura', 'Khura Kalan', 'Khura Khurd', 'Khutar Kalan', 'Khutar Khurd', 'Kilhar', 'Kini', 'Kokaru', 'Kolhua Khurd', 'Kosiara', 'Kudaga Kalan', 'Kudaga Khurd', 'Kui', 'Kumni', 'Kundpani', 'Kurka', 'Kurkutta', 'Kutti', 'Ladi', 'Lali', 'Lidki', 'Loharsimi', 'Lokeya', 'Mahawat Muria', 'Mahawat Muria Sani', 'Mahugawan', 'Mahuliya', 'Maira', 'Majhgawan', 'Manke', 'Mantuwa', 'Margara', 'Matauli', 'Mathura Dohari', 'Maudiha', 'Muru', 'Musurmu', 'Nagwa', 'Nawa', 'Nawadih', 'Nenua', 'Neura', 'Nimian', 'Pachlewa', 'Paneribandh', 'Parsakhar Alias Barwakhar', 'Parsiya', 'Patarhia Kalan', 'Patarhia Khurd', 'Pataria', 'Pathar Alias Narsinhapur', 'Pinrhe', 'Pinrra', 'Purna Majhgawan', 'Rabda', 'Rajhara', 'Rampur', 'Ranital', 'Ranki', 'Salatua', 'Saram', 'Sarhauwa', 'Sarja', 'Semaria', 'Semra', 'Serka', 'Shah Pur (CT)', 'Sheopur', 'Sokra', 'Sonpurwa', 'Sukri', 'Talapara', 'Taleya Khas', 'Tali', 'Temrain', 'Tenla', 'Tolapara Jhalbar', 'Turuk Taleya Alias Purubdih', 'Uldanda', 'Ulman', 'Uter', 'Wornar'],
         population: 45000,
         complaints: 120
     },
     'छतरपुर': {
         name: 'छतरपुर (Chhatarpur)',
-        villages: ['छतरपुर', 'मदनपुर', 'सरैया', 'बैरगिया', 'अकबासा', 'अमवा', 'अरार', 'अर्जुनडीह', 'बचकोमा', 'बगैया', 'बालरा', 'बम्हनडीह'],
+        villages: ['Akabasa', 'Amwa', 'Arar', 'Arjundih', 'Bachkoma', 'Bagaiya', 'Baghamara', 'Baijna', 'Bamhandih', 'Bandhudih', 'Bansdiha Alias Latea', 'Bara', 'Bardiha', 'Basantpur', 'Basdiha', 'Belwanr', 'Bergain', 'Bhadwa', 'Bhalubar', 'Bhandardih', 'Bhikhi', 'Birwadohar', 'Bisaipur', 'Bogna Alias Ahri', 'Champa', 'Charai', 'Chatar Chati', 'Chauchhia', 'Chaukhara Bandhudih', 'Chengwana', 'Chhatarpur', 'Chilho Kalan', 'Chilho Khurd', 'Chipo', 'Chiru', 'Chorar Alias Udaigarh', 'Chuchrumanr', 'Chunautwa', 'Dali', 'Dantuta', 'Deogan', 'Dhobidih', 'Dinadag', 'Dumaria', 'Dundur', 'Gamharia', 'Gangdari', 'Gontha', 'Gopalpur', 'Gosaindih', 'Gundri', 'Gurdi', 'Hathgara', 'Hisag', 'Hulsam', 'Hutukdag', 'Itakdag', 'Jaura', 'Jobna Alias Ramgarh', 'Jolahkhap', 'Kachanpur', 'Kailkha', 'Kalapahar', 'Kangalidih', 'Karma', 'Karma Kalan', 'Karupa', 'Kauwal', 'Kekri Kalan', 'Kekri Khurd', 'Khajuri', 'Khajuria', 'Khardiha', 'Kharwardih', 'Khatin', 'Khendhora Khurd', 'Khendhra Kalan', 'Khonrhi', 'Kodwaria', 'Kokro', 'Kui Urf Shashiganj', 'Kurauli', 'Kurkuta', 'Kushmaha', 'Lahanga', 'Lamba', 'Larmi', 'Latdag', 'Lebar', 'Lohrai', 'Loto', 'Lowadag', 'Madanpur', 'Maheshra', 'Mahugain', 'Majhauli', 'Majhganwan', 'Manhu', 'Maradag', 'Marhipta', 'Marumdag', 'Marwa', 'Masihani', 'Munkeri', 'Murumdag', 'Naso', 'Nawdiha', 'Okraha', 'Pahari', 'Pakha', 'Palwa', 'Patsara', 'Pindrahi', 'Pipra Kalan', 'Piprahat', 'Rajbandh', 'Rajderwa', 'Rajmandih', 'Rangnia', 'Rehra', 'Rud', 'Rudwa', 'Sahaedih', 'Saharsawa', 'Sahi', 'Salaia', 'Sarma', 'Shildag', 'Shivdayaldih', 'Solanga', 'Sungri', 'Tardih', 'Tarudag Alias Dindi', 'Telari', 'Tendudih', 'Tepna', 'Thekahi', 'Tilharhwa', 'Tuktuka Alias Kartuka'],
         population: 62000,
         complaints: 185
     },
     'हरिहरगंज': {
         name: 'हरिहरगंज (Hariharganj)',
-        villages: ['हरिहरगंज', 'ढाब', 'सरस्वती', 'खिरोड़ा', 'अरुआ', 'कुलहिया', 'बलथरवा', 'बेलगड़ा', 'करमडीह', 'पिपरडीह'],
+        villages: ['Amba', 'Ararua Kalan', 'Ararua Khurd', 'Baghi', 'Baghna', 'Balra', 'Banapati', 'Baso', 'Bataua', 'Belodar Alias Pirthi Chak', 'Bhagat Tendua', 'Bhandar', 'Bhanwar', 'Bhaurha', 'Bhojua', 'Bijbar', 'Bijnibar Alias Lakhni', 'Bishunpur', 'Chanda', 'Chiraili Alias Gidhi', 'Dema', 'Dhab Kalan', 'Dhab Khurd', 'Dhekeha', 'Digla', 'Duara', 'Dubridih', 'Dura', 'Ghaghra', 'Halkha', 'Harinia Khurd', 'Harsikhap', 'Jagdishpur', 'Jagdishpur Alias Rampur', 'Jahna', 'Jharna', 'Jolrahi Alias Jolhakhap', 'Kajru Kalan', 'Kajru Khurd', 'Karilebra', 'Kathkoma', 'Kauwa Khoh', 'Kauwakhoh', 'Khapkataia', 'Kharagpur', 'Kokro', 'Kolhwara', 'Koshdihra', 'Kotaia', 'Kothila', 'Kulhaia', 'Kurhata Alias Tendur Khurd', 'Kushdih', 'Ladibadi', 'Lalbara', 'Lalgara', "Langurahi'", 'Larbari', 'Largahi', 'Lebabar', 'Lodia', 'Lukuwa', 'Majhganwan', 'Majhganwan Kalan', 'Majhganwan Khurd', 'Mamakha', 'Nath', 'Naudiha Kalan', 'Naudiha Khurd', 'Pachmo', 'Paraia', 'Parsachuan', 'Pathakbigha', 'Pathra', 'Pipra', 'Piroji', 'Rabdi', 'Rajbar', 'Rampur', 'Rengania Alias Goia', 'Salaia', 'Sarsot', 'Satgawan Alias Hariharganj (CT)', 'Semarbar', 'Shikarpur', 'Sobhnath Chak', 'Sultani', 'Tarachak', 'Tarwa Alias Akouni', 'Tarwan', 'Tarwan Khurd', 'Tendua Kalan', 'Tetaria', 'Tharghat', 'Turi'],
         population: 38000,
         complaints: 95
     },
     'हैदरनगर': {
         name: 'हैदरनगर (Haidernagar)',
-        villages: ['हैदरनगर', 'परतापुर', 'कुसूमहा', 'बड़ही', 'सिमरियां', 'खरगड़ा', 'कोशयारा', 'बड़ागाँव', 'बभनडीह', 'सोनपुर'],
+        villages: ['Babhandih', 'Bahar Pura', 'Bahera', 'Banahi', 'Bardanda', 'Barwadih', 'Batan Khap', 'Belaspur', 'Bhadua', 'Bhitar Panti', 'Chaukari', 'Chechariya Kalan', 'Cheladih', 'Dewanbigha', 'Dudhia', 'Golhana', 'Haidar Nagar', 'Hemja', 'Imamnagar Alias Barewa', 'Itwa', 'Jamua Kalan', 'Jamua Khurd', 'Jhari', 'Kabra Kalan', 'Kabra Khurd', 'Kahugarh', 'Kajim Nagar', 'Khardiha', 'Khargara', 'Korma', 'Kuar Khap', 'Kukuhi', 'Kunrwa Khurd', 'Lapea', 'Lohar Purwa', 'Mokhar Khurd', 'Mukhar Kalan', 'Naudiha', 'Nawadih', 'Nokhila', 'Panti', 'Parta', 'Pataria', 'Patkhaulia', 'Rajwandha', 'Ratanbigha', 'Sajwan Salempur', 'Sarea', 'Sargara', 'Semarkhar', 'Semarsot', 'Sewabigha', 'Singhna', 'Soba', 'Tendua Khurd'],
         population: 35000,
         complaints: 78
     },
     'हुसैनाबाद': {
         name: 'हुसैनाबाद (Hussainabad)',
-        villages: ['हुसैनाबाद', 'जपला', 'देवरी', 'कामगारपुर', 'अधौरा', 'अहमद नगर', 'अलीनगर', 'कुसुमहरा', 'दरुआ बेनी', 'दंगवार', 'बेलबीघा'],
+        villages: ['Agheria Kalan', 'Ahmad Nagar', 'Akhauri Khap', 'Alinagar', 'Araji Bhairopur', 'Araji Birgain', 'Araji Birgain Alias Khonchi', 'Araji Dangwar', 'Araji Kamgarpur', 'Araji Kusumhara', 'Araji Langarkot', 'Araji Sheikhpura', 'Araji Sinduria', 'Araji Teta Alias Pokhar', 'Arajimajuraha', 'Bahadur Bigha', 'Bahera', 'Baijli', 'Bairaon', 'Bajardih', 'Baniadih', 'Bardiha', 'Barepur', 'Barwadih', 'Basaria', 'Basdiha', 'Bedaulia', 'Begampura', 'Belbigha', 'Beni Kalan', 'Beni Khurd', 'Bhagwan Bigha', 'Bhainsra', 'Bhainsra Alias Labsera', 'Bhairopur', 'Bhawanpur', 'Bihari Bigha', 'Birgain', 'Bishunpur', 'Budhua', 'Buka', 'Buland Bigha', 'Chandarpur', 'Chankar Gopal', 'Chankar Kasturi', 'Chapardag Sikni', 'Chauk Bishun', 'Chaukhanda', 'Chaukhandi', 'Chor Pahra', 'Damdami', 'Dandila', 'Dangwar', 'Darua', 'Deori Khurd', 'Deorikalan', 'Dhania', 'Dhobni Erajikita', 'Dhobni Gairabad', 'Dihri Bisrampur', 'Duara', 'Dulhar', 'Ekauni', 'Ekdari', 'Fatma Chak', 'Gaonkhap', 'Garurahi', 'Ghagra', 'Ghurna Araji Nawadih', 'Ghurwa', 'Hira Sinkni', 'Hussainabad (NP)', 'Hussainbandh', 'Itbandh', 'Itwan', 'Jamua', 'Jhargara', 'Jharha', 'Jhari Khurd', 'Jujhar Sikni', 'Juribandh', 'Kachra', 'Kajibigha', 'Kajrat', 'Kakoria', 'Kamat', 'Kamgarpur', 'Karimandih', 'Kathaundha Kalan', 'Kathaundha Khurd Alias Hussa', 'Kemo', 'Keswahi Alias Chhakauria', 'Keswahi Alias Tenwahi', 'Khaira', 'Khalilpur Alias Tikri', 'Khardiha', 'Kishunpur', 'Kodwaria', 'Konpahari', 'Kosi', 'Kunrwa Kalan', 'Kurdag', 'Kurmipur', 'Kusha Naraenpur', 'Kusumhara', 'Kuswa', 'Lamar', 'Langar Kot', 'Lohbandha', 'Lotania', 'Mahuari', 'Mahudand', 'Majhauli', 'Majhiaon', 'Majuraha', 'Malwaria', 'Mandar', 'Mangardah', 'Manikpur Bathani', 'Mankhap', 'Marha', 'Mirheiadih', 'Mobarakpur', 'Naia', 'Nasojamalpur', 'Naukainia', 'Nawadih', 'Nemhat', 'Niadain', 'Nimiahi', 'Noniadih', 'Obra', 'Pachamba', 'Partappur', 'Pathra', 'Patra Kalan', 'Patra Khurd', 'Phatia', 'Piparbar', 'Pokhra', 'Pokhraha', 'Pokhrahi', 'Poldih', 'Raghubir Bigha', 'Rak Sahi', 'Repura', 'Reria', 'Reriya', 'Rupnaraenpur', 'Sabano', 'Sadajal', 'Salaiatikar', 'Salima', 'Sandha', 'Sarhu', 'Satbahini', 'Sewari Alias Mangaldih', 'Sheikhpura', 'Shiupur', 'Sinduria', 'Sonbarsa', 'Sonpurwa', 'Supha', 'Takea', 'Takea Araji Pajardih', 'Tendua', 'Tenwahi Alias Hathbajhwa', 'Teta', 'Tongra', 'Upri Kalan', 'Upri Khurd', 'Urdwar'],
         population: 85000,
         complaints: 240
     },
     'लेस्लीगंज': {
-        name: 'लेस्लीगंज (Lesliganj)',
-        villages: ['लेस्लीगंज', 'नीलाम्बर-पीताम्बरपुर', 'कुंदरी', 'चेरी', 'डाबरा', 'एरूआ', 'कूबुआ', 'जोगियासोहरी', 'राजबरिया', 'तरवां'],
+        name: 'नीलाम्बर-पीताम्बरपुर (Lesliganj)',
+        villages: ['Akhauri Dumi', 'Akhauripatra', 'Akhourididri', 'Alampur', 'Alaula', 'Amwa', 'Amwa Khurd', 'Asalpahari', 'Babhandih', 'Babu Dumi', 'Bairia', 'Bakas Khap', 'Baksidabra', 'Bansdih', 'Bansdohar', 'Banua', 'Baraon Alias Tetardih', 'Bariatu', 'Basaura', 'Baurakhar', 'Bhakasi', 'Bhalmanda', 'Chak', 'Chak Maribhang', 'Chaknawadih', 'Chandaigir', 'Chaukhara', 'Chaura', 'Cheri', 'Dabra', 'Darudih', 'Dhaganw', 'Dhela', 'Dhobdiha', 'Dugila', 'Erua', 'Gentha', 'Gopalganj', 'Goradih Jagatpurwa', 'Goradih Khas', 'Goradih Kothilwa', 'Goradih Piprahat', 'Goradihtoli', 'Gurua', 'Haratua', 'Harsongoa', 'Itahe', 'Jaingra', 'Jaitukhanr', 'Jamudih', 'Jhagarpur', 'Jharha', 'Jharna', 'Jhaskatia', 'Jogiasohri', 'Julanga', 'Juru', 'Kamal Keria', 'Kamalpur', 'Kanande Alias Nizpatchatti', 'Kanauda', 'Kathaundha', 'Khairant', 'Kirto', 'Koiripatra', 'Kotkhas', 'Kubua', 'Kundri', 'Kurainpatra', 'Kusha', 'Lesliganj', 'Lohra', 'Lotwa', 'Madhodidri Thakurdidri', 'Maharja', 'Marabhang Jagir', 'Maribhang Ijara', 'Munaria', 'Murmusi', 'Murubar', 'Muswa Khap', 'Nakti', 'Naudiha', 'Nawgarh', 'Oria Kalan', 'Oria Khurd', 'Pachmo', 'Pahari Kalan', 'Pahari Khurd', 'Patharhi', 'Patkhauliya', 'Phudia', 'Phulang', 'Phutharwa', 'Pipra Khurd', 'Purnadih', 'Pursuram Khap', 'Rajbaria', 'Rajhara', 'Rajogari', 'Rajpur', 'Ramanand Dabra', 'Ramsagar', 'Sahad', 'Sangbar', 'Sewai', 'Shonsh', 'Sirrampur', 'Sitadih', 'Sohgora', 'Sonbarsa', 'Sonhi Sarai', 'Sotamdabra Alias Panredobra', 'Tenar Alias Nawadih', 'Teugri', 'Thakuraididri Chakaididri', 'Turkadih', 'Urhulia'],
         population: 48000,
         complaints: 112
     },
     'मनातू': {
         name: 'मनातू (Manatu)',
-        villages: ['मनातू', 'रंगिया', 'बेतला', 'चंगारी', 'अब्दुलडीह', 'अदौरिया', 'अपटी', 'बनसोम', 'बासिखुर्द', 'बकठिया', 'भितडीहा'],
+        villages: ['Abduldih', 'Adauriya', 'Apti', 'Banasam Alias Murdhoi', 'Bansikhurd', 'Baskatia', 'Bhainsasur', 'Bhitdiha', 'Bhitiahi', 'Bhitkila', 'Bihra', 'Birhorwa', 'Bisranw', 'Budhandih', 'Chak', 'Chanpi', 'Chiri Khurd', 'Chunka', 'Daldalia', 'Dewdih', 'Dhanibigha', 'Dhumkhar', 'Dumri', 'Garhganw', 'Garhwat', 'Garwat', 'Gauhi', 'Gaurwatanr', 'Ghanghri', 'Ghirsiri', 'Jagirha', 'Jaleya', 'Jaspur', 'Jhanti', 'Kairadih', 'Karaila', 'Karma', 'Karma Alias Tilha', 'Karmahi', 'Karwat', 'Kasha', 'Kedal', 'Kekrahi', 'Khaira', 'Kharikdag', 'Korda', 'Kundilpur', 'Kusri', 'Madheya', 'Maghouli', 'Manatu', 'Masuria', 'Mitar', 'Morainia', 'Mukta', 'Nagad', 'Naudiha', 'Nawa', 'Paduma', 'Pakariadih', 'Pannadih', 'Pasiya', 'Patra', 'Purnadih', 'Rabda', 'Rahea', 'Rajkheta', 'Rangeya', 'Semri', 'Sikda', 'Sikni', 'Sildag', 'Sildiliya Khurd', 'Sohe', 'Surgiya', 'Tanrwa', 'Teliyadohar', 'Tetar', 'Tetardih', 'Tilha', 'Tilo', 'Turiadih', 'Urur'],
         population: 32000,
         complaints: 65
     },
     'मोहम्मदगंज': {
         name: 'मोहम्मदगंज (Mohammadganj)',
-        villages: ['मोहम्मदगंज', 'मझिआंव', 'लंगरकाटा', 'बभनडीह', 'कुशहा', 'बरवाही', 'कासमहा', 'भलुआ', 'सिमरा', 'महुअरी'],
+        villages: ['Adhaura', 'Asiknagar Alias Kardanga', 'Baldihri', 'Bataua', 'Bhagrd', 'Bhajania', 'Bhali', 'Bharuhi', 'Birdhaur', 'Checharia', 'Dali', 'Dhawalpura', 'Duba', 'Gajibehra', 'Gajrahi', 'Gangapur Alias Lankasur', 'Gonradih', 'Hathidaha', 'Jharha', 'Kadal Kurmi', 'Kararia', 'Kewalpura', 'Khar Khol', 'Koiriadih', 'Kolhua Sonbarsa', 'Koshiara', 'Latpauri', 'Mahur', 'Mali', 'Mohsinnagar Alias Muhammadga', 'Pachpokhri', 'Pansa', 'Piprobandh Alias Basariaohar', 'Poto', 'Rambandh', 'Ranadih', 'Ranidewa', 'Rasulpur', 'Sabanwa', 'Saharbehra', 'Sitachuan', 'Tara', 'Tendua Kalan'],
         population: 28000,
         complaints: 54
     },
     'नौडीहा बाजार': {
-        name: 'नौडीहा बाजार (Nawadih)',
-        villages: ['नौडीहा', 'ढेना', 'खरगड़ा', 'हरतुआ', 'बेलवतिया', 'कोइरीडीह', 'अम्बावतिया', 'सिमरा', 'महुगाई', 'तिलैया'],
+        name: 'नौडीहा बाजार (Nawadiha)',
+        villages: ['Adar', 'Amola', 'Anata Kalan', 'Anata Khurd', 'Balra', 'Bara', 'Bara Khanr Alias Kahuakhanr', 'Barwadih Alias Koshiara', 'Birhordih', 'Biwadohar', 'Charain', 'Chaukhara', 'Chordanda', 'Chuchru', 'Dagra', 'Debnar', 'Dumri', 'Gamhariadih', 'Gansa', 'Ghujwa', 'Goreathan', 'Gorho', 'Guadag', 'Gulabjhari', 'Guruain', 'Haraiya', 'Harna', 'Harni', 'Hulsi Kalan', 'Hulsi Khurd', 'Jamalpur', 'Jamua Alias Bishunpur', 'Jamuna', 'Jawar', 'Jhardag', 'Jharha', 'Karkata', 'Karma', 'Karnima', 'Kathautia', 'Kauwal', 'Khairadohar', 'Kharar', 'Khardiha', 'Korami', 'Kuku Kalan', 'Kuku Khurd Alias Barhania', 'Kulhia', 'Kundil', 'Lachhmipur', 'Lakrahi', 'Lalgara', 'Madheya', 'Mahuari', 'Mahugain', 'Mahurawan', 'Majurahi', 'Manandohar', 'Mangara', 'Maradag', 'Marar', 'Matnag', 'Mayapur', 'Mednipur', 'Mohadih', 'Namudag', 'Naudiha', 'Nawadih', 'Nawatanr', 'Nima', 'Pathra Alias Palhe', 'Pichhulia', 'Pokhraha', 'Rabda', 'Raebar', 'Rajha', 'Rakoi', 'Ramsadeya', 'Rasida', 'Ratnag Alias Sirha', 'Risyapa', 'Sahiyar', 'Salaia Khurd', 'Salaiya', 'Salwe', 'Saraidih', 'Shahpur', 'Shiupur', 'Silda Kalan', 'Silda Khurd', 'Singhna', 'Taridih', 'Teliadih', 'Thekha', 'Turkadih'],
         population: 31000,
         complaints: 48
     },
     'पाटन': {
         name: 'पाटन (Patan)',
-        villages: ['पाटन', 'डाल्टेनगंज', 'सगमा', 'अमवा', 'आंगरा', 'अरेदाना', 'बगैया', 'बाघमरी', 'किशुनपुर', 'लोहड़ी', 'सिमरी'],
+        villages: ['Ajan Mayapur', 'Amwa', 'Angra', 'Aredana', 'Bagaia', 'Baghmari Alias Pakhalmar', 'Baida Kalan', 'Baida Khurd', 'Balgara Kalan', 'Balgara Khurd', 'Bandua', 'Banjari', 'Barahmoriya', 'Bardiha', 'Basabar', 'Basdah', 'Bhonga', 'Bijra', 'Bikua', 'Bisunpura', 'Boradah', 'Buka', 'Burhi', 'Chandeya', 'Chatma', 'Chaugain', 'Chetma', 'Churadohar', 'Dandai', 'Darha', 'Dhangain', 'Dhangardiha', 'Diharia', 'Dipaua', 'Durhi', 'Gahar Pathra', 'Gamhetha', 'Gangatua', 'Garo', 'Ghurdewa', 'Haraiya', 'Haraiya Kalan', 'Haraiya Khurd Alias Doomba', 'Hari Alias Barsaita', 'Hesla Alias Kaswa Khar', 'Hisra Alias Barwadih', 'Homia', 'Hurdaga', 'Huruhansa', 'Imli Khas', 'Jagodih', 'Jaipur', 'Janghasi', 'Jhari Nimia', 'Jitadih', 'Jonra Kalan', 'Jonra Khurd', 'Juimaran Pathra', 'Kaireadih Khurd', 'Kalapahar', 'Kanaudi', 'Kanchanpur', 'Kanke Kalan', 'Kanke Khurd', 'Karar Kalan', 'Karar Khurd', 'Kariahar', 'Katri', 'Kelhar', 'Khairdohar', 'Khajuri', 'Khamhi', 'Khapar Manda', 'Kharaundha', 'Kisaini', 'Kishunpur', 'Koiriadih Kalan', 'Kolhua', 'Kosiara', 'Kumhwa', 'Kunarbandh', 'Kundri', 'Kurwa', 'Lamba', 'Larbandhhwa', 'Ledgani', 'Loinga', 'Mahulia', 'Mahuliya', 'Majhauli', 'Majhauli', 'Manika', 'Marariya', 'Mayapur Kalan', 'Mayapur Khurd', 'Meral', 'Moreya', 'Nagesar', 'Naudiha', 'Naudiha', 'Nawa Khas', 'Nawada', 'Nawadih', 'Nawadih Bhurwa', 'Nimiya', 'Pachkeria', 'Pahartarlami Alias Nawadih', 'Pakaria', 'Pakri', 'Palhe Kalan', 'Palhe Khurd', 'Pandepura', 'Patan', 'Phusna Pathra', 'Pokharia', 'Rabdi', 'Rajhara', 'Rol', 'Rudidih', 'Sadhpur', 'Saguna', 'Saguni', 'Sahdewa', 'Sakaldipa', 'Sakaldipi', 'Sakanpirhi', 'Sakhui', 'Sanda', 'Satantola', 'Sathe', 'Satua', 'Semri', 'Siki Kalan', 'Siki Khurd', 'Sirma', 'Sole', 'Somadih', 'Sonpurwa', 'Suntha', 'Tandwa', 'Tetaria', 'Tilaiya', 'Tilkudih', 'Tisibar', 'Tola Nawada', 'Tola Tandwa', 'Tuia', 'Tusra', 'Utaki'],
         population: 54000,
         complaints: 132
     },
     'पांकी': {
         name: 'पांकी (Panki)',
-        villages: ['पांकी', 'लोहरसी', 'सगालीम', 'अबून', 'अहिरगुरहा', 'अम्बाबार', 'अंगारा', 'अपरमांडी', 'असरहिया', 'बहेरा', 'बनई'],
+        villages: ['Abun', 'Ahirgurha', 'Ambabar', 'Ambalori', 'Andag', 'Angara', 'Aparmanri', 'Ara', 'Asarhia', 'Aseahar', 'Auka', 'Bahera', 'Baherwatanr', 'Baida', 'Balmuwan', 'Baludih', 'Banai', 'Bandubar', 'Baniadih', 'Banki Kalan', 'Banki Khurd', 'Banri Pakariya', 'Bara', 'Barahmoria', 'Bardaga', 'Barkadaha', 'Barodiri', 'Barwadih', 'Barwaiya', 'Basariya', 'Basdiha', 'Bela', 'Bhang', 'Bhanwardah', 'Bhari', 'Bhuinya Kurha', 'Bidra', 'Bidra', 'Bihari Khap', 'Bihra', 'Birbir', 'Biritiya Dandar', 'Birtia', 'Biru', 'Bochdohar', 'Burhabar', 'Burhi', 'Chakaminan', 'Chandarpur', 'Chandarpur', 'Chandwar', 'Chanpi Kalan', 'Chanpi Khurd', 'Chauphal', 'Chhapar', 'Chorea', 'Churra', 'Dandar Kalan', 'Daryapur', 'Dema', 'Dhub', 'Dumar Khar', 'Dundar Khurd', 'Duriatu', 'Duwarika', 'Ganeshpur', 'Gareriadih', 'Garhganw', 'Giri', 'Gogar', 'Gongo', 'Gopaldih', 'Gorihara', 'Gudipahari', 'Haldi', 'Haldiminhai', 'Harkhuwa', 'Harlaung', 'Harna', 'Hatwar', 'Herum', 'Hesatu', 'Hiringbar', 'Hoiyo', 'Husenigurh Alias Misir Gurha', 'Hutai', 'Irgu', 'Janjo', 'Jaspur', 'Jiro', 'Jobla', 'Jolah Bigha', 'Jotang', 'Kakargarh', 'Kakrigarh', 'Kamal', 'Kamat', 'Kamtola', 'Kaparphuta', 'Karar', 'Karma', 'Kasmar', 'Kelwa', 'Kerki', 'Khaira', 'Khajuri', 'Khamdih', 'Khankhar', 'Khap', 'Khapar Manda', 'Kolhua', 'Korwatanr', 'Koseri', 'Kotiya', 'Kunwai', 'Kusri', 'Lawabar', 'Loharsi', 'Lukuwa', 'Maduli', 'Mahe', 'Mahugain', 'Mahugain', 'Majhauli', 'Manatu', 'Mangarpur', 'Manhi Pipra', 'Manran', 'Maran', 'Matnag', 'Matuli', 'Maulaganj', 'Mukta', 'Nagri', 'Naudiha', 'Naudiha', 'Nawa Garh', 'Nawadih', 'Nima Chak', 'Nuru', 'Pachamba', 'Pagar', 'Pagar Kalan', 'Pakariya', 'Panki', 'Parasia', 'Pardohar', 'Parhiya Tola', 'Parsawan', 'Parsotimpur', 'Pathra Kalan', 'Pathra Khurd', 'Phulwaria', 'Pipra Kalan', 'Pipratanr', 'Pokhraha', 'Porsam', 'Pundru', 'Puraini', 'Radhadih', 'Ranadah', 'Ranne', 'Ratanpur', 'Rengai', 'Sagalim', 'Salamdiri', 'Salgas', 'Sangbar', 'Saraidih', 'Saraiya', 'Sarauna', 'Sarjamatu', 'Sirma', 'Sons', 'Sorath', 'Sunri', 'Surjaun', 'Surjaun', 'Taiya', 'Tal', 'Taledih', 'Tarwadih', 'Tatidiri', 'Teldiha', 'Tetariadih', 'Tetrain', 'Thekhi', 'Tilamba', 'Tilra', 'Titlangi', 'Tola Chatti', 'Tola Manran', 'Tunudag', 'Uchahra Kalan', 'Uchahra Khurd', 'Udih', 'Uksu', 'Ulgara'],
         population: 58000,
         complaints: 145
     },
     'पांडू': {
         name: 'पांडू (Pandu)',
-        villages: ['पांडू', 'मझिआंव', 'कजरू', 'असनाुलिया', 'बसडीहा', 'बेलहरा', 'भटवलिया', 'हरका', 'महुअरी', 'सिमरा'],
+        villages: ['Achanga Alias Harka', 'Asnaulia', 'Balar', 'Basdiha', 'Belhara', 'Bhaduma', 'Bhatwalia', 'Burhkhaira', 'Chanau Khar', 'Chapia', 'Chaura', 'Checharia', 'Chhatarpur', 'Dala Kalan', 'Dala Khurd', 'Darua', 'Dhachabar', 'Dhanudih', 'Fuliya', 'Gaurletwa', 'Golpa', 'Guasarai', 'Hisra', 'Jhargara', 'Jharna Kalan', 'Jharna Khurd', 'Kajru Kalan', 'Kajru Khurd', 'Kanti', 'Karamdih', 'Khaira', 'Khura', 'Kulia', 'Kundwa Kalan', 'Kunrwa Khurd', 'Kusa Alias Hengabar', 'Kutmu', 'Lahar Banjari', 'Lawar Pandu', 'Lotra', 'Lumba Satbahini', 'Mahugawan', 'Mahuli', 'Malwaria', 'Murma Kala', 'Murma Khurd', 'Murumatu', 'Musi Khap', 'Nawgarh', 'Neori', 'Obra', 'Ordiha', 'Pandu', 'Panrepura', 'Paratappur', 'Pipri', 'Pokhri', 'Rabra', 'Rabri', 'Ratnag', 'Salhana', 'Semri', 'Sihaldeo', 'Sikni', 'Sildili', 'Sirha', 'Tisibar Kala'],
         population: 29000,
         complaints: 52
     },
     'सतबरवा': {
         name: 'सतबरवा (Satbarwa)',
-        villages: ['सतबरवा', 'मलय', 'पोल्का', 'बकोरिया', 'बारी', 'बोहिता', 'चांपी', 'चपर्ना', 'चरवाडीह', 'रंगिया'],
+        villages: ['Bakoria', 'Bari', 'Bhogu', 'Bohita', 'Chanpi', 'Chaparna', 'Charwadih', 'Chatti Satbarwa', 'Chetma', 'Daruna', 'Dhabadih', 'Dodang', 'Duba', 'Dulsulma', 'Dulsulmi', 'Ekta', 'Gaura', 'Ghutua', 'Gurha', 'Hurmur', 'Jogiyapokhri', 'Jora Hunhe alias Jora', 'Kamaru', 'Karma', 'Kasiadih', 'Kasmar', 'Khoundih', 'Kulia', 'Kumrahi', 'Ledwa khar', 'Lohrapokhri', 'Lonhri', 'Maangatgorea', 'Manasoti', 'Mukrum', 'Mukta', 'Murma', 'Nalumanr', 'Nauranga', 'Nawadih', 'Pinrra', 'Pipra Kalan', 'Ponchi', 'Purnadih', 'Rabda', 'Rajderwa', 'Ranki khurd', 'Rebaratu', 'Rupaundha', 'Salaia', 'Sehra', 'Sembhuchak', 'Serandag', 'Shahganj', 'Siuri', 'Sohri', 'Tabar', 'Thema', 'Themi', 'Tumagara'],
         population: 34000,
         complaints: 88
     },
     'तरहसी': {
         name: 'तरहसी (Tarhasi)',
-        villages: ['तरहसी', 'गोवा', 'गुरहा', 'बेलाकुम्बा', 'मनाज', 'मनातू', 'सिमरा', 'महुआडार', 'खामटा', 'बारागाँव'],
+        villages: ['Dhanigara', 'Tarhasi', 'Gurha', 'Goa', 'Belakumba', 'Manaj', 'Manatu', 'Mahuadar', 'Khamta', 'Baragaon', 'Ambabar', 'Bahuara', 'Baidabad', 'Banjari', 'Banshipur', 'Barwadih', 'Basal', 'Basantpur', 'Belsar', 'Bhanwardah', 'Bhaunradaha', 'Birkur', 'Birsanidih', 'Bishunpur', 'Budhui', 'Chak barewa', 'Chama', 'Champi', 'Chandarpur', 'Charea', 'Chelia', 'Dagar', 'Dali', 'Danduba', 'Darchua', 'Dhanmahu', 'Dhunua', 'Dumari Kalan', 'Gahora', 'Gajna', 'Gangi', 'Garda', 'Garhwat', 'Gari', 'Ghagra', 'Ghoghar', 'Ghosalwa', 'Ghogri', 'Giria', 'Gobardaha', 'Harda', 'Hesla', 'Hutar', 'Jagarkala', 'Jagdishpur', 'Janjo', 'Jhabar', 'Jharia', 'Jiro', 'Kachra', 'Kadhwan', 'Kajra', 'Kakra', 'Kalapahar', 'Karamdih', 'Karuwa', 'Kasmar', 'Khamankhurd', 'Kharagpur', 'Khariadih', 'Khashmi', 'Khatin', 'Khemra', 'Khuranda', 'Kundri', 'Kusri', 'Lali', 'Lathea', 'Lawabar', 'Lowagara', 'Madhua', 'Maghouli', 'Majhganwan', 'Marwa', 'Mednipur', 'Mithu', 'Mukta', 'Nagad', 'Naktipur', 'Nawadih', 'Nimtola', 'Paharchakra', 'Pahari', 'Pathar', 'Pinda', 'Pipra', 'Rabda', 'Rajkheta', 'Rajpur', 'Rehla', 'Rengania', 'Salai', 'Semaria', 'Sikni', 'Sirma', 'Sokra', 'Sua', 'Tali'],
         population: 41000,
         complaints: 92
     },
     'विश्रामपुर': {
         name: 'विश्रामपुर (Bishrampur)',
-        villages: ['विश्रामपुर', 'नावागढ़', 'भलुही', 'अरापुर', 'अतारी', 'बघमनवा', 'बैरगवां', 'भण्डार', 'सिक्सिगी', 'धुर्वा', 'रेहला'],
+        villages: ['Arhi', 'Ataria', 'Bagh Mandwa', 'Bairganwan', 'Bairia', 'Bhandar', 'Bishrampur (NP)', 'Choratia', 'Dulsulma', 'Gaura', 'Gerua', 'Ghaghua', 'Gharatia', 'Ghasidag', 'Gurha Kalan', 'Gurha Khurd', 'Guri', 'Halga', 'Hansdaga', 'Jamari', 'Jarka', 'Jenjira', 'Jhani', 'Jhantinath', 'Jharapdih', 'Jharha Kalan', 'Jharha Khurd', 'Kadhwan', 'Kamta', 'Kauria', 'Ketat Kalan', 'Ketat Khurd', 'Kundi', 'Lalgara', 'Lohardaga', 'Lotar', 'Lumba', 'Makai', 'Mallahtoli', 'Murma Kalan', 'Murma Khurd', 'Naudiha', 'Naugarha', 'Nawadih Khurd', 'Nimia', 'Oria', 'Pahargerua', 'Panjri Kalan', 'Panjri Khurd', 'Pathe', 'Pipra', 'Ragda', 'Rajkhar', 'Sankha', 'Semri Kalan', 'Semri Khurd', 'Seora', 'Shankardih', 'Sigsigi', 'Sulumdag', 'Supwa Alias Amwa', 'Tati Pathal', 'Tendua', 'Tolra', 'Tona', 'Ulipahari', 'Urdwar'],
         population: 68000,
         complaints: 195
     },
     'उंटारी रोड': {
         name: 'उंटारी रोड (Untari)',
-        villages: ['उंटारी', 'लुंबा', 'खरौंधी', 'मुडरिया', 'भलुआ', 'हरतुआ', 'कांडी', 'पिपरडीह', 'बभनडीह', 'सिमरी'],
+        villages: ['Bhaduma', 'Bhitihara', 'Binhua', 'Birja', 'Checharia', 'Chhatarpur', 'Darua', 'Deodanr', 'Gaurletwa', 'Jamdiha', 'Joga', 'Kalianpur', 'Karkata', 'Kulhi', 'Kutmu', 'Lahar Banjari', 'Lumaratbahini', 'Malwaria', 'Murma Kalan', 'Murma Khurd', 'Nawgarh', 'Panrepura', 'Paratappur', 'Sahaspura', 'Semri', 'Sirha', 'Titahi'],
         population: 26000,
         complaints: 42
     },
     'मेदिनीनगर': {
         name: 'मेदिनीनगर (Daltonganj)',
-        villages: ['अरू', 'बबूनिभी', 'बैरिय', 'बजरहा', 'बखारी', 'बकोइया', 'बनुआ', 'बड़कीनिभी', 'भोगू', 'चक बरेवा', 'चमा', 'चट्टी', 'चियांकी', 'चुकुरू', 'धनगरडीहा', 'दूबा', 'गंके', 'गोढ़ो', 'हुटार', 'जमुने', 'झाबर', 'जोंड़', 'जोरकाट', 'कर्मा', 'कसिया', 'कौड़िया', 'केवटबार', 'किशुनपुर', 'कुमार', 'कुण्डेलवा', 'कुसी', 'लहलाहे', 'मधुनिभी', 'नवाधोढ़', 'नवाडीह', 'नवाटोली', 'निमिया', 'पिढ़िया', 'पोखराहा कला', 'पोखराहा खुर्द', 'पोलपोल कला', 'पोलपोल खुर्द', 'रजवाड़ीड', 'सरजा', 'शम्भूचक', 'सिन्दुरिया', 'सिगराहा कला', 'सिगराहा खुर्द', 'सोनपुरवा', 'सुआ', 'टिकुलिया'],
+        villages: ['Aru', 'Babunebhi', 'Bairia', 'Bajrha', 'Bakhari', 'Bakoia', 'Banua Alias Sala', 'Baratola (CT)', 'Barkinebhi', 'Bhogu', 'Chak Barewa', 'Chama', 'Chatti', 'Chianki', 'Chukru', 'Dhangardiha Alias Khanwan', 'Duba', 'Ganke', 'Gorho', 'Hisra Alias Pokhraha', 'Hutar', 'Jamune', 'Jhabar', 'Jonr', 'Jorkat', 'Karma', 'Kasia', 'Kauria', 'Kewatbar', 'Kishunpur', 'Kumar Alias Barkagaon', 'Kundelwa', 'Kusi', 'Lahlahe', 'Madhunebhi', 'Medininagar (Daltonganj) (Nagar Parishad)', 'Nauadhonrha', 'Nawadih', 'Nawatoli', 'Nimia', 'Pirhia', 'Pokhraha Kalan', 'Pokhraha Khurd', 'Polpol Kalan', 'Polpol Khurd', 'Rajwadih', 'Rerma (CT)', 'Sarja', 'Sembhuchak', 'Sinduria', 'Singraha Kalan', 'Singraha Khurd', 'Sonpurwa', 'Sua', 'Sundna (CT)', 'Tikuliya'],
         population: 145000,
         complaints: 480
     },
     'पिपरा': {
         name: 'पिपरा (Pipra)',
-        villages: ['पिपरा', 'दिग्धी', 'भलुआ', 'अजानिया', 'अम्बाझरना', 'बभनडीह', 'बलहा', 'बरदग', 'सोनपुरा', 'करमडीह'],
+        villages: ['Samail', 'Ajania', 'Ambajharana', 'Andharibag Kalan', 'Andharibag Khurd', 'Babhan Sarhu', 'Babhandih', 'Bagsara', 'Baijua', 'Balha', 'Banadih', 'Banahi', 'Bansdohar', 'Bardag', 'Barwadih', 'Bhanga', 'Bhitiha', 'Bishrampur', 'Bishunpur', 'Burhronga', 'Chaitu Bigha', 'Chaparbar', 'Chaukhra', 'Chingua', 'Dalpatpur', 'Damwa', 'Dhusarua', 'Dihria', 'Gahora', 'Gajna', 'Ghansikhap', 'Guriauta', 'Hasanpur', 'Holea', 'Jarka', 'Jharna', 'Jhumri', 'Jitpur', 'Kalipur', 'Karma', 'Khajuria', 'Kodwaria', 'Kuarbandh', 'Kumhaia', 'Kumhara', 'Kunrwa', 'Labhra', 'Madhubana', 'Mahugain', 'Mahugain Alias Jadudih', 'Majuraha', 'Mali', 'Marwa', 'Masuria', 'Naktibar', 'Naudiha', 'Nawadih', 'Ordana', 'Pahaldewa', 'Paharpur', 'Patrenga', 'Pipra', 'Pithari', 'Pithoura', 'Polda Alias Majhauli', 'Rahria', 'Rajokhar Alias Ronga', 'Ranjitpur', 'Rongha Alias Belaudar', 'Saguna', 'Saraia', 'Semaria', 'Shakaldipa', 'Shiripalpur', 'Sirnia', 'Sobhichak', 'Sonbe', 'Tarwa Alias Jagdishpur', 'Tarwan Kalan', 'Tendua Pipra', 'Tendudih', 'Tendui'],
         population: 27000,
         complaints: 45
     },
     'नावाबाजार': {
         name: 'नावाबाजार (Nawabazar)',
-        villages: ['नावाबाजार', 'रजहरा', 'कोल्हुआ', 'सिमरा', 'महुअरी', 'बभनडीह', 'चराई', 'पिपरडीह', 'बेलवारा', 'भलाई'],
+        villages: ['Arapur', 'Bana', 'Banaudha', 'Bandua', 'Bankheta', 'Barahmoria Kalan', 'Barahmoria Khurd', 'Basauna', 'Basna', 'Chanea', 'Chechanha', 'Checharia', 'Damaro', 'Dindi', 'Hatai', 'Itko', 'Kanda Khas', 'Karcha', 'Khamdiha', 'Khokhma', 'Korta', 'Kumbhi Kalan', 'Kumbhi Khurd', 'Ladi', 'Lathea', 'Mahugain', 'Malhatoli', 'Nawa', 'Nenua', 'Odhkunda', 'Pataria', 'Pipra', 'Rabda', 'Rajdiria', 'Rajhara', 'Sarauna', 'Sinjo', 'Sohdag Kalan', 'Sohdag Khurd', 'Tali', 'Tamdaga', 'Thekhi', 'Tukbera', 'Tulbula', 'Turidag'],
         population: 31000,
         complaints: 58
     },
     'पंडवा': {
         name: 'पंडवा (Pandwa)',
-        villages: ['पंडवा', 'कडल', 'मझिआंव', 'अहौरी', 'बरवाडीह', 'बासु', 'बत्सरा', 'भुसरा', 'बुची लामी', 'सोनपुरा'],
+        villages: ['Ahori', 'Barwadih', 'Basu', 'Batsara', 'Bhusra', 'Buchi Lami', 'Chakrudarpur', 'Chhechhauri', 'Chilhi', 'Derwa', 'Dulhi', 'Dumri', 'Gareriadih', 'Gari Khas', 'Golhana', 'Jhari', 'Kajarma', 'Kajri', 'Kathautia', 'Kokarsa', 'Lami', 'Lohandi', 'Lohanra', 'Majhiganw', 'Manahar', 'Murma', 'Pandwa', 'Patra', 'Rabdi', 'Sakhua', 'Sakhui', 'Saraiya', 'Sarma', 'Sika'],
         population: 24000,
         complaints: 38
     },
