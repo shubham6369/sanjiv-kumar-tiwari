@@ -668,6 +668,16 @@ button {
     text-shadow: 0 1px 3px rgba(0, 0, 0, .15)
 }
 
+.btn-red {
+    background: linear-gradient(135deg, #f44336, #d32f2f, #b71c1c);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, .15)
+}
+
+.btn-green {
+    background: linear-gradient(135deg, #4caf50, #388e3c, #1b5e20);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, .15)
+}
+
 /* Emergency & Support */
 .footer-col.footer-support {
     grid-column: span 1;
