@@ -18,70 +18,67 @@
 
 <body>
 
-    <!-- ====== Fixed Header Wrapper ====== -->
-    <div class="header-wrapper">
-        <!-- ====== Top Info Bar ====== -->
-        <div class="topbar">
-            <div class="container topbar-inner">
-                <div class="topbar-left">
-                    <span><i class="fas fa-phone-alt"></i> +91 94313 89947</span>
-                    <span><i class="fas fa-envelope"></i> sktiwari.ark@gmail.com</span>
+    <!-- ====== Top Info Bar ====== -->
+    <div class="topbar">
+        <div class="container topbar-inner">
+            <div class="topbar-left">
+                <span><i class="fas fa-phone-alt"></i> +91 94313 89947</span>
+                <span><i class="fas fa-envelope"></i> sktiwari.ark@gmail.com</span>
+            </div>
+            <div class="topbar-right">
+                <button class="lang-btn" id="langBtn">A / a</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== Main Header ====== -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="header-left">
+                <div class="header-flag">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg" alt="India Flag">
                 </div>
-                <div class="topbar-right">
-                    <button class="lang-btn" id="langBtn">A / a</button>
+                <div class="header-text-group">
+                    <div class="header-text">
+                        <h1 class="site-name">Sanjeev Kumar Tiwari</h1>
+                        <p class="site-tagline">Public service, public problem <span
+                                class="highlight-orange">solution</span></p>
+                    </div>
+                    <!-- Quote Box from Photo -->
+                    <div class="header-quote-box">
+                        <span class="q-yellow">"झारखंड के आंदोलनकारी</span>
+                        <span class="q-green">संजीव कुमार तिवारी</span>
+                        <span class="q-white">का जीवन और</span>
+                        <span class="q-pink">संघर्ष"</span>
+                    </div>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="profile-photo">
+                    <img src="logo.jpeg" alt="झारखण्ड सरकार"
+                        onerror="this.onerror=null; this.src=''; this.parentElement.classList.add('no-img');">
+                    <i class="fas fa-user fallback-icon"></i>
                 </div>
             </div>
         </div>
+    </header>
 
-        <!-- ====== Main Header ====== -->
-        <header class="site-header">
-            <div class="container header-inner">
-                <div class="header-left">
-                    <div class="header-flag">
-                        <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg" alt="India Flag">
-                    </div>
-                    <div class="header-text-group">
-                        <div class="header-text">
-                            <h1 class="site-name">Sanjeev Kumar Tiwari</h1>
-                            <p class="site-tagline">Public service, public problem <span
-                                    class="highlight-orange">solution</span></p>
-                        </div>
-                        <!-- Quote Box from Photo -->
-                        <div class="header-quote-box">
-                            <span class="q-yellow">"झारखंड के आंदोलनकारी</span>
-                            <span class="q-green">संजीव कुमार तिवारी</span>
-                            <span class="q-white">का जीवन और</span>
-                            <span class="q-pink">संघर्ष"</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="header-right">
-                    <div class="profile-photo">
-                        <img src="logo.jpeg" alt="झारखण्ड सरकार"
-                            onerror="this.onerror=null; this.src=''; this.parentElement.classList.add('no-img');">
-                        <i class="fas fa-user fallback-icon"></i>
-                    </div>
-                </div>
-            </div>
-        </header>
-
-        <!-- ====== Navigation ====== -->
-        <nav class="main-nav" id="mainNav">
-            <div class="container nav-container">
-                <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
-                <ul class="nav-menu" id="navMenu">
-                    <li><a href="#home" class="active">Home</a></li>
-                    <li><a href="#" onclick="openModal('complaintModal')">Complaint</a></li>
-                    <li><a href="#blocks">Find Blocks</a></li>
-                    <li><a href="#officers">Officer Directory</a></li>
-                    <li><a href="#departments">Government departments</a></li>
-                    <li><a href="#services">Quicken Up</a></li>
-                    <li><a href="#reports">Reports</a></li>
-                    <li><a href="#contact">Contact Us</a></li>
-                </ul>
-            </div>
-        </nav>
-    </div>
+    <!-- ====== Navigation ====== -->
+    <nav class="main-nav" id="mainNav">
+        <div class="container nav-container">
+            <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#" onclick="openModal('complaintModal')">Complaint</a></li>
+                <li><a href="#blocks">Find Blocks</a></li>
+                <li><a href="#officers">Officer Directory</a></li>
+                <li><a href="#departments">Government departments</a></li>
+                <li><a href="#services">Quicken Up</a></li>
+                <li><a href="#reports">Reports</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
 
     <main>
         <!-- ====== Slider ====== -->
