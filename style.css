@@ -1421,9 +1421,9 @@ button {
 }
 
 .dept-cat-icon {
-    width: 52px;
-    height: 52px;
-    border-radius: 14px;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1432,7 +1432,7 @@ button {
 }
 
 .dept-cat-icon i {
-    font-size: 22px;
+    font-size: 17px;
     color: #fff
 }
 
@@ -1545,13 +1545,13 @@ button {
 
 /* Card Icon */
 .dept-card-icon {
-    width: 60px;
-    height: 60px;
-    border-radius: 16px;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 12px;
+    margin: 0 auto 10px;
     transition: var(--tr)
 }
 
@@ -1560,7 +1560,7 @@ button {
 }
 
 .dept-card-icon i {
-    font-size: 24px
+    font-size: 18px
 }
 
 .dept-card h4 {
