@@ -40,7 +40,8 @@
 
 html {
     scroll-behavior: smooth;
-    font-size: 16px
+    font-size: 16px;
+    scroll-padding-top: 240px;
 }
 
 body {
@@ -48,7 +49,17 @@ body {
     color: var(--text);
     background: var(--off-white);
     line-height: 1.6;
-    overflow-x: hidden
+    overflow-x: hidden;
+    padding-top: 236px;
+}
+
+.header-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 img {
@@ -311,8 +322,6 @@ button {
 /* ========== NAV ========== */
 .main-nav {
     background: linear-gradient(135deg, var(--green), var(--green-dark));
-    position: sticky;
-    top: 0;
     z-index: 100;
     box-shadow: 0 4px 20px rgba(0, 0, 0, .2)
 }
@@ -3277,6 +3286,11 @@ button {
 }
 
 @media(max-width:768px) {
+    body {
+        padding-top: 400px;
+        /* Taller header on mobile */
+    }
+
     .site-header {
         padding: 15px 0;
     }
@@ -3413,6 +3427,10 @@ button {
 }
 
 @media(max-width:480px) {
+    body {
+        padding-top: 450px;
+    }
+
     .topbar-left {
         flex-direction: column;
         gap: 3px
