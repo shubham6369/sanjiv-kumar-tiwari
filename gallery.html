@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>गैलरी | Sanjeev Kumar Tiwari Gallery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .gallery-page-container {
+            padding: 120px 24px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: var(--green);
+            color: white;
+            border-radius: 50px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            transition: var(--tr);
+        }
+
+        .back-btn:hover {
+            background: var(--green-dark);
+            transform: translateX(-5px);
+        }
+
+        .photo-wall {
+            column-count: 3;
+            column-gap: 20px;
+        }
+
+        .photo-wall .photo-item {
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--tr);
+            cursor: pointer;
+        }
+
+        .photo-wall .photo-item:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .photo-wall img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        @media (max-width: 992px) {
+            .photo-wall {
+                column-count: 2;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .photo-wall {
+                column-count: 1;
+            }
+
+            .gallery-page-container {
+                padding-top: 80px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="gallery-page-container">
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> मुख्य पृष्ठ पर वापस जाएं / Back to
+            Home</a>
+
+        <div class="gallery-header">
+            <h1 class="sec-title">फोटो गैलरी | Photo Gallery</h1>
+            <p>संजीव कुमार तिवारी के जनसेवा, आंदोलन और विकास कार्यों की एक झलक।</p>
+        </div>
+
+        <div class="photo-wall">
+            <div class="photo-item"><img src="profile-photo.jpeg" alt="Sanjeev Kumar Tiwari"></div>
+            <div class="photo-item"><img src="palamu-map.jpg" alt="Palamu Map"></div>
+            <div class="photo-item"><img src="logo.jpeg" alt="Logo"></div>
+            <div class="photo-item"><img src="profile-photo.jpeg" alt="Public Service"></div>
+            <div class="photo-item"><img src="palamu-map.jpg" alt="Development Works"></div>
+            <div class="photo-item"><img src="profile-photo.jpeg" alt="Political Career"></div>
+            <div class="photo-item"><img src="palamu-map.jpg" alt="Constituency"></div>
+            <div class="photo-item"><img src="logo.jpeg" alt="Symbol"></div>
+            <div class="photo-item"><img src="profile-photo.jpeg" alt="Community Engagement"></div>
+        </div>
+    </div>
+
+    <!-- Scroll Progress -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const bar = document.createElement('div');
+            bar.className = 'scroll-progress';
+            document.body.prepend(bar);
+            window.addEventListener('scroll', () => {
+                const progress = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+                bar.style.width = progress + '%';
+            });
+        });
+    </script>
+</body>
+
+</html>
