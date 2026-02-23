@@ -208,14 +208,66 @@ button {
 }
 
 .site-tagline {
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     color: var(--text-light);
-    margin-top: 2px
+    margin-top: 2px;
+    font-family: 'Outfit', sans-serif;
 }
 
-.site-tagline strong {
-    color: var(--saffron-dark);
-    font-weight: 700
+.highlight-orange {
+    color: #f57c00;
+    /* Orange color for 'solution' */
+    font-weight: 700;
+}
+
+.header-text-group {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.header-quote-box {
+    background: #000;
+    padding: 10px 20px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-left: 20px;
+    white-space: nowrap;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.q-yellow {
+    color: #ffca28;
+}
+
+.q-green {
+    color: #4caf50;
+}
+
+.q-white {
+    color: #ffffff;
+}
+
+.q-pink {
+    color: #e91e63;
+}
+
+@media (max-width: 1100px) {
+    .header-text-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .header-quote-box {
+        margin-left: 0;
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
 }
 
 .profile-photo {
@@ -457,6 +509,7 @@ button {
     border: 1px solid var(--saffron);
     text-transform: uppercase;
     letter-spacing: 1px;
+    animation: floatSlow 3s ease-in-out infinite;
 }
 
 .mission-quote {
@@ -468,7 +521,7 @@ button {
 }
 
 .mission-subtext {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     color: var(--text-light);
     line-height: 1.6;
     margin-bottom: 40px;
@@ -615,14 +668,36 @@ button {
     text-shadow: 0 1px 3px rgba(0, 0, 0, .15)
 }
 
-.btn-red {
-    background: linear-gradient(135deg, #ef5350, #c62828, #b71c1c);
-    text-shadow: 0 1px 3px rgba(0, 0, 0, .15)
+/* Emergency & Support */
+.footer-col.footer-support {
+    grid-column: span 1;
 }
 
-.btn-green {
-    background: linear-gradient(135deg, #66bb6a, #2e7d32, #1b5e20);
-    text-shadow: 0 1px 3px rgba(0, 0, 0, .15)
+@media (max-width: 992px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
+}
+
+@media (max-width: 600px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .contact-item {
+        justify-content: center;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+
+    .footer-col h4 {
+        margin-bottom: 15px;
+    }
 }
 
 /* ========== SECTION TITLE ========== */
@@ -3202,22 +3277,47 @@ button {
 }
 
 @media(max-width:768px) {
+    .site-header {
+        padding: 15px 0;
+    }
+
+    .header-inner {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .header-left {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .header-text-group {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .header-quote-box {
+        margin-left: 0 !important;
+        font-size: 0.85rem !important;
+        padding: 6px 12px !important;
+        animation: pulseGlow 2s infinite !important;
+    }
+
     .site-name {
-        font-size: 1.8rem
+        font-size: 1.8rem;
+        text-align: center;
     }
 
     .profile-photo {
-        width: 70px;
-        height: 70px
-    }
-
-    .logo-circle {
-        width: 54px;
-        height: 54px
+        width: 80px;
+        height: 80px;
     }
 
     .hamburger {
-        display: block
+        display: block;
+        margin-left: auto;
     }
 
     .nav-menu {
@@ -3225,11 +3325,13 @@ button {
         flex-direction: column;
         position: absolute;
         top: 100%;
-        left: 0;
-        width: 100%;
-        background: var(--green-dark);
-        box-shadow: var(--shadow-lg);
-        z-index: 99
+        left: -24px;
+        width: calc(100% + 48px);
+        background: linear-gradient(135deg, var(--green-dark), #103b12);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        z-index: 110;
+        padding: 10px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .nav-menu.open {

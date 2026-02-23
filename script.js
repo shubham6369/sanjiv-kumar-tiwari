@@ -656,6 +656,7 @@ function initCursorGlow() {
     document.body.appendChild(glow);
 
     document.addEventListener('mousemove', (e) => {
+        if (window.innerWidth <= 768) return;
         glow.style.left = e.clientX + 'px';
         glow.style.top = e.clientY + 'px';
         glow.style.opacity = '1';
