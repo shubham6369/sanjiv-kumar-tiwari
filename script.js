@@ -258,15 +258,6 @@ function showBlock(blockName) {
                 </button>
                 ` : ''}
             </div>
-            <div style="animation:slideInBounce .4s .4s ease both">
-                <strong>अधिकारी:</strong>
-                <ul style="list-style:none;margin-top:8px;">
-                    ${officersData.filter(o => o.block === blockKey).map(o =>
-        `<li style="padding:8px 0;border-bottom:1px solid #eee;font-size:.9rem">
-                            <strong>${o.name}</strong> - ${o.post} (${o.dept})<br><small>📞 ${o.phone}</small>
-                        </li>`).join('')}
-                </ul>
-            </div>
         </div>`;
     document.querySelectorAll('.modal-overlay.show').forEach(m => m.classList.remove('show'));
     openModal('blockDetailModal');
