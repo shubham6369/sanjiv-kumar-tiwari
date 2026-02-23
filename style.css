@@ -559,6 +559,35 @@ button {
     box-shadow: 0 15px 40px rgba(46, 125, 50, 0.4);
 }
 
+.gallery-view-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 34px;
+    background: linear-gradient(135deg, var(--green), var(--green-dark));
+    color: #fff !important;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 8px 25px rgba(46, 125, 50, 0.25);
+    transition: var(--tr);
+    border: 2px solid transparent;
+}
+
+.gallery-view-btn:hover {
+    background: #fff;
+    color: var(--green) !important;
+    border-color: var(--green);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(46, 125, 50, 0.35);
+}
+
+.gallery-view-btn i {
+    font-size: 1.2rem;
+}
+
 .mission-visual {
     position: relative;
 }
