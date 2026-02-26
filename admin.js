@@ -221,8 +221,79 @@ function initUpload() {
     }
 }
 
+// Manage Gallery Items
+function listenToGallery() {
+    const tbody = document.getElementById('galleryMediaBody');
+    if (!tbody) return;
+
+    const q = query(collection(db, "gallery"), orderBy("timestamp", "desc"));
+    onSnapshot(q, (snapshot) => {
+        tbody.innerHTML = '';
+        if (snapshot.empty) {
+            tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">No media uploaded yet.</td></tr>';
+            return;
+        }
+
+        snapshot.forEach((docSnap) => {
+            const data = docSnap.data();
+            const id = docSnap.id;
+            const tr = document.createElement('tr');
+
+            // Safe fallback text
+            const caption = data.caption || 'No Caption Provided';
+            const date = data.timestamp && data.timestamp.toDate ? data.timestamp.toDate().toLocaleDateString('hi-IN') : 'Unknown Date';
+
+            tr.innerHTML = `
+                <td>
+                    <a href="${data.url}" target="_blank">
+                        <img src="${data.url}" style="width: 80px; height: 60px; object-fit: cover; border-radius: 4px;" alt="Thumbnail">
+                    </a>
+                </td>
+                <td style="max-width: 300px; white-space: normal;">${caption}</td>
+                <td>${date}</td>
+                <td>
+                    <button class="action-btn" onclick="editGalleryCaption('${id}', '${caption.replace(/'/g, "\\'")}')" title="Edit Caption">
+                        <i class="fas fa-edit" style="color: var(--blue);"></i>
+                    </button>
+                    <button class="action-btn" onclick="deleteGalleryItem('${id}')" title="Delete Photo">
+                        <i class="fas fa-trash-alt" style="color: var(--crimson);"></i>
+                    </button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }, (error) => {
+        console.error("Gallery Sync error:", error);
+        tbody.innerHTML = '<tr><td colspan="4" class="text-center text-danger">Error loading data.</td></tr>';
+    });
+}
+
+// Global Gallery Actions
+window.deleteGalleryItem = async (id) => {
+    if (!confirm("Are you sure you want to permanently delete this photo from the gallery?")) return;
+    try {
+        await deleteDoc(doc(db, "gallery", id));
+    } catch (e) {
+        console.error("Error deleting", e);
+        alert("Deletion failed.");
+    }
+};
+
+window.editGalleryCaption = async (id, currentCaption) => {
+    const newCaption = prompt("Edit Photo/Video Caption:", currentCaption);
+    if (newCaption === null || newCaption === currentCaption) return; // User cancelled or didn't change
+
+    try {
+        await updateDoc(doc(db, "gallery", id), { caption: newCaption.trim() });
+    } catch (e) {
+        console.error("Error updating", e);
+        alert("Failed to update caption.");
+    }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
     listenToComplaints();
     initUpload();
+    listenToGallery();
 });
