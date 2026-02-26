@@ -1,4 +1,4 @@
-import { db, collection, onSnapshot, query, orderBy, updateDoc, doc, deleteDoc } from './firebase-config.js';
+import { db, collection, onSnapshot, query, orderBy, updateDoc, doc, deleteDoc, addDoc } from './firebase-config.js';
 
 function getStatusBadge(status) {
     if (status === 'Pending') return `<span class="badge-status badge-pending"><i class="fas fa-clock"></i> Pending</span>`;
@@ -237,7 +237,15 @@ function initUpload() {
                 };
                 area.appendChild(btn);
 
-                // TODO: Here you could addDoc to a "gallery" collection in Firebase to save the URL permanently to the site Database
+                // Save to Firebase securely
+                try {
+                    await addDoc(collection(db, "gallery"), {
+                        url: data.secure_url,
+                        timestamp: new Date()
+                    });
+                } catch (ferr) {
+                    console.error("Firebase save error:", ferr);
+                }
             } else {
                 throw new Error("Upload failed");
             }

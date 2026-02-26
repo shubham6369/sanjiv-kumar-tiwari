@@ -140,6 +140,53 @@
             });
         });
     </script>
+
+    <!-- Firebase Data Fetching -->
+    <script type="module">
+        import { db, collection, getDocs, query, orderBy } from './firebase-config.js';
+
+        async function loadGallery() {
+            const photoWall = document.querySelector('.photo-wall');
+            photoWall.innerHTML = '<div style="width:100%; text-align:center; grid-column: 1 / -1; padding: 40px;"><i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--gold);"></i></div>';
+
+            try {
+                // Fetch all successfully uploaded images sorted by newest first
+                const q = query(collection(db, "gallery"), orderBy("timestamp", "desc"));
+                const querySnapshot = await getDocs(q);
+
+                let html = '';
+
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+
+                    // We can add logic to extract/caption later if added to form, 
+                    // right now we just use the raw image.
+                    html += `
+                        <div class="photo-item">
+                            <img src="${data.url}" alt="Sanjeev Kumar Tiwari Media" />
+                            <div class="photo-caption">
+                                <p>गैलरी अपडेट</p>
+                                <span class="photo-quote">Gallery Action</span>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                if (html === '') {
+                    photoWall.innerHTML = '<h3 style="width:100%; text-align:center; grid-column: 1 / -1; color: gray;">कोई गैलरी इमेजेज नहीं मिली (No Images Yet). Please upload some from the Admin Panel.</h3>';
+                } else {
+                    photoWall.innerHTML = html;
+                }
+
+            } catch (err) {
+                console.error("Error loading gallery:", err);
+                photoWall.innerHTML = '<h3 style="color:red; text-align:center;">Failed to load images from server.</h3>';
+            }
+        }
+
+        // Let it run as soon as possible
+        loadGallery();
+    </script>
 </body>
 
 </html>
