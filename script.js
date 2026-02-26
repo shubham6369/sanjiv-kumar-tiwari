@@ -188,11 +188,11 @@ async function submitComplaint(e) {
 
         await addDoc(collection(db, "complaints"), {
             id: id,
-            name: form.querySelector('input[type="text"]').value,
+            name: form.querySelectorAll('input[type="text"]')[0].value,
             mobile: form.querySelector('input[type="tel"]').value,
-            block: form.querySelector('select:nth-of-type(1)').value,
+            block: form.querySelectorAll('select')[0].value,
             village: form.querySelectorAll('input[type="text"]')[1].value,
-            dept: form.querySelector('select:nth-of-type(2)').value,
+            dept: form.querySelectorAll('select')[1].value,
             description: form.querySelector('textarea').value,
             status: 'Pending',
             date: timestamp.toLocaleDateString('hi-IN'),
