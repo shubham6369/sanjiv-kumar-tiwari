@@ -156,10 +156,13 @@ function initCharts() {
     }
 }
 
-// Drag & Drop Upload Mock
+// Live Cloudinary Upload
 function initUpload() {
     const area = document.getElementById('uploadArea');
     if (!area) return;
+
+    const cloudinaryUrl = "https://api.cloudinary.com/v1_1/dt1m4sosv/upload";
+    const uploadPreset = "r1ungxks";
 
     ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
         area.addEventListener(eventName, preventDefaults, false);
@@ -177,11 +180,64 @@ function initUpload() {
 
     area.addEventListener('drop', handleDrop, false);
 
+    // Also allow clicking to browse
+    const browseBtn = area.querySelector('.upload-btn');
+    if (browseBtn) {
+        const fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.accept = 'image/*,video/*';
+        fileInput.style.display = 'none';
+        document.body.appendChild(fileInput);
+
+        browseBtn.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length) uploadToCloudinary(e.target.files[0]);
+        });
+    }
+
     function handleDrop(e) {
         let dt = e.dataTransfer;
         let files = dt.files;
         if (files.length > 0) {
-            alert(`Ready to upload: ${files[0].name}`);
+            uploadToCloudinary(files[0]);
+        }
+    }
+
+    async function uploadToCloudinary(file) {
+        const originalHtml = area.innerHTML;
+        area.innerHTML = `<h3><i class="fas fa-spinner fa-spin"></i> Uploading ${file.name}...</h3>`;
+
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('upload_preset', uploadPreset);
+
+        try {
+            const response = await fetch(cloudinaryUrl, {
+                method: 'POST',
+                body: formData
+            });
+            const data = await response.json();
+
+            if (data.secure_url) {
+                // Success! We have the public URL to the image/video
+                area.innerHTML = `
+                    <h3 style="color: #10b981;"><i class="fas fa-check-circle"></i> Upload Successful!</h3>
+                    <p style="word-break: break-all; font-size: 0.8rem; margin-top: 10px;">
+                        <a href="${data.secure_url}" target="_blank" style="color: #d4af37;">${data.secure_url}</a>
+                    </p>
+                    <button class="upload-btn" onclick="this.parentElement.innerHTML = \`${originalHtml}\`; initUpload();" style="margin-top: 15px;">Upload Another</button>
+                `;
+
+                // TODO: Here you could addDoc to a "gallery" collection in Firebase to save the URL permanently to the site Database
+            } else {
+                throw new Error("Upload failed");
+            }
+        } catch (err) {
+            console.error(err);
+            area.innerHTML = `
+                <h3 style="color: #ef4444;"><i class="fas fa-exclamation-triangle"></i> Upload Error</h3>
+                <button class="upload-btn" onclick="this.parentElement.innerHTML = \`${originalHtml}\`; initUpload();" style="margin-top: 15px;">Try Again</button>
+            `;
         }
     }
 }
