@@ -204,6 +204,9 @@ function initUpload() {
     }
 
     async function uploadToCloudinary(file) {
+        const captionInput = document.getElementById('uploadCaption');
+        const captionText = captionInput ? captionInput.value.trim() : "";
+
         const originalHtml = area.innerHTML;
         area.innerHTML = `<h3><i class="fas fa-spinner fa-spin"></i> Uploading ${file.name}...</h3>`;
 
@@ -241,8 +244,10 @@ function initUpload() {
                 try {
                     await addDoc(collection(db, "gallery"), {
                         url: data.secure_url,
+                        caption: captionText,
                         timestamp: new Date()
                     });
+                    if (captionInput) captionInput.value = ''; // Reset input after success
                 } catch (ferr) {
                     console.error("Firebase save error:", ferr);
                 }

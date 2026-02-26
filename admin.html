@@ -223,14 +223,25 @@
             <section id="gallery" class="page-section">
                 <div class="section-header">
                     <h2>Media & Gallery Uploads</h2>
-                    <p>Upload new photos or video links</p>
+                    <p style="font-size: 1.2rem;">Upload new photos or video links</p>
                 </div>
+
+                <div style="margin-bottom: 25px;">
+                    <label for="uploadCaption"
+                        style="font-size: 1.3rem; font-weight: 700; color: var(--green-dark); display: block; margin-bottom: 10px;">
+                        <i class="fas fa-pen"></i> Write about this Photo / Video (Optional):
+                    </label>
+                    <input type="text" id="uploadCaption" placeholder="e.g. Inauguration of new road in Daltonganj..."
+                        style="width: 100%; font-size: 1.4rem; padding: 18px; border: 2px solid var(--border); border-radius: 8px; font-family: 'Inter', sans-serif;">
+                </div>
+
                 <!-- Upload Area -->
-                <div class="upload-area" id="uploadArea">
-                    <i class="fas fa-cloud-upload-alt upload-icon"></i>
-                    <h3>Drag & Drop Files Here</h3>
-                    <p>or click to browse from your device</p>
-                    <button class="upload-btn">Browse Files</button>
+                <div class="upload-area" id="uploadArea" style="padding: 60px 20px;">
+                    <i class="fas fa-cloud-upload-alt upload-icon" style="font-size: 4rem;"></i>
+                    <h3 style="font-size: 2.2rem; margin-top: 20px;">Drag & Drop Photos or Videos Here</h3>
+                    <p style="font-size: 1.3rem;">or click to browse from your device</p>
+                    <button class="upload-btn" style="font-size: 1.3rem; padding: 15px 35px; margin-top: 20px;">Browse
+                        Files</button>
                 </div>
             </section>
 

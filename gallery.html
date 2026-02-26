@@ -176,13 +176,14 @@
 
                     // Add staggered delay based on index
                     const delay = index * 0.15;
+                    const captionText = data.caption && data.caption.trim() !== "" ? data.caption : "गैलरी अपडेट (Gallery Update)";
 
                     html += `
                         <div class="photo-item" style="animation-delay: ${delay}s">
                             <img src="${data.url}" alt="Sanjeev Kumar Tiwari Media" />
                             <div class="photo-caption">
-                                <p>गैलरी अपडेट</p>
-                                <span class="photo-quote">New Gallery Upload</span>
+                                <p>${captionText}</p>
+                                <span class="photo-quote">Sanjeev Kumar Tiwari</span>
                             </div>
                         </div>
                     `;
