@@ -104,9 +104,7 @@ const blocksData = {
     },
 };
 
-let complaintCount = 1582;
-const complaints = {};
-
+// No local complaint data tracking. Data is fetched directly from Firebase.
 // ========== SLIDER ==========
 let currentSlide = 0;
 const totalSlides = 3;
@@ -204,9 +202,6 @@ async function submitComplaint(e) {
         closeModal('complaintModal');
         form.reset();
         showToast(`शिकायत सफलतापूर्वक दर्ज! ID: ${id}`);
-        // Optionally update local counter for UI feeling
-        complaintCount++;
-        updateReportNumber(0, complaintCount);
     } catch (error) {
         console.error("Error adding complaint: ", error);
         showToast("Error! Please try again later.");
@@ -217,35 +212,55 @@ async function submitComplaint(e) {
 }
 
 // ========== CHECK STATUS ==========
-function checkStatus(e) {
+async function checkStatus(e) {
     e.preventDefault();
     const input = document.getElementById('statusInput').value.trim().toUpperCase();
     const resultDiv = document.getElementById('statusResult');
-    if (complaints[input]) {
-        resultDiv.className = 'status-result found';
-        resultDiv.innerHTML = `
-            <strong>✅ शिकायत मिली!</strong><br>
-            <strong>ID:</strong> ${input}<br>
-            <strong>नाम:</strong> ${complaints[input].name}<br>
-            <strong>विभाग:</strong> ${complaints[input].dept}<br>
-            <strong>तिथि:</strong> ${complaints[input].date}<br>
-            <strong>स्टेटस:</strong> <span style="color:var(--saffron);font-weight:700">${complaints[input].status}</span>`;
-    } else {
-        const demoStatuses = ['समाधान पूर्ण ✅', 'प्रक्रिया में 🔄', 'पेंडिंग ⏳', 'गंभीर - प्राथमिकता 🔴'];
-        if (input.startsWith('CMP')) {
+    const form = e.target;
+    const btn = form.querySelector('button[type="submit"]');
+    const originalText = btn.innerHTML;
+
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Checking...';
+    btn.disabled = true;
+
+    try {
+        const { db, collection, getDocs, query } = await import('./firebase-config.js');
+        // Because id is stored as a field, let's query documents where id == input
+        // (Note: we used import { query } but didn't import 'where'. We can dynamically import where, or add it to config)
+        const { where } = await import('https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js');
+
+        const q = query(collection(db, "complaints"), where("id", "==", input));
+        const querySnapshot = await getDocs(q);
+
+        if (!querySnapshot.empty) {
+            // Document found
+            let data = null;
+            querySnapshot.forEach((doc) => {
+                data = doc.data();
+            });
+
             resultDiv.className = 'status-result found';
             resultDiv.innerHTML = `
-                <strong>📋 शिकायत विवरण</strong><br>
-                <strong>ID:</strong> ${input}<br>
-                <strong>स्टेटस:</strong> ${demoStatuses[Math.floor(Math.random() * demoStatuses.length)]}<br>
-                <strong>अंतिम अपडेट:</strong> ${new Date().toLocaleDateString('hi-IN')}`;
+                <strong>✅ शिकायत मिली! / Complaint Found!</strong><br>
+                <strong>ID:</strong> ${data.id}<br>
+                <strong>नाम:</strong> ${data.name}<br>
+                <strong>विभाग:</strong> ${data.dept}<br>
+                <strong>तिथि:</strong> ${data.date}<br>
+                <strong>स्टेटस:</strong> <span style="color:var(--saffron);font-weight:700">${data.status}</span>`;
         } else {
             resultDiv.className = 'status-result not-found';
-            resultDiv.innerHTML = `❌ <strong>शिकायत नहीं मिली!</strong><br>कृपया सही ID दर्ज करें (e.g. CMP-2026-0001)`;
+            resultDiv.innerHTML = `❌ <strong>शिकायत नहीं मिली! / Not Found!</strong><br>कृपया सही ID दर्ज करें (e.g. CMP-2026-0001)`;
         }
+    } catch (error) {
+        console.error("Error fetching status: ", error);
+        resultDiv.className = 'status-result not-found';
+        resultDiv.innerHTML = `❌ <strong>Error loading data. Please try again later.</strong>`;
+    } finally {
+        resultDiv.style.display = 'block';
+        resultDiv.style.animation = 'slideInBounce .5s ease';
+        btn.innerHTML = originalText;
+        btn.disabled = false;
     }
-    resultDiv.style.display = 'block';
-    resultDiv.style.animation = 'slideInBounce .5s ease';
 }
 
 // ========== BLOCK SEARCH ==========
