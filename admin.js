@@ -225,8 +225,17 @@ function initUpload() {
                     <p style="word-break: break-all; font-size: 0.8rem; margin-top: 10px;">
                         <a href="${data.secure_url}" target="_blank" style="color: #d4af37;">${data.secure_url}</a>
                     </p>
-                    <button class="upload-btn" onclick="this.parentElement.innerHTML = \`${originalHtml}\`; initUpload();" style="margin-top: 15px;">Upload Another</button>
                 `;
+
+                const btn = document.createElement('button');
+                btn.className = 'upload-btn';
+                btn.style.marginTop = '15px';
+                btn.textContent = 'Upload Another';
+                btn.onclick = () => {
+                    area.innerHTML = originalHtml;
+                    initUpload();
+                };
+                area.appendChild(btn);
 
                 // TODO: Here you could addDoc to a "gallery" collection in Firebase to save the URL permanently to the site Database
             } else {
@@ -236,8 +245,16 @@ function initUpload() {
             console.error(err);
             area.innerHTML = `
                 <h3 style="color: #ef4444;"><i class="fas fa-exclamation-triangle"></i> Upload Error</h3>
-                <button class="upload-btn" onclick="this.parentElement.innerHTML = \`${originalHtml}\`; initUpload();" style="margin-top: 15px;">Try Again</button>
             `;
+            const errBtn = document.createElement('button');
+            errBtn.className = 'upload-btn';
+            errBtn.style.marginTop = '15px';
+            errBtn.textContent = 'Try Again';
+            errBtn.onclick = () => {
+                area.innerHTML = originalHtml;
+                initUpload();
+            };
+            area.appendChild(errBtn);
         }
     }
 }
