@@ -104,57 +104,6 @@ function initNavigation() {
     });
 }
 
-// Chart.js Setup
-function initCharts() {
-    const ctx1 = document.getElementById('complaintsChart');
-    if (ctx1) {
-        new Chart(ctx1, {
-            type: 'line',
-            data: {
-                labels: ['Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb'],
-                datasets: [{
-                    label: 'Total Complaints',
-                    data: [120, 190, 150, 290, 210, 325],
-                    borderColor: '#0b5c3b',
-                    backgroundColor: 'rgba(11, 92, 59, 0.1)',
-                    borderWidth: 3,
-                    fill: true,
-                    tension: 0.4
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: { legend: { display: false } },
-                scales: {
-                    y: { beginAtZero: true, grid: { borderDash: [5, 5] } },
-                    x: { grid: { display: false } }
-                }
-            }
-        });
-    }
-
-    const ctx2 = document.getElementById('deptChart');
-    if (ctx2) {
-        new Chart(ctx2, {
-            type: 'doughnut',
-            data: {
-                labels: ['Police', 'Health', 'Education', 'Water', 'Electricity'],
-                datasets: [{
-                    data: [35, 20, 15, 20, 10],
-                    backgroundColor: ['#0b5c3b', '#d4af37', '#1565c0', '#00bcd4', '#ff9933'],
-                    borderWidth: 0
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: { position: 'bottom', labels: { boxWidth: 12, font: { family: 'Inter' } } }
-                },
-                cutout: '70%'
-            }
-        });
-    }
-}
 
 // Live Cloudinary Upload
 function initUpload() {
@@ -275,6 +224,5 @@ function initUpload() {
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
     listenToComplaints();
-    initCharts();
     initUpload();
 });
