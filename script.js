@@ -172,21 +172,48 @@ document.addEventListener('keydown', (e) => {
 });
 
 // ========== COMPLAINT FORM ==========
-function submitComplaint(e) {
+async function submitComplaint(e) {
     e.preventDefault();
-    complaintCount++;
-    const id = `CMP-2026-${String(complaintCount).padStart(4, '0')}`;
     const form = e.target;
-    complaints[id] = {
-        name: form.querySelector('input[type="text"]').value,
-        status: 'पेंडिंग / Pending',
-        date: new Date().toLocaleDateString('hi-IN'),
-        dept: form.querySelector('select:nth-of-type(2)')?.value || 'सामान्य'
-    };
-    closeModal('complaintModal');
-    form.reset();
-    showToast(`शिकायत सफलतापूर्वक दर्ज! ID: ${id}`);
-    updateReportNumber(0, complaintCount);
+    const btn = form.querySelector('button[type="submit"]');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
+    btn.disabled = true;
+
+    try {
+        // We will dynamically import firebase to not block initial page load load
+        const { db, collection, addDoc } = await import('./firebase-config.js');
+
+        const timestamp = new Date();
+        const num = Math.floor(1000 + Math.random() * 9000); // 4 digit random number
+        const id = `CMP-${timestamp.getFullYear()}-${num}`;
+
+        await addDoc(collection(db, "complaints"), {
+            id: id,
+            name: form.querySelector('input[type="text"]').value,
+            mobile: form.querySelector('input[type="tel"]').value,
+            block: form.querySelector('select:nth-of-type(1)').value,
+            village: form.querySelectorAll('input[type="text"]')[1].value,
+            dept: form.querySelector('select:nth-of-type(2)').value,
+            description: form.querySelector('textarea').value,
+            status: 'Pending',
+            date: timestamp.toLocaleDateString('hi-IN'),
+            createdAt: timestamp
+        });
+
+        closeModal('complaintModal');
+        form.reset();
+        showToast(`शिकायत सफलतापूर्वक दर्ज! ID: ${id}`);
+        // Optionally update local counter for UI feeling
+        complaintCount++;
+        updateReportNumber(0, complaintCount);
+    } catch (error) {
+        console.error("Error adding complaint: ", error);
+        showToast("Error! Please try again later.");
+    } finally {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+    }
 }
 
 // ========== CHECK STATUS ==========

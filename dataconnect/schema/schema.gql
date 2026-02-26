@@ -1,0 +1,38 @@
+// Firebase Data Connect schema for Sanjeev Kumar Tiwari Admin Panel
+
+type Complaint @table {
+  id: String! @unique
+  name: String!
+  mobile: String!
+  block: String
+  village: String
+  dept: String!
+  description: String!
+  status: String! // "Pending", "In Progress", "Resolved"
+  date: String!
+  createdAt: Timestamp! @default(expr: "request.time")
+}
+
+type Officer @table {
+  id: UUID! @default(expr: "uuidV4()")
+  name: String!
+  phone: String!
+  block: String!
+  dept: String!
+  post: String!
+  createdAt: Timestamp! @default(expr: "request.time")
+}
+
+type GalleryImage @table {
+  id: UUID! @default(expr: "uuidV4()")
+  url: String!
+  caption: String
+  featured: Boolean @default(value: false)
+  createdAt: Timestamp! @default(expr: "request.time")
+}
+
+type ReportMetric @table {
+  id: String! @unique // e.g., "total_visitors", "total_complaints"
+  value: Int!
+  lastUpdated: Timestamp! @default(expr: "request.time")
+}

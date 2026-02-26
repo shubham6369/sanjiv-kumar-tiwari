@@ -1,12 +1,4 @@
-// Mock Data Set for Complaints
-const mockComplaints = [
-    { id: 'CMP-2026-0012', name: 'Ramesh Singh', block: 'Medininagar', dept: 'Electricity', status: 'Pending', date: '26 Feb 2026' },
-    { id: 'CMP-2026-0011', name: 'Sanjay Yadav', block: 'Chainpur', dept: 'Health', status: 'In Progress', date: '25 Feb 2026' },
-    { id: 'CMP-2026-0010', name: 'Anita Devi', block: 'Patan', dept: 'Police', status: 'Resolved', date: '25 Feb 2026' },
-    { id: 'CMP-2026-0009', name: 'Mohammad Ali', block: 'Hussainabad', dept: 'Education', status: 'Resolved', date: '24 Feb 2026' },
-    { id: 'CMP-2026-0008', name: 'Vikash Tiwari', block: 'Palamu', dept: 'Water', status: 'Pending', date: '24 Feb 2026' },
-    { id: 'CMP-2026-0007', name: 'Rani Kumari', block: 'Bishrampur', dept: 'Health', status: 'Resolved', date: '23 Feb 2026' },
-];
+import { db, collection, onSnapshot, query, orderBy, updateDoc, doc, deleteDoc } from './firebase-config.js';
 
 function getStatusBadge(status) {
     if (status === 'Pending') return `<span class="badge-status badge-pending"><i class="fas fa-clock"></i> Pending</span>`;
@@ -14,49 +6,60 @@ function getStatusBadge(status) {
     return `<span class="badge-status badge-progress"><i class="fas fa-spinner fa-spin"></i> In Progress</span>`;
 }
 
-// Populate Tables
-function populateTables() {
+// Global functions so they can be triggered from HTML buttons
+window.editComplaint = async (id, currentStatus) => {
+    const newStatus = prompt("Enter new status (Pending, In Progress, Resolved):", currentStatus);
+    if (!newStatus || newStatus === currentStatus) return;
+    try {
+        await updateDoc(doc(db, "complaints", id), { status: newStatus });
+    } catch (e) { console.error("Error updating", e); }
+};
+
+window.deleteComplaint = async (id) => {
+    if (!confirm("Are you sure you want to delete this complaint?")) return;
+    try {
+        await deleteDoc(doc(db, "complaints", id));
+    } catch (e) { console.error("Error deleting", e); }
+};
+
+// Populate Tables Live Info
+function listenToComplaints() {
     const recentBody = document.getElementById('recentComplaintsBody');
     const allBody = document.getElementById('allComplaintsBody');
 
-    // Recent 4 for Dashboard
-    let recentHTML = '';
-    mockComplaints.slice(0, 4).forEach(c => {
-        recentHTML += `
-            <tr>
-                <td><strong>${c.id}</strong></td>
-                <td>${c.name}</td>
-                <td>${c.dept}</td>
-                <td>${c.date}</td>
-                <td>${getStatusBadge(c.status)}</td>
-                <td>
-                    <button class="action-btn" title="View"><i class="fas fa-eye"></i></button>
-                    <button class="action-btn" title="Edit"><i class="fas fa-edit"></i></button>
-                    <button class="action-btn delete" title="Delete"><i class="fas fa-trash"></i></button>
-                </td>
-            </tr>`;
-    });
-    if (recentBody) recentBody.innerHTML = recentHTML;
+    const q = query(collection(db, "complaints"), orderBy("createdAt", "desc"));
 
-    // All Complaints for Complaints Section
-    let allHTML = '';
-    mockComplaints.forEach(c => {
-        allHTML += `
-            <tr>
-                <td><strong>${c.id}</strong></td>
-                <td>${c.name}</td>
-                <td>${c.block}</td>
-                <td>${c.dept}</td>
-                <td>${getStatusBadge(c.status)}</td>
-                <td>${c.date}</td>
-                <td>
-                    <button class="action-btn" title="View"><i class="fas fa-eye"></i></button>
-                    <button class="action-btn" title="Edit"><i class="fas fa-edit"></i></button>
-                    <button class="action-btn delete" title="Delete"><i class="fas fa-trash"></i></button>
-                </td>
-            </tr>`;
+    onSnapshot(q, (snapshot) => {
+        let allHTML = '';
+        let recentHTML = '';
+        let rowCount = 0;
+
+        snapshot.forEach((docSnapshot) => {
+            const c = docSnapshot.data();
+            const docId = docSnapshot.id;
+
+            const row = `
+                <tr>
+                    <td><strong>${c.id}</strong></td>
+                    <td>${c.name}</td>
+                    <td>${c.block || 'N/A'}</td>
+                    <td>${c.dept}</td>
+                    <td>${getStatusBadge(c.status)}</td>
+                    <td>${c.date}</td>
+                    <td>
+                        <button class="action-btn" title="Edit" onclick="editComplaint('${docId}', '${c.status}')"><i class="fas fa-edit"></i></button>
+                        <button class="action-btn delete" title="Delete" onclick="deleteComplaint('${docId}')"><i class="fas fa-trash"></i></button>
+                    </td>
+                </tr>`;
+
+            allHTML += row;
+            if (rowCount < 4) recentHTML += row; // only put 4 in Dashboard
+            rowCount++;
+        });
+
+        if (allBody) allBody.innerHTML = allHTML;
+        if (recentBody) recentBody.innerHTML = recentHTML;
     });
-    if (allBody) allBody.innerHTML = allHTML;
 }
 
 // Navigation & Sidebar Logic
@@ -185,7 +188,7 @@ function initUpload() {
 
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
-    populateTables();
+    listenToComplaints();
     initCharts();
     initUpload();
 });
