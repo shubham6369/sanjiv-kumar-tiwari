@@ -279,15 +279,49 @@ window.deleteGalleryItem = async (id) => {
     }
 };
 
-window.editGalleryCaption = async (id, currentCaption) => {
-    const newCaption = prompt("Edit Photo/Video Caption:", currentCaption);
-    if (newCaption === null || newCaption === currentCaption) return; // User cancelled or didn't change
+window.editGalleryCaption = (id, currentCaption) => {
+    const modal = document.getElementById('editCaptionModal');
+    const input = document.getElementById('editCaptionInput');
+    const okBtn = document.getElementById('confirmEditBtn');
+    const cancelBtn = document.getElementById('cancelEditBtn');
 
-    try {
-        await updateDoc(doc(db, "gallery", id), { caption: newCaption.trim() });
-    } catch (e) {
-        console.error("Error updating", e);
-        alert("Failed to update caption.");
+    if (!modal || !input) return;
+
+    input.value = currentCaption || "";
+    modal.classList.add('show');
+    input.focus();
+
+    // Clone buttons to avoid duplicate event listeners from previous modal opens
+    const newOkBtn = okBtn.cloneNode(true);
+    const newCancelBtn = cancelBtn.cloneNode(true);
+    okBtn.parentNode.replaceChild(newOkBtn, okBtn);
+    cancelBtn.parentNode.replaceChild(newCancelBtn, cancelBtn);
+
+    const closeModal = () => modal.classList.remove('show');
+
+    newCancelBtn.addEventListener('click', closeModal);
+
+    newOkBtn.addEventListener('click', async () => {
+        const newCaption = input.value.trim();
+        if (newCaption !== currentCaption) {
+            const originalText = newOkBtn.innerHTML;
+            newOkBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            try {
+                await updateDoc(doc(db, "gallery", id), { caption: newCaption });
+                closeModal();
+            } catch (e) {
+                console.error("Error updating", e);
+                alert("Failed to update caption.");
+                newOkBtn.innerHTML = originalText;
+            }
+        } else {
+            closeModal();
+        }
+    });
+
+    // Close on overlay click
+    modal.onclick = (e) => {
+        if (e.target === modal) closeModal();
     }
 };
 
