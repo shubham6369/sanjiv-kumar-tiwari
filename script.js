@@ -450,8 +450,13 @@ function updateAuthUI(user) {
     if (user) {
         if (loginBtn) loginBtn.style.display = 'none';
         if (profileDropdown) profileDropdown.style.display = 'flex';
-        if (userPhoto) userPhoto.src = user.photoURL || 'https://via.placeholder.com/45';
-        if (userName) userName.textContent = user.displayName;
+        if (userPhoto) {
+            if (user.photoURL) {
+                userPhoto.innerHTML = `<img src="${user.photoURL}" alt="User">`;
+            } else {
+                userPhoto.innerHTML = `<i class="fa-regular fa-user"></i>`;
+            }
+        }
     } else {
         if (loginBtn) loginBtn.style.display = 'flex';
         if (profileDropdown) profileDropdown.style.display = 'none';

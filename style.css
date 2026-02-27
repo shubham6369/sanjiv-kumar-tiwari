@@ -3606,8 +3606,24 @@ button {
     height: 45px;
     border-radius: 50%;
     border: 2px solid var(--green);
-    object-fit: cover;
     box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.user-avatar-small img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-avatar-small i {
+    font-size: 1.2rem;
+    color: var(--green);
 }
 
 /* Removed profile dropdown styles as per user request */
