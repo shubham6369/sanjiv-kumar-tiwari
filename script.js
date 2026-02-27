@@ -180,7 +180,8 @@ async function submitComplaint(e) {
 
     try {
         // We will dynamically import firebase to not block initial page load load
-        const { db, collection, addDoc } = await import('./firebase-config.js');
+        const { db, collection, addDoc, auth } = await import('./firebase-config.js');
+        const user = auth.currentUser;
 
         const timestamp = new Date();
         const num = Math.floor(1000 + Math.random() * 9000); // 4 digit random number
@@ -188,6 +189,8 @@ async function submitComplaint(e) {
 
         await addDoc(collection(db, "complaints"), {
             id: id,
+            uid: user ? user.uid : 'anonymous',
+            email: user ? user.email : 'anonymous',
             name: form.querySelectorAll('input[type="text"]')[0].value,
             mobile: form.querySelector('input[type="tel"]').value,
             block: form.querySelectorAll('select')[0].value,
