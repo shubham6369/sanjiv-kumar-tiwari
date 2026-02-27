@@ -3556,3 +3556,176 @@ button {
         padding: 1.2rem 1rem
     }
 }
+
+/* ========== USER AUTH & PROFILE ========== */
+.user-auth-wrapper {
+    margin-right: 20px;
+    position: relative;
+    z-index: 101;
+}
+
+.login-trigger-btn {
+    background: var(--green);
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--tr);
+    box-shadow: var(--shadow);
+}
+
+.login-trigger-btn:hover {
+    background: #fff;
+    color: var(--green);
+    transform: translateY(-2px);
+}
+
+.user-profile-dropdown {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.user-avatar-small {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid var(--green);
+    object-fit: cover;
+    box-shadow: var(--shadow);
+}
+
+.dropdown-content {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #fff;
+    min-width: 180px;
+    box-shadow: var(--shadow-lg);
+    border-radius: 12px;
+    padding: 10px;
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+    animation: slideInBounce .3s ease;
+}
+
+.user-profile-dropdown:hover .dropdown-content {
+    display: flex;
+}
+
+.dropdown-content #userNameText {
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 0.9rem;
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+    display: block;
+}
+
+.logout-link {
+    background: #fdf2f2;
+    color: var(--red);
+    border: none;
+    padding: 10px;
+    text-align: left;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    width: 100%;
+    transition: var(--tr);
+}
+
+.logout-link:hover {
+    background: var(--red);
+    color: #fff;
+}
+
+/* ========== LOGIN MODAL ========== */
+.login-modal {
+    max-width: 400px;
+}
+
+.login-visual {
+    width: 80px;
+    height: 80px;
+    background: var(--green-glow);
+    color: var(--green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.google-login-btn {
+    width: 100%;
+    background: #fff;
+    color: #757575;
+    border: 1px solid #ddd;
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-top: 25px;
+    transition: var(--tr);
+}
+
+.google-login-btn img {
+    width: 20px;
+}
+
+.google-login-btn:hover {
+    background: #f8f9fa;
+    box-shadow: var(--shadow);
+    transform: translateY(-2px);
+}
+
+/* ========== FOOTER REORGANIZE ========== */
+.footer-bottom-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.bottom-left-links {
+    flex: 1;
+}
+
+.admin-access-link {
+    color: var(--saffron);
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--tr);
+}
+
+.admin-access-link:hover {
+    color: #fff;
+    transform: translateX(5px);
+}
+
+@media (max-width: 768px) {
+    .footer-bottom-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .admin-access-link {
+        justify-content: center;
+    }
+}

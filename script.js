@@ -407,6 +407,54 @@ function showToast(msg) {
     setTimeout(() => toast.classList.remove('show'), 3500);
 }
 
+// ========== USER AUTHENTICATION ==========
+async function handleGoogleLogin() {
+    try {
+        const { auth, googleProvider, signInWithPopup } = await import('./firebase-config.js');
+        const result = await signInWithPopup(auth, googleProvider);
+        const user = result.user;
+        closeModal('loginModal');
+        showToast(`स्वागत है, ${user.displayName}!`);
+    } catch (error) {
+        console.error("Login Error:", error);
+        showToast("लॉगिन विफल रहा। / Login Failed.");
+    }
+}
+
+async function handleLogout() {
+    try {
+        const { auth, signOut } = await import('./firebase-config.js');
+        await signOut(auth);
+        showToast("सफलतापूर्वक लॉगआउट! / Logged Out Successfully!");
+    } catch (error) {
+        console.error("Logout Error:", error);
+    }
+}
+
+async function initAuthListener() {
+    const { auth, onAuthStateChanged } = await import('./firebase-config.js');
+    onAuthStateChanged(auth, (user) => {
+        updateAuthUI(user);
+    });
+}
+
+function updateAuthUI(user) {
+    const loginBtn = document.getElementById('loginBtnHeader');
+    const profileDropdown = document.getElementById('userProfileDropdown');
+    const userPhoto = document.getElementById('userPhotoImg');
+    const userName = document.getElementById('userNameText');
+
+    if (user) {
+        if (loginBtn) loginBtn.style.display = 'none';
+        if (profileDropdown) profileDropdown.style.display = 'flex';
+        if (userPhoto) userPhoto.src = user.photoURL || 'https://via.placeholder.com/45';
+        if (userName) userName.textContent = user.displayName;
+    } else {
+        if (loginBtn) loginBtn.style.display = 'flex';
+        if (profileDropdown) profileDropdown.style.display = 'none';
+    }
+}
+
 // ========== COUNTER ANIMATION ==========
 function animateNumber(el, start, end, duration) {
     const step = Math.ceil(end / (duration / 16));
@@ -716,6 +764,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initRipple();
     initTypedText();
     initCursorGlow();
+
+    // Initialize Auth
+    initAuthListener();
 });
 
 // Expose functions to window for HTML access
@@ -734,3 +785,5 @@ window.submitReport = submitReport;
 window.submitReporter = submitReporter;
 window.filterBlocks = filterBlocks;
 window.filterOfficers = filterOfficers;
+window.handleGoogleLogin = handleGoogleLogin;
+window.handleLogout = handleLogout;
