@@ -455,6 +455,72 @@ function updateAuthUI(user) {
     }
 }
 
+// Global state for auth mode
+let authMode = 'login';
+
+function switchAuthMode(mode) {
+    authMode = mode;
+    const regFields = document.getElementById('registerFields');
+    const submitBtn = document.getElementById('authSubmitBtn');
+    const title = document.getElementById('authTitle');
+    const tabLogin = document.getElementById('tabLogin');
+    const tabRegister = document.getElementById('tabRegister');
+
+    if (mode === 'register') {
+        regFields.style.display = 'block';
+        submitBtn.textContent = 'Register Now';
+        title.innerHTML = '<i class="fas fa-user-plus"></i> पंजीकरण / Register';
+        tabRegister.classList.add('active');
+        tabLogin.classList.remove('active');
+    } else {
+        regFields.style.display = 'none';
+        submitBtn.textContent = 'Login';
+        title.innerHTML = '<i class="fas fa-sign-in-alt"></i> लॉगिन / Login';
+        tabLogin.classList.add('active');
+        tabRegister.classList.remove('active');
+    }
+}
+
+async function handleAuthSubmit(e) {
+    e.preventDefault();
+    const email = document.getElementById('authEmail').value;
+    const password = document.getElementById('authPassword').value;
+    const btn = document.getElementById('authSubmitBtn');
+    const originalText = btn.textContent;
+
+    btn.disabled = true;
+    btn.textContent = 'Processing...';
+
+    try {
+        const { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } = await import('./firebase-config.js');
+
+        if (authMode === 'register') {
+            const name = document.getElementById('authName').value;
+            const phone = document.getElementById('authPhone').value;
+
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            await updateProfile(userCredential.user, { displayName: name });
+
+            // We can also save phone number to Firestore user profile if needed
+            showToast(`Registered successfully! Welcome ${name}`);
+        } else {
+            await signInWithEmailAndPassword(auth, email, password);
+            showToast("Logged in successfully!");
+        }
+        closeModal('loginModal');
+    } catch (error) {
+        console.error("Auth Error:", error);
+        let msg = "Error: " + error.message;
+        if (error.code === 'auth/email-already-in-use') msg = "Email already in use!";
+        if (error.code === 'auth/wrong-password') msg = "Incorrect password!";
+        if (error.code === 'auth/user-not-found') msg = "User not found!";
+        showToast(msg);
+    } finally {
+        btn.disabled = false;
+        btn.textContent = originalText;
+    }
+}
+
 // ========== COUNTER ANIMATION ==========
 function animateNumber(el, start, end, duration) {
     const step = Math.ceil(end / (duration / 16));
@@ -787,3 +853,5 @@ window.filterBlocks = filterBlocks;
 window.filterOfficers = filterOfficers;
 window.handleGoogleLogin = handleGoogleLogin;
 window.handleLogout = handleLogout;
+window.switchAuthMode = switchAuthMode;
+window.handleAuthSubmit = handleAuthSubmit;

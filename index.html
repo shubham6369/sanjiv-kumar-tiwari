@@ -44,17 +44,22 @@
                         <p class="site-tagline">Public service, public problem <span
                                 class="highlight-orange">solution</span></p>
                     </div>
-                    <!-- Quote Box from Photo -->
-                    <div class="header-quote-box">
-                        <span class="q-yellow">"झारखंड के आंदोलनकारी</span>
-                        <span class="q-green">संजीव कुमार तिवारी</span>
-                        <span class="q-white">का जीवन और</span>
-                        <span class="q-pink">संघर्ष"</span>
-                    </div>
+                </div>
+
+                <div class="header-quote-box">
+                    <span class="q-yellow">"झारखंड के आंदोलनकारी</span>
+                    <span class="q-green">संजीव कुमार तिवारी</span>
+                    <span class="q-white">का जीवन और</span>
+                    <span class="q-pink">संघर्ष"</span>
                 </div>
             </div>
             <div class="header-right">
-                <div class="user-auth-wrapper" id="userAuthWrapper">
+                <div class="profile-photo">
+                    <img src="logo.jpeg" alt="झारखण्ड सरकार"
+                        onerror="this.onerror=null; this.src=''; this.parentElement.classList.add('no-img');">
+                    <i class="fas fa-user fallback-icon"></i>
+                </div>
+                <div class="user-auth-wrapper" id="userAuthWrapper" style="margin-left: 15px;">
                     <button class="login-trigger-btn" onclick="openModal('loginModal')" id="loginBtnHeader">
                         <i class="fas fa-user-circle"></i> <span>Login</span>
                     </button>
@@ -66,11 +71,6 @@
                                 Logout</button>
                         </div>
                     </div>
-                </div>
-                <div class="profile-photo">
-                    <img src="logo.jpeg" alt="झारखण्ड सरकार"
-                        onerror="this.onerror=null; this.src=''; this.parentElement.classList.add('no-img');">
-                    <i class="fas fa-user fallback-icon"></i>
                 </div>
             </div>
         </div>
@@ -1567,15 +1567,43 @@
     <div class="modal-overlay" id="loginModal">
         <div class="modal login-modal">
             <div class="modal-header bg-green">
-                <h3><i class="fas fa-sign-in-alt"></i> लॉगिन / Login</h3>
+                <h3 id="authTitle"><i class="fas fa-sign-in-alt"></i> लॉगिन / Login</h3>
                 <button class="modal-close" onclick="closeModal('loginModal')">&times;</button>
             </div>
-            <div class="modal-body center">
-                <div class="login-visual">
-                    <i class="fas fa-user-shield"></i>
+            <div class="modal-body">
+                <!-- Tabs for Login/Register -->
+                <div class="auth-tabs">
+                    <button class="auth-tab active" id="tabLogin" onclick="switchAuthMode('login')">Login</button>
+                    <button class="auth-tab" id="tabRegister" onclick="switchAuthMode('register')">New User</button>
                 </div>
-                <h4>स्वागत है! / Welcome!</h4>
-                <p>अपनी समस्याओं के समाधान के लिए लॉगिन करें।</p>
+
+                <form id="authForm" onsubmit="handleAuthSubmit(event)">
+                    <div id="registerFields" style="display: none;">
+                        <div class="form-group">
+                            <label><i class="fas fa-user"></i> Full Name</label>
+                            <input type="text" id="authName" placeholder="Enter your name">
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-phone"></i> Mobile Number</label>
+                            <input type="tel" id="authPhone" placeholder="Enter mobile number">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope"></i> Email Address</label>
+                        <input type="email" id="authEmail" required placeholder="Enter your email">
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-lock"></i> Password</label>
+                        <input type="password" id="authPassword" required placeholder="Enter password">
+                    </div>
+
+                    <button type="submit" class="auth-submit-btn" id="authSubmitBtn">Login</button>
+                </form>
+
+                <div class="auth-divider"><span>OR</span></div>
+
                 <button class="google-login-btn" onclick="handleGoogleLogin()">
                     <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
                     Continue with Google
