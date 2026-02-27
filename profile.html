@@ -34,6 +34,29 @@
             position: relative;
         }
 
+        .logout-profile-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--tr);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logout-profile-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
         .profile-avatar-large {
             width: 120px;
             height: 120px;
@@ -232,6 +255,9 @@
         <div class="container">
             <div class="profile-card">
                 <div class="profile-header">
+                    <button onclick="handleLogout()" class="logout-profile-btn">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
                     <div class="profile-avatar-large" id="profileAvatar">
                         <i class="fas fa-user"></i>
                     </div>
