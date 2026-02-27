@@ -3607,47 +3607,7 @@ button {
     box-shadow: var(--shadow);
 }
 
-.dropdown-content {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background: #fff;
-    min-width: 180px;
-    box-shadow: var(--shadow-lg);
-    border-radius: 12px;
-    padding: 10px;
-    display: none;
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 10px;
-    animation: slideInBounce .3s ease;
-}
-
-.user-profile-dropdown:hover .dropdown-content {
-    display: flex;
-}
-
-.dropdown-content #userNameText {
-    font-weight: 700;
-    color: var(--navy);
-    font-size: 0.9rem;
-    padding: 8px;
-    border-bottom: 1px solid #eee;
-    display: block;
-    margin-bottom: 5px;
-}
-
-.profile-link {
-    padding: 10px;
-    color: var(--text-light);
-    font-weight: 600;
-    font-size: 0.85rem;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: var(--tr);
-    border-radius: 8px;
-}
+/* Removed profile dropdown styles as per user request */
 
 .profile-link:hover {
     background: #f1f8e9;
