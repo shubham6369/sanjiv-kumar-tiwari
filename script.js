@@ -492,20 +492,30 @@ async function handleAuthSubmit(e) {
     btn.textContent = 'Processing...';
 
     try {
-        const { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } = await import('./firebase-config.js');
+        const { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, db, doc, setDoc } = await import('./firebase-config.js');
 
         if (authMode === 'register') {
             const name = document.getElementById('authName').value;
             const phone = document.getElementById('authPhone').value;
 
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-            await updateProfile(userCredential.user, { displayName: name });
+            const user = userCredential.user;
 
-            // We can also save phone number to Firestore user profile if needed
-            showToast(`Registered successfully! Welcome ${name}`);
+            await updateProfile(user, { displayName: name });
+
+            // Save extra data to Firestore
+            await setDoc(doc(db, "users", user.uid), {
+                uid: user.uid,
+                name: name,
+                email: email,
+                phone: phone,
+                createdAt: new Date()
+            });
+
+            showToast(`पंजीकरण सफल! / Registered successfully! Welcome ${name}`);
         } else {
             await signInWithEmailAndPassword(auth, email, password);
-            showToast("Logged in successfully!");
+            showToast("लॉगिन सफल! / Logged in successfully!");
         }
         closeModal('loginModal');
     } catch (error) {
