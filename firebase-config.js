@@ -1,16 +1,16 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs, onSnapshot, query, orderBy, updateDoc, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, addDoc, getDocs, onSnapshot, query, orderBy, updateDoc, doc, deleteDoc, where } from "firebase/firestore";
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDRtf6Nl_rYM3S_TXSo3Fx-MwbNLf6RLR8",
-    authDomain: "sanjeevkumar-2beff.firebaseapp.com",
-    projectId: "sanjeevkumar-2beff",
-    storageBucket: "sanjeevkumar-2beff.firebasestorage.app",
-    messagingSenderId: "179014952526",
-    appId: "1:179014952526:web:8f24e7475a879ac6b8051f",
-    measurementId: "G-S9T0B6NP05"
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID,
+    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
@@ -18,4 +18,4 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const storage = getStorage(app);
 
-export { db, collection, addDoc, getDocs, onSnapshot, query, orderBy, updateDoc, doc, deleteDoc, storage, ref, uploadBytesResumable, getDownloadURL };
+export { db, collection, addDoc, getDocs, onSnapshot, query, orderBy, updateDoc, doc, deleteDoc, where, storage, ref, uploadBytesResumable, getDownloadURL };

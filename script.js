@@ -224,10 +224,8 @@ async function checkStatus(e) {
     btn.disabled = true;
 
     try {
-        const { db, collection, getDocs, query } = await import('./firebase-config.js');
+        const { db, collection, getDocs, query, where } = await import('./firebase-config.js');
         // Because id is stored as a field, let's query documents where id == input
-        // (Note: we used import { query } but didn't import 'where'. We can dynamically import where, or add it to config)
-        const { where } = await import('https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js');
 
         const q = query(collection(db, "complaints"), where("id", "==", input));
         const querySnapshot = await getDocs(q);
@@ -719,3 +717,20 @@ document.addEventListener('DOMContentLoaded', () => {
     initTypedText();
     initCursorGlow();
 });
+
+// Expose functions to window for HTML access
+window.goSlide = goSlide;
+window.nextSlide = nextSlide;
+window.prevSlide = prevSlide;
+window.openModal = openModal;
+window.closeModal = closeModal;
+window.submitComplaint = submitComplaint;
+window.checkStatus = checkStatus;
+window.showBlock = showBlock;
+window.toggleVillages = toggleVillages;
+window.showOfficers = showOfficers;
+window.submitRegistration = submitRegistration;
+window.submitReport = submitReport;
+window.submitReporter = submitReporter;
+window.filterBlocks = filterBlocks;
+window.filterOfficers = filterOfficers;

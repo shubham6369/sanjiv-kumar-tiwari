@@ -110,8 +110,8 @@ function initUpload() {
     const area = document.getElementById('uploadArea');
     if (!area) return;
 
-    const cloudinaryUrl = "https://api.cloudinary.com/v1_1/dt1m4sosv/upload";
-    const uploadPreset = "r1ungxks";
+    const cloudinaryUrl = import.meta.env.VITE_CLOUDINARY_URL || "https://api.cloudinary.com/v1_1/dt1m4sosv/upload";
+    const uploadPreset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET || "r1ungxks";
 
     ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
         area.addEventListener(eventName, preventDefaults, false);
