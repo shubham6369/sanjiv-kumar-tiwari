@@ -1,6 +1,10 @@
-import { db, collection, onSnapshot, query, orderBy, updateDoc, doc, deleteDoc, addDoc, auth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from './firebase-config.js';
+import { db, collection, onSnapshot, query, orderBy, updateDoc, doc, deleteDoc, addDoc, auth, onAuthStateChanged, signInWithEmailAndPassword, signOut, setPersistence, browserSessionPersistence } from './firebase-config.js';
 
 const ADMIN_EMAILS = ['admin@sanjeevkumartiwari.com', 'sk.tiwari@gmail.com', 'sktjmm@gmail.com']; // Authorized admin list
+
+// FORCE FRESH LOGIN: Sign out immediately when entering the admin page
+// This ensures they see the login panel every time they access /admin.html
+signOut(auth);
 
 function checkAuth() {
     onAuthStateChanged(auth, (user) => {
@@ -47,7 +51,12 @@ function handleLogin(e) {
     btn.disabled = true;
     btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Authenticating...';
 
-    signInWithEmailAndPassword(auth, email, password)
+    // Set persistence to SESSION ONLY so it doesn't stay logged in after closing the tab
+    // and doesn't interfere with the long-term User login on the home page.
+    setPersistence(auth, browserSessionPersistence)
+        .then(() => {
+            return signInWithEmailAndPassword(auth, email, password);
+        })
         .then((userCredential) => {
             // onAuthStateChanged will handle the UI switch
         })
