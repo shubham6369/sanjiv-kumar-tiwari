@@ -24,6 +24,11 @@ function checkAuth() {
                 document.getElementById('loginError').textContent = "Unauthorized access attempt.";
                 signOut(auth);
             }
+            const loginBtn = document.getElementById('adminLoginBtn');
+            if (loginBtn) {
+                loginBtn.disabled = false;
+                loginBtn.innerHTML = 'Access Panel <i class="fas fa-arrow-right"></i>';
+            }
             if (loginOverlay) loginOverlay.style.display = 'flex';
             if (sidebar) sidebar.style.visibility = 'hidden';
             if (mainContent) mainContent.style.visibility = 'hidden';
@@ -133,6 +138,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const loginForm = document.getElementById('adminLoginForm');
     if (loginForm) loginForm.addEventListener('submit', handleLogin);
+
+    const signOutLink = document.getElementById('adminSignOutBtn');
+    if (signOutLink) signOutLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        signOut(auth).then(() => {
+            document.getElementById('loginError').textContent = "Signed out. Please log in with an admin account.";
+        });
+    });
 });
 
 // Re-expose missing logic for module
