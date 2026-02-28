@@ -2147,9 +2147,71 @@ button {
 }
 
 .village-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.village-block-details {
+    background: #fff;
+    border: 1.5px solid #eaeaea;
+    border-radius: 12px;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+}
+
+.village-block-details[open] {
+    border-color: #ffb300;
+    box-shadow: 0 5px 15px rgba(255, 179, 0, 0.1);
+}
+
+.vb-summary {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #333;
+    padding: 10px 5px;
+    cursor: pointer;
+    list-style: none;
+    /* Hide default arrow in some browsers */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vb-summary::-webkit-details-marker {
+    display: none;
+}
+
+.vb-summary .vb-title i {
+    color: #ffb300;
+    margin-right: 8px;
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.village-block-details[open] .vb-summary .vb-title i {
+    transform: rotate(90deg);
+}
+
+.vb-count {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 600;
+    background: #fdf2d0;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+.vb-list {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+    padding: 15px;
+    background: #fafafa;
+    border-radius: 8px;
+    margin-top: 10px;
+    border: 1px solid #f0f0f0;
 }
 
 .village-block-card {

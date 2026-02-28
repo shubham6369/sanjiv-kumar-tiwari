@@ -1039,3 +1039,30 @@ function updateReportVillages() {
         villageSelect.disabled = true;
     }
 }
+
+function renderVillageDirectory() {
+    const grid = document.getElementById('villageDirectoryGrid');
+    if (!grid) return;
+    grid.innerHTML = '';
+
+    Object.keys(blocksData).forEach(blockKey => {
+        const bd = blocksData[blockKey];
+        const villages = bd.villages;
+        const details = document.createElement('details');
+        details.className = 'village-block-details';
+
+        details.innerHTML = `
+            <summary class="vb-summary">
+                <span class="vb-title"><i class="fas fa-chevron-right"></i> ${bd.name}</span>
+                <span class="vb-count">(${villages.length} गाँव)</span>
+            </summary>
+            <div class="vb-list">
+                ${villages.join(', ')}
+            </div>
+        `;
+        grid.appendChild(details);
+    });
+}
+
+// Call on module load
+renderVillageDirectory();
