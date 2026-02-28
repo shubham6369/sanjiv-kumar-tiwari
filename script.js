@@ -250,7 +250,8 @@ async function checkStatus(e) {
                 <strong>नाम:</strong> ${data.name}<br>
                 <strong>विभाग:</strong> ${data.dept}<br>
                 <strong>तिथि:</strong> ${data.date}<br>
-                <strong>स्टेटस:</strong> <span style="color:var(--saffron);font-weight:700">${data.status}</span>`;
+                <strong>स्टेटस:</strong> <span style="color:var(--saffron);font-weight:700">${data.status}</span>
+                ${data.photoUrl ? `<div style="margin-top:10px;"><strong>फोटो:</strong><br><a href="${data.photoUrl}" target="_blank"><img src="${data.photoUrl}" style="max-width:100%; border-radius:8px; margin-top:5px; border:1px solid #ddd; max-height:200px; object-fit:contain;"></a></div>` : ''}`;
         } else {
             resultDiv.className = 'status-result not-found';
             resultDiv.innerHTML = `❌ <strong>शिकायत नहीं मिली! / Not Found!</strong><br>कृपया सही ID दर्ज करें (e.g. CMP-2026-0001)`;
