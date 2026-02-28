@@ -263,8 +263,12 @@ function listenToComplaints() {
             if (c.status === 'Resolved') resolved++;
 
             // ... rest of row generation ...
+            const isEven = rowCount % 2 === 0;
+            const mainBg = isEven ? '#ffffff' : '#f0fdf4'; // White or light emerald green
+            const actionBg = isEven ? '#f1f5f9' : '#dcfce7'; // Light gray or slightly darker emerald green
+
             const row = `
-                <tr class="animate-row" style="animation-delay: ${rowCount * 0.05}s">
+                <tr class="animate-row" style="background: ${mainBg}; animation-delay: ${rowCount * 0.05}s">
                     <td><strong>${c.id}</strong></td>
                     <td>${c.name}</td>
                     <td>${c.block || 'N/A'}</td>
@@ -316,7 +320,7 @@ function listenToComplaints() {
                         </button>
                     </td>
                 </tr>
-                <tr class="animate-row" style="background:#f1f5f9; border-bottom: 2px solid #cbd5e1; animation-delay: ${(rowCount * 0.05) + 0.02}s">
+                <tr class="animate-row" style="background: ${actionBg}; border-bottom: 3px solid #cbd5e1; animation-delay: ${(rowCount * 0.05) + 0.02}s">
                     <td colspan="10" style="padding: 12px 15px;">
                         <div style="display:flex; gap:20px; align-items:center; flex-wrap:wrap; font-size: 0.85rem;">
                             <!-- 1. PDF/Image -->
@@ -356,6 +360,10 @@ function listenToComplaints() {
                             </div>
                         </div>
                     </td>
+                </tr>
+                <!-- Spacer Row -->
+                <tr style="height: 20px; background: transparent;">
+                    <td colspan="10" style="padding: 0; border: none;"></td>
                 </tr>`;
 
             allHTML += row;
