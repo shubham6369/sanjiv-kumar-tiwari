@@ -315,6 +315,45 @@ function listenToComplaints() {
                             <i class="fas fa-trash"></i>
                         </button>
                     </td>
+                </tr>
+                <tr style="background:#f1f5f9; border-bottom: 2px solid #cbd5e1;">
+                    <td colspan="10" style="padding: 12px 15px;">
+                        <div style="display:flex; gap:20px; align-items:center; flex-wrap:wrap; font-size: 0.85rem;">
+                            <!-- 1. PDF/Image -->
+                            <div style="display:flex; align-items:center; gap:10px; background: white; padding: 6px 12px; border-radius: 6px; border: 1px solid #e2e8f0; border-left: 4px solid #3b82f6;">
+                                <strong><i class="fas fa-paperclip"></i> Extra Doc:</strong>
+                                ${c.extraDocUrl ?
+                    `<div style="display:flex; gap:10px; align-items:center;">
+                                        <a href="${c.extraDocUrl}" target="_blank" style="color:#0ea5e9;text-decoration:none;font-weight:600;"><i class="fas fa-eye"></i> View</a>
+                                        <button onclick="removeExtraDoc('${docId}')" style="color:#ef4444;border:none;background:none;cursor:pointer;" title="Remove Document"><i class="fas fa-times-circle"></i></button>
+                                     </div>` :
+                    `<div style="position:relative; overflow:hidden;">
+                                        <input type="file" accept="image/*,.pdf" onchange="uploadExtraDoc('${docId}', this)" style="max-width:180px;font-size:0.8rem;">
+                                     </div>`
+                }
+                            </div>
+
+                            <!-- 2. Email -->
+                            <div style="display:flex; align-items:center; gap:8px; background: white; padding: 6px 12px; border-radius: 6px; border: 1px solid #e2e8f0; border-left: 4px solid #f59e0b;">
+                                <strong><i class="fas fa-envelope"></i> Email:</strong>
+                                <input type="email" placeholder="Enter Email" value="${c.adminEmail || ''}" onblur="updateComplaintField('${docId}', 'adminEmail', this.value)" style="padding:4px 8px; border:1px solid #cbd5e1; border-radius:4px; width:150px; font-size:0.8rem;">
+                                ${c.adminEmail ? `<a href="mailto:${c.adminEmail}" style="background:#f59e0b; color:white; padding:4px 8px; border-radius:4px; text-decoration:none;" title="Send Email"><i class="fas fa-paper-plane"></i></a>` : ''}
+                            </div>
+
+                            <!-- 3. WhatsApp -->
+                            <div style="display:flex; align-items:center; gap:8px; background: white; padding: 6px 12px; border-radius: 6px; border: 1px solid #e2e8f0; border-left: 4px solid #22c55e;">
+                                <strong><i class="fab fa-whatsapp"></i> WA No:</strong>
+                                <input type="text" id="wa-${docId}" placeholder="Mobile Number" value="${c.adminWhatsapp || c.mobile || ''}" onblur="updateComplaintField('${docId}', 'adminWhatsapp', this.value)" style="padding:4px 8px; border:1px solid #cbd5e1; border-radius:4px; width:110px; font-size:0.8rem;">
+                                <button onclick="openWhatsapp('${docId}')" style="background:#22c55e; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;" title="Open WhatsApp Chat"><i class="fas fa-share"></i></button>
+                            </div>
+
+                            <!-- 4. Post Number -->
+                            <div style="display:flex; align-items:center; gap:8px; background: white; padding: 6px 12px; border-radius: 6px; border: 1px solid #e2e8f0; border-left: 4px solid #8b5cf6;">
+                                <strong><i class="fas fa-box"></i> Post No:</strong>
+                                <input type="text" placeholder="Tracking / Post No" value="${c.postNumber || ''}" onblur="updateComplaintField('${docId}', 'postNumber', this.value)" style="padding:4px 8px; border:1px solid #cbd5e1; border-radius:4px; width:140px; font-size:0.8rem;">
+                            </div>
+                        </div>
+                    </td>
                 </tr>`;
 
             allHTML += row;
@@ -384,6 +423,62 @@ window.removeStatusDoc = async (docId) => {
     if (!confirm("Are you sure you want to remove the status document from this complaint?")) return;
     try {
         await updateDoc(doc(db, "complaints", docId), { statusDocUrl: null });
+    } catch (e) { console.error("Update failed", e); }
+};
+
+window.updateComplaintField = async (docId, field, value) => {
+    try {
+        await updateDoc(doc(db, "complaints", docId), { [field]: value });
+    } catch (e) { console.error("Update failed", e); }
+};
+
+window.openWhatsapp = (docId) => {
+    const el = document.getElementById(`wa-${docId}`);
+    if (el && el.value) {
+        let num = el.value.replace(/\D/g, '');
+        if (num.length === 10) num = "91" + num;
+        window.open(`https://wa.me/${num}`, '_blank');
+    } else {
+        alert("Please enter a valid WhatsApp number.");
+    }
+};
+
+window.uploadExtraDoc = async (docId, inputEl) => {
+    const file = inputEl.files[0];
+    if (!file) return;
+
+    const cloudinaryUrl = "https://api.cloudinary.com/v1_1/dt1m4sosv/upload";
+    const uploadPreset = "r1ungxks";
+
+    const label = inputEl.parentElement;
+    const originalHtml = label.innerHTML;
+    label.innerHTML = '<span style="color:#3b82f6;"><i class="fas fa-spinner fa-spin"></i> Uploading...</span>';
+
+    try {
+        const fd = new FormData();
+        fd.append('file', file);
+        fd.append('upload_preset', uploadPreset);
+
+        const res = await fetch(cloudinaryUrl, { method: 'POST', body: fd });
+        const d = await res.json();
+
+        if (d.secure_url) {
+            await updateDoc(doc(db, "complaints", docId), { extraDocUrl: d.secure_url });
+        } else {
+            alert("Upload failed.");
+            label.innerHTML = originalHtml;
+        }
+    } catch (e) {
+        console.error("Upload error:", e);
+        alert("Upload error.");
+        label.innerHTML = originalHtml;
+    }
+};
+
+window.removeExtraDoc = async (docId) => {
+    if (!confirm("Are you sure you want to remove this extra document?")) return;
+    try {
+        await updateDoc(doc(db, "complaints", docId), { extraDocUrl: null });
     } catch (e) { console.error("Update failed", e); }
 };
 
