@@ -343,7 +343,7 @@ function listenToComplaints() {
                             <!-- 3. WhatsApp -->
                             <div style="display:flex; align-items:center; gap:8px; background: white; padding: 6px 12px; border-radius: 6px; border: 1px solid #e2e8f0; border-left: 4px solid #22c55e;">
                                 <strong><i class="fab fa-whatsapp"></i> WA No:</strong>
-                                <input type="text" id="wa-${docId}" placeholder="Mobile Number" value="${c.mobile || ''}" style="padding:4px 8px; border:1px solid #cbd5e1; border-radius:4px; width:110px; font-size:0.8rem;">
+                                <input type="text" id="wa-${docId}" placeholder="Mobile Number" value="" style="padding:4px 8px; border:1px solid #cbd5e1; border-radius:4px; width:110px; font-size:0.8rem;">
                                 <button onclick="openWhatsapp('${docId}', '${c.extraDocUrl || ''}')" style="background:#22c55e; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;" title="Open WhatsApp Chat"><i class="fas fa-share"></i></button>
                             </div>
 
