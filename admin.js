@@ -325,6 +325,7 @@ function listenToComplaints() {
                                 ${c.extraDocUrl ?
                     `<div style="display:flex; gap:10px; align-items:center;">
                                         <a href="${c.extraDocUrl}" target="_blank" style="color:#0ea5e9;text-decoration:none;font-weight:600;"><i class="fas fa-eye"></i> View</a>
+                                        <button onclick="copyDocToClipboard('${c.extraDocUrl}')" style="color:#8b5cf6;border:none;background:none;cursor:pointer;" title="Copy Document Link"><i class="fas fa-copy"></i></button>
                                         <button onclick="removeExtraDoc('${docId}')" style="color:#ef4444;border:none;background:none;cursor:pointer;" title="Remove Document"><i class="fas fa-times-circle"></i></button>
                                      </div>` :
                     `<div style="position:relative; overflow:hidden;">
@@ -337,14 +338,14 @@ function listenToComplaints() {
                             <div style="display:flex; align-items:center; gap:8px; background: white; padding: 6px 12px; border-radius: 6px; border: 1px solid #e2e8f0; border-left: 4px solid #f59e0b;">
                                 <strong><i class="fas fa-envelope"></i> Email:</strong>
                                 <input type="email" id="email-${docId}" placeholder="Enter Email" value="" style="padding:4px 8px; border:1px solid #cbd5e1; border-radius:4px; width:150px; font-size:0.8rem;">
-                                <button onclick="sendEmail('${docId}', '${c.extraDocUrl || ''}')" style="background:#f59e0b; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;" title="Send Email via Gmail"><i class="fas fa-paper-plane"></i></button>
+                                <button onclick="sendEmail('${docId}')" style="background:#f59e0b; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;" title="Send Email via Gmail"><i class="fas fa-paper-plane"></i></button>
                             </div>
 
                             <!-- 3. WhatsApp -->
                             <div style="display:flex; align-items:center; gap:8px; background: white; padding: 6px 12px; border-radius: 6px; border: 1px solid #e2e8f0; border-left: 4px solid #22c55e;">
                                 <strong><i class="fab fa-whatsapp"></i> WA No:</strong>
                                 <input type="text" id="wa-${docId}" placeholder="Mobile Number" value="" style="padding:4px 8px; border:1px solid #cbd5e1; border-radius:4px; width:110px; font-size:0.8rem;">
-                                <button onclick="openWhatsapp('${docId}', '${c.extraDocUrl || ''}')" style="background:#22c55e; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;" title="Open WhatsApp Chat"><i class="fas fa-share"></i></button>
+                                <button onclick="openWhatsapp('${docId}')" style="background:#22c55e; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;" title="Open WhatsApp Chat"><i class="fas fa-share"></i></button>
                             </div>
 
                             <!-- 4. Post Number -->
@@ -436,35 +437,29 @@ window.updateComplaintField = async (docId, field, value) => {
 window.copyDocToClipboard = (docUrl) => {
     if (docUrl) {
         navigator.clipboard.writeText(docUrl)
-            .then(() => alert("Document link copied to clipboard! You can paste it in the Post Office app."))
+            .then(() => alert("Document link copied to clipboard!"))
             .catch(() => alert("Failed to copy link."));
     } else {
-        alert("There is no extra document attached to copy.");
+        alert("There is no document available to copy.");
     }
 };
 
-window.openWhatsapp = (docId, docUrl) => {
+window.openWhatsapp = (docId) => {
     const el = document.getElementById(`wa-${docId}`);
     if (el && el.value) {
         let num = el.value.replace(/\D/g, '');
         if (num.length === 10) num = "91" + num;
         let url = `https://wa.me/${num}`;
-        if (docUrl) {
-            url += `?text=${encodeURIComponent("Please find the document attached here: " + docUrl)}`;
-        }
         window.open(url, '_blank');
     } else {
         alert("Please enter a valid WhatsApp number.");
     }
 };
 
-window.sendEmail = (docId, docUrl) => {
+window.sendEmail = (docId) => {
     const el = document.getElementById(`email-${docId}`);
     if (el && el.value) {
         let url = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(el.value)}`;
-        if (docUrl) {
-            url += `&body=${encodeURIComponent("Please find the document attached here: " + docUrl)}`;
-        }
         window.open(url, '_blank');
     } else {
         alert("Please enter a valid email address.");
