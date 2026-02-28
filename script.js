@@ -700,12 +700,40 @@ function initScrollReveal() {
 }
 
 // ========== ANIMATED COUNTERS ==========
-function initCounters() {
+async function initCounters() {
+    // 1. Fetch real stats from Firebase
+    try {
+        const { db, collection, getDocs } = await import('./firebase-config.js');
+        const snap = await getDocs(collection(db, "complaints"));
+        let total = 0, pending = 0, resolved = 0, critical = 0;
+
+        snap.forEach(docSnap => {
+            const c = docSnap.data();
+            total++;
+            if (c.status === 'Pending') pending++;
+            else if (c.status === 'Resolved') resolved++;
+            else critical++; // Treat "In Progress" or others as Critical/Active
+        });
+
+        // 2. Update data-target attributes
+        const reportNums = document.querySelectorAll('.rpt-num');
+        if (reportNums.length >= 5) {
+            reportNums[0].setAttribute('data-target', total);
+            reportNums[1].setAttribute('data-target', pending);
+            reportNums[2].setAttribute('data-target', resolved);
+            reportNums[3].setAttribute('data-target', critical);
+            reportNums[4].setAttribute('data-target', critical); // Duplicate in HTML
+        }
+    } catch (err) {
+        console.error("Error fetching stats:", err);
+    }
+
+    // 3. Setup Observer
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const el = entry.target;
-                const target = parseInt(el.getAttribute('data-target'));
+                const target = parseInt(el.getAttribute('data-target')) || 0;
                 animateNumber(el, 0, target, 1400);
                 observer.unobserve(el);
             }
