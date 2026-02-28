@@ -434,13 +434,36 @@ window.updateComplaintField = async (docId, field, value) => {
     } catch (e) { console.error("Update failed", e); }
 };
 
-window.copyDocToClipboard = (docUrl) => {
-    if (docUrl) {
-        navigator.clipboard.writeText(docUrl)
-            .then(() => alert("Document link copied to clipboard!"))
-            .catch(() => alert("Failed to copy link."));
-    } else {
+window.copyDocToClipboard = async (docUrl) => {
+    if (!docUrl) {
         alert("There is no document available to copy.");
+        return;
+    }
+
+    if (docUrl.toLowerCase().endsWith('.pdf')) {
+        alert("PDF files cannot be directly copied to the clipboard. Please click 'View' to download or share the PDF.");
+        return;
+    }
+
+    try {
+        // Force Cloudinary to serve a PNG format which is widely accepted by browser clipboards
+        let fetchUrl = docUrl;
+        if (fetchUrl.includes('/upload/')) {
+            fetchUrl = fetchUrl.replace('/upload/', '/upload/f_png/');
+        }
+
+        const response = await fetch(fetchUrl);
+        const blob = await response.blob();
+
+        await navigator.clipboard.write([
+            new ClipboardItem({
+                'image/png': blob
+            })
+        ]);
+        alert("Original image copied to clipboard successfully! You can now paste it directly into WhatsApp or Email.");
+    } catch (err) {
+        console.error("Clipboard copy failed:", err);
+        alert("Failed to copy the original image. Your browser might not support direct file copying.");
     }
 };
 
