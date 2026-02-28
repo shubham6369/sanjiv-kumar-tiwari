@@ -264,7 +264,7 @@ function listenToComplaints() {
 
             // ... rest of row generation ...
             const row = `
-                <tr>
+                <tr class="animate-row" style="animation-delay: ${rowCount * 0.05}s">
                     <td><strong>${c.id}</strong></td>
                     <td>${c.name}</td>
                     <td>${c.block || 'N/A'}</td>
@@ -316,7 +316,7 @@ function listenToComplaints() {
                         </button>
                     </td>
                 </tr>
-                <tr style="background:#f1f5f9; border-bottom: 2px solid #cbd5e1;">
+                <tr class="animate-row" style="background:#f1f5f9; border-bottom: 2px solid #cbd5e1; animation-delay: ${(rowCount * 0.05) + 0.02}s">
                     <td colspan="10" style="padding: 12px 15px;">
                         <div style="display:flex; gap:20px; align-items:center; flex-wrap:wrap; font-size: 0.85rem;">
                             <!-- 1. PDF/Image -->
@@ -530,7 +530,9 @@ function listenToGallery() {
             const data = d.data();
             const id = d.id;
             const tr = document.createElement('tr');
-            tr.innerHTML = `<td><img src="${data.url}" style="width:60px;"></td><td>${data.caption || ''}</td><td>${data.timestamp?.toDate().toLocaleDateString() || ''}</td><td><button class="action-btn" onclick="editGalleryCaption('${id}', '${(data.caption || '').replace(/'/g, "\\'")}')"><i class="fas fa-edit"></i></button><button class="action-btn" onclick="deleteGalleryItem('${id}')"><i class="fas fa-trash"></i></button></td></tr>`;
+            tr.className = 'animate-row';
+            tr.style.animationDelay = `${Array.from(tbody.children).length * 0.05}s`;
+            tr.innerHTML = `<td><img src="${data.url}" style="width:60px;"></td><td>${data.caption || ''}</td><td>${data.timestamp?.toDate().toLocaleDateString() || ''}</td><td><button class="action-btn" onclick="editGalleryCaption('${id}', '${(data.caption || '').replace(/'/g, "\\'")}')"><i class="fas fa-edit"></i></button><button class="action-btn" onclick="deleteGalleryItem('${id}')"><i class="fas fa-trash"></i></button></td>`;
             tbody.appendChild(tr);
         });
     });
