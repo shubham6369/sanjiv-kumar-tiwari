@@ -1638,7 +1638,7 @@ button {
     padding: 1.5rem 1.2rem;
     text-align: center;
     border: 2px solid #f0f0f0;
-    cursor: default;
+    cursor: pointer;
     transition: all .35s cubic-bezier(.4, 0, .2, 1);
     position: relative;
     overflow: hidden
