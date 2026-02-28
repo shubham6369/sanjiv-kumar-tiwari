@@ -1,4 +1,4 @@
-import { db, collection, onSnapshot, query, orderBy, updateDoc, doc, deleteDoc, addDoc, adminAuth as auth, onAuthStateChanged, signInWithEmailAndPassword, signOut, setPersistence, browserSessionPersistence } from './firebase-config.js';
+import { db, collection, onSnapshot, query, orderBy, updateDoc, doc, deleteDoc, addDoc, adminAuth as auth, onAuthStateChanged, signInWithEmailAndPassword, signOut, setPersistence, browserSessionPersistence, sendPasswordResetEmail } from './firebase-config.js';
 
 const ADMIN_EMAILS = ['admin@sanjeevkumartiwari.com', 'sk.tiwari@gmail.com', 'sktjmm@gmail.com']; // Authorized admin list
 
@@ -147,6 +147,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const loginForm = document.getElementById('adminLoginForm');
     if (loginForm) loginForm.addEventListener('submit', handleLogin);
+
+    const forgotPasswordBtn = document.getElementById('adminForgotPassword');
+    if (forgotPasswordBtn) {
+        forgotPasswordBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('adminEmail').value.trim();
+            const errorMsg = document.getElementById('loginError');
+
+            if (!email) {
+                errorMsg.textContent = "Please enter your admin email first to reset password.";
+                errorMsg.style.color = "#e74c3c";
+                return;
+            }
+
+            if (!ADMIN_EMAILS.includes(email)) {
+                errorMsg.textContent = "Unauthorized email address.";
+                errorMsg.style.color = "#e74c3c";
+                return;
+            }
+
+            try {
+                forgotPasswordBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                await sendPasswordResetEmail(auth, email);
+                errorMsg.textContent = "Password reset email sent! Please check your inbox.";
+                errorMsg.style.color = "#2ecc71"; // Green success message
+            } catch (error) {
+                console.error("Password reset error:", error);
+                errorMsg.textContent = "Error sending reset email. Try again.";
+                errorMsg.style.color = "#e74c3c"; // Red error message
+            } finally {
+                forgotPasswordBtn.textContent = "Forgot Password?";
+            }
+        });
+    }
 
 
     const signOutLink = document.getElementById('adminSignOutBtn');
