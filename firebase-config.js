@@ -16,9 +16,11 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const adminApp = initializeApp(firebaseConfig, "admin-app"); // Separate App for Admin to unsync logins
 const db = getFirestore(app);
 const storage = getStorage(app);
 const auth = getAuth(app);
+const adminAuth = getAuth(adminApp);
 const googleProvider = new GoogleAuthProvider();
 
-export { db, collection, addDoc, getDocs, onSnapshot, query, orderBy, updateDoc, doc, deleteDoc, where, setDoc, getDoc, storage, ref, uploadBytesResumable, getDownloadURL, auth, googleProvider, signInWithPopup, signOut, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, setPersistence, browserSessionPersistence };
+export { db, collection, addDoc, getDocs, onSnapshot, query, orderBy, updateDoc, doc, deleteDoc, where, setDoc, getDoc, storage, ref, uploadBytesResumable, getDownloadURL, auth, adminAuth, googleProvider, signInWithPopup, signOut, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, setPersistence, browserSessionPersistence };

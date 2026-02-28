@@ -1,4 +1,4 @@
-import { db, collection, onSnapshot, query, orderBy, updateDoc, doc, deleteDoc, addDoc, auth, onAuthStateChanged, signInWithEmailAndPassword, signOut, setPersistence, browserSessionPersistence } from './firebase-config.js';
+import { db, collection, onSnapshot, query, orderBy, updateDoc, doc, deleteDoc, addDoc, adminAuth as auth, onAuthStateChanged, signInWithEmailAndPassword, signOut, setPersistence, browserSessionPersistence } from './firebase-config.js';
 
 const ADMIN_EMAILS = ['admin@sanjeevkumartiwari.com', 'sk.tiwari@gmail.com', 'sktjmm@gmail.com']; // Authorized admin list
 
