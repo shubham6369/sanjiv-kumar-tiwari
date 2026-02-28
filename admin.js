@@ -264,16 +264,15 @@ function listenToComplaints() {
 
             // ... rest of row generation ...
             const isEven = rowCount % 2 === 0;
-            const mainBg = isEven ? '#ffffff' : '#f0fdf4'; // White or light emerald green
-            const actionBg = isEven ? '#f1f5f9' : '#dcfce7'; // Light gray or slightly darker emerald green
+            const rowBg = isEven ? '#f8fafc' : '#f0fdf4'; // Light slate or light emerald
 
             const row = `
-                <tr class="animate-row" style="background: ${mainBg}; animation-delay: ${rowCount * 0.05}s">
-                    <td><strong>${c.id}</strong></td>
-                    <td>${c.name}</td>
-                    <td>${c.block || 'N/A'}</td>
-                    <td>${c.dept}</td>
-                    <td>
+                <tr class="animate-row" style="background: ${rowBg}; animation-delay: ${rowCount * 0.05}s">
+                    <td style="border-bottom: none;"><strong>${c.id}</strong></td>
+                    <td style="border-bottom: none;">${c.name}</td>
+                    <td style="border-bottom: none;">${c.block || 'N/A'}</td>
+                    <td style="border-bottom: none;">${c.dept}</td>
+                    <td style="border-bottom: none;">
                         ${c.photoUrl ? `
                             <div style="display:flex; flex-direction:column; gap:5px; align-items:center;">
                                 <a href="${c.photoUrl}" target="_blank" class="table-img-link">
@@ -285,8 +284,8 @@ function listenToComplaints() {
                             </div>
                         ` : '<span style="color:#ccc; font-size:0.8rem;">N/A</span>'}
                     </td>
-                    <td><span class="date-chip">${c.date}</span></td>
-                    <td>
+                    <td style="border-bottom: none;"><span class="date-chip">${c.date}</span></td>
+                    <td style="border-bottom: none;">
                         <div class="steps-cell">
                             <input type="text" class="steps-input" value="${c.stepsTaken || ''}" 
                                 placeholder="Add action taken..." 
@@ -294,7 +293,7 @@ function listenToComplaints() {
                             <i class="fas fa-edit edit-hint"></i>
                         </div>
                     </td>
-                    <td>
+                    <td style="border-bottom: none;">
                         ${c.statusDocUrl ? `
                             <div style="display:flex; align-items:center; gap:5px;">
                                 <a href="${c.statusDocUrl}" target="_blank" class="badge-status" style="background:#e6f7ff; color:#1890ff; padding:4px 8px; text-decoration:none;"><i class="fas fa-eye"></i> View</a>
@@ -307,21 +306,21 @@ function listenToComplaints() {
                             </label>
                         `}
                     </td>
-                    <td>
+                    <td style="border-bottom: none;">
                         <select class="status-select status-${c.status?.replace(/\s+/g, '-')}" onchange="updateComplaintStatus('${docId}', this.value)">
                             <option value="Pending" ${c.status === 'Pending' ? 'selected' : ''}>Pending</option>
                             <option value="In Progress" ${c.status === 'In Progress' ? 'selected' : ''}>In Progress</option>
                             <option value="Resolved" ${c.status === 'Resolved' ? 'selected' : ''}>Resolved</option>
                         </select>
                     </td>
-                    <td>
+                    <td style="border-bottom: none;">
                         <button class="action-item-btn delete" onclick="deleteComplaint('${docId}')" title="Delete">
                             <i class="fas fa-trash"></i>
                         </button>
                     </td>
                 </tr>
-                <tr class="animate-row" style="background: ${actionBg}; border-bottom: 3px solid #cbd5e1; animation-delay: ${(rowCount * 0.05) + 0.02}s">
-                    <td colspan="10" style="padding: 12px 15px;">
+                <tr class="animate-row" style="background: ${rowBg}; animation-delay: ${(rowCount * 0.05) + 0.02}s">
+                    <td colspan="10" style="padding: 12px 15px; border-bottom: none;">
                         <div style="display:flex; gap:20px; align-items:center; flex-wrap:wrap; font-size: 0.85rem;">
                             <!-- 1. PDF/Image -->
                             <div style="display:flex; align-items:center; gap:10px; background: white; padding: 6px 12px; border-radius: 6px; border: 1px solid #e2e8f0; border-left: 4px solid #3b82f6;">
@@ -362,7 +361,7 @@ function listenToComplaints() {
                     </td>
                 </tr>
                 <!-- Spacer Row -->
-                <tr style="height: 20px; background: transparent;">
+                <tr style="height: 20px; background: #ffffff;">
                     <td colspan="10" style="padding: 0; border: none;"></td>
                 </tr>`;
 
