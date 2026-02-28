@@ -18,9 +18,35 @@
 </head>
 
 <body>
+    <!-- Login Overlay -->
+    <div id="adminLoginOverlay" class="login-overlay">
+        <div class="login-box">
+            <div class="login-header">
+                <div class="login-logo">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h2>Admin Login</h2>
+                <p>Restricted access for administrators</p>
+            </div>
+            <form id="adminLoginForm">
+                <div class="login-input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="adminEmail" placeholder="Admin Email" required>
+                </div>
+                <div class="login-input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="adminPassword" placeholder="Admin Password" required>
+                </div>
+                <button type="submit" id="adminLoginBtn" class="login-btn">
+                    Access Panel <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+            <p id="loginError" class="login-error-msg"></p>
+        </div>
+    </div>
 
     <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
+    <aside class="sidebar" id="sidebar" style="visibility: hidden;">
         <div class="sidebar-header">
             <div class="logo">
                 <i class="fas fa-shield-alt"></i> SKT Admin
@@ -53,7 +79,7 @@
     </aside>
 
     <!-- Main Content -->
-    <main class="main-content">
+    <main class="main-content" style="visibility: hidden;">
         <!-- Top Nav -->
         <header class="top-nav">
             <div class="nav-left">
