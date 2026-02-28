@@ -264,7 +264,7 @@ function listenToComplaints() {
 
             // ... rest of row generation ...
             const isEven = rowCount % 2 === 0;
-            const rowBg = isEven ? '#e2e8f0' : '#dcfce7'; // Denser slate or denser emerald
+            const rowBg = isEven ? '#cbd5e1' : '#bbf7d0'; // Even denser slate or denser emerald
 
             const row = `
                 <tr class="animate-row" style="background: ${rowBg}; animation-delay: ${rowCount * 0.05}s">
