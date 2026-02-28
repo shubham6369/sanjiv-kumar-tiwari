@@ -441,7 +441,8 @@ async function submitReport(e) {
             type: 'Issue Report',
             uid: user ? user.uid : 'anonymous',
             name: form.querySelectorAll('input[type="text"]')[0].value || "Public User",
-            block: form.querySelectorAll('input[type="text"]')[1].value || "N/A",
+            block: document.querySelector('#reportBlockSelect') ? document.querySelector('#reportBlockSelect').value : "N/A",
+            village: document.querySelector('#reportVillageSelect') ? document.querySelector('#reportVillageSelect').value : "N/A",
             dept: form.querySelector('select').value || "General Issue",
             description: form.querySelector('textarea').value,
             status: 'Pending',
@@ -1010,3 +1011,31 @@ window.handleGoogleLogin = handleGoogleLogin;
 window.handleLogout = handleLogout;
 window.switchAuthMode = switchAuthMode;
 window.handleAuthSubmit = handleAuthSubmit;
+window.updateReportVillages = updateReportVillages;
+
+function updateReportVillages() {
+    const blockSelect = document.getElementById('reportBlockSelect');
+    const villageSelect = document.getElementById('reportVillageSelect');
+    const blockName = blockSelect.value;
+
+    villageSelect.innerHTML = '<option value="">-- गाँव चुनें --</option>';
+
+    if (blockName) {
+        let blockKey = Object.keys(blocksData).find(k => blockName.includes(k));
+        if (blockKey && blocksData[blockKey]) {
+            const villages = blocksData[blockKey].villages;
+            villages.forEach(v => {
+                const opt = document.createElement('option');
+                opt.value = v;
+                opt.textContent = v;
+                villageSelect.appendChild(opt);
+            });
+            villageSelect.disabled = false;
+        } else {
+            villageSelect.disabled = true;
+        }
+    } else {
+        villageSelect.innerHTML = '<option value="">-- पहले ब्लॉक चुनें --</option>';
+        villageSelect.disabled = true;
+    }
+}
