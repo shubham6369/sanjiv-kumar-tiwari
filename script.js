@@ -441,6 +441,7 @@ async function submitReport(e) {
             type: 'Issue Report',
             uid: user ? user.uid : 'anonymous',
             name: form.querySelectorAll('input[type="text"]')[0].value || "Public User",
+            block: form.querySelectorAll('input[type="text"]')[1].value || "N/A",
             dept: form.querySelector('select').value || "General Issue",
             description: form.querySelector('textarea').value,
             status: 'Pending',
