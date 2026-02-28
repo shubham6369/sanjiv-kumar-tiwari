@@ -290,6 +290,7 @@
                                 <th>Subject/Dept</th>
                                 <th>Date</th>
                                 <th>Status</th>
+                                <th>Steps Taken / कार्रवाई</th>
                             </tr>
                         </thead>
                         <tbody id="complaintsList">
@@ -387,6 +388,7 @@
                                 <td>${d.dept}</td>
                                 <td>${d.date}</td>
                                 <td><span class="status-badge status-${statusClass}">${d.status}</span></td>
+                                <td><small style="color: #555;">${d.stepsTaken || 'No action yet'}</small></td>
                             </tr>
                         `;
                     });

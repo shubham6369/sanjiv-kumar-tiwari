@@ -928,3 +928,47 @@ h6 {
     background: #fff1f0;
     transform: scale(1.1);
 }
+
+/* Steps Taken Input */
+.steps-cell {
+    position: relative;
+    max-width: 200px;
+}
+
+.steps-input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+    background: transparent;
+}
+
+.steps-input:hover {
+    border-color: var(--border);
+    background: white;
+}
+
+.steps-input:focus {
+    border-color: var(--green);
+    background: white;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(11, 92, 59, 0.1);
+}
+
+.edit-hint {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.7rem;
+    color: var(--text-light);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+}
+
+.steps-cell:hover .edit-hint {
+    opacity: 0.5;
+}

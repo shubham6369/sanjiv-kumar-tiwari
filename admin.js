@@ -208,7 +208,7 @@ function listenToComplaints() {
             const c = docSnapshot.data();
             const docId = docSnapshot.id;
 
-            // Re-ordered Row: ID, Name, Block, Dept, Date, Status (Editable), Action
+            // Re-ordered Row: ID, Name, Block, Dept, Date, Steps Taken, Status (Editable), Action
             const row = `
                 <tr>
                     <td><strong>${c.id}</strong></td>
@@ -216,6 +216,14 @@ function listenToComplaints() {
                     <td>${c.block || 'N/A'}</td>
                     <td>${c.dept}</td>
                     <td><span class="date-chip">${c.date}</span></td>
+                    <td>
+                        <div class="steps-cell">
+                            <input type="text" class="steps-input" value="${c.stepsTaken || ''}" 
+                                placeholder="Add action taken..." 
+                                onblur="updateStepsTaken('${docId}', this.value)">
+                            <i class="fas fa-edit edit-hint"></i>
+                        </div>
+                    </td>
                     <td>
                         <select class="status-select status-${c.status?.replace(/\s+/g, '-')}" onchange="updateComplaintStatus('${docId}', this.value)">
                             <option value="Pending" ${c.status === 'Pending' ? 'selected' : ''}>Pending</option>
@@ -238,6 +246,12 @@ function listenToComplaints() {
         if (recentBody) recentBody.innerHTML = recentHTML;
     });
 }
+
+window.updateStepsTaken = async (docId, value) => {
+    try {
+        await updateDoc(doc(db, "complaints", docId), { stepsTaken: value });
+    } catch (e) { console.error("Update failed", e); }
+};
 
 window.updateComplaintStatus = async (docId, newStatus) => {
     try {
