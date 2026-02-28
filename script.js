@@ -179,6 +179,23 @@ async function submitComplaint(e) {
     btn.disabled = true;
 
     try {
+        const fileInput = form.querySelector('input[type="file"]');
+        let photoUrl = "";
+
+        // If a photo is selected, upload it to Cloudinary first
+        if (fileInput && fileInput.files[0]) {
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+            formData.append('upload_preset', "r1ungxks"); // Using the existing preset from admin.js
+
+            const cloudRes = await fetch("https://api.cloudinary.com/v1_1/dt1m4sosv/upload", {
+                method: 'POST',
+                body: formData
+            });
+            const cloudData = await cloudRes.json();
+            photoUrl = cloudData.secure_url || "";
+        }
+
         // We will dynamically import firebase to not block initial page load load
         const { db, collection, addDoc, auth } = await import('./firebase-config.js');
         const user = auth.currentUser;
@@ -199,7 +216,8 @@ async function submitComplaint(e) {
             description: form.querySelector('textarea').value,
             status: 'Pending',
             date: timestamp.toLocaleDateString('hi-IN'),
-            createdAt: timestamp
+            createdAt: timestamp,
+            photoUrl: photoUrl // Store the uploaded image URL
         });
 
         closeModal('complaintModal');
@@ -387,19 +405,107 @@ function submitRegistration(e) {
     showToast('पंजीकरण सफलतापूर्वक हुआ! ✅');
 }
 
-function submitReport(e) {
+async function submitReport(e) {
     e.preventDefault();
-    complaintCount++;
-    closeModal('reportIssueModal');
-    e.target.reset();
-    showToast(`समस्या रिपोर्ट हुई! ID: RPT-2026-${String(complaintCount).padStart(4, '0')}`);
+    const form = e.target;
+    const btn = form.querySelector('button[type="submit"]');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
+    btn.disabled = true;
+
+    try {
+        const fileInput = form.querySelector('input[type="file"]');
+        let photoUrl = "";
+
+        if (fileInput && fileInput.files[0]) {
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+            formData.append('upload_preset', "r1ungxks");
+
+            const cloudRes = await fetch("https://api.cloudinary.com/v1_1/dt1m4sosv/upload", {
+                method: 'POST', body: formData
+            });
+            const cloudData = await cloudRes.json();
+            photoUrl = cloudData.secure_url || "";
+        }
+
+        const { db, collection, addDoc, auth } = await import('./firebase-config.js');
+        const user = auth.currentUser;
+        const timestamp = new Date();
+        const id = `RPT-${timestamp.getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
+
+        await addDoc(collection(db, "complaints"), { // Storing in same collection for simplicity in admin panel
+            id: id,
+            type: 'Issue Report',
+            uid: user ? user.uid : 'anonymous',
+            name: "Public User",
+            dept: "General Issue",
+            description: form.querySelector('textarea').value,
+            status: 'Pending',
+            date: timestamp.toLocaleDateString('hi-IN'),
+            createdAt: timestamp,
+            photoUrl: photoUrl
+        });
+
+        closeModal('reportIssueModal');
+        form.reset();
+        showToast(`मुद्दा रिपोर्ट सफल! ID: ${id}`);
+    } catch (error) {
+        console.error("Error:", error);
+        showToast("Error! Please try again.");
+    } finally {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+    }
 }
 
-function submitReporter(e) {
+async function submitReporter(e) {
     e.preventDefault();
-    closeModal('reporterModal');
-    e.target.reset();
-    showToast('आवेदन सफलतापूर्वक भेजा गया! 🎉');
+    const form = e.target;
+    const btn = form.querySelector('button[type="submit"]');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = 'Submitting... <i class="fas fa-spinner fa-spin"></i>';
+    btn.disabled = true;
+
+    try {
+        const fileInput = form.querySelector('input[type="file"]');
+        let photoUrl = "";
+
+        if (fileInput && fileInput.files[0]) {
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+            formData.append('upload_preset', "r1ungxks");
+
+            const cloudRes = await fetch("https://api.cloudinary.com/v1_1/dt1m4sosv/upload", {
+                method: 'POST', body: formData
+            });
+            const cloudData = await cloudRes.json();
+            photoUrl = cloudData.secure_url || "";
+        }
+
+        const { db, collection, addDoc } = await import('./firebase-config.js');
+
+        await addDoc(collection(db, "reporter_applications"), {
+            name: form.querySelectorAll('input[type="text"]')[0].value,
+            mobile: form.querySelector('input[type="tel"]').value,
+            village: form.querySelectorAll('input[type="text"]')[1].value,
+            block: form.querySelector('select').value,
+            reason: form.querySelector('textarea').value,
+            photoUrl: photoUrl,
+            status: 'Pending',
+            createdAt: new Date()
+        });
+
+        closeModal('reporterModal');
+        form.reset();
+        showToast('आवेदन सफलतापूर्वक भेजा गया! 🎉');
+    } catch (error) {
+        console.error("Error:", error);
+        showToast("Error! Please try again.");
+    } finally {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+    }
 }
 
 // ========== TOAST ==========

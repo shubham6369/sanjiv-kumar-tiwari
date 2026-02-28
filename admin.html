@@ -73,6 +73,9 @@
             <li data-target="gallery">
                 <a href="#"><i class="fas fa-images"></i> <span>Gallery & Media</span></a>
             </li>
+            <li data-target="public-uploads">
+                <a href="#"><i class="fas fa-camera"></i> <span>Public Uploads</span></a>
+            </li>
             <li data-target="settings">
                 <a href="#"><i class="fas fa-cog"></i> <span>Settings</span></a>
             </li>
@@ -235,6 +238,39 @@
                                 <tr>
                                     <td colspan="4" style="text-align:center;"><i class="fas fa-spinner fa-spin"></i>
                                         Loading Media...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Public Uploads Section -->
+            <section id="public-uploads" class="page-section">
+                <div class="section-header">
+                    <h2>Public Uploads</h2>
+                    <p>Images submitted by citizens with complaints and reports</p>
+                </div>
+                <div class="data-table-container">
+                    <div class="table-header">
+                        <h3>Public Support Media</h3>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table full-table">
+                            <thead>
+                                <tr>
+                                    <th>Photo</th>
+                                    <th>Complaint ID</th>
+                                    <th>Citizen Name</th>
+                                    <th>Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="publicUploadsBody">
+                                <!-- Populated by JS -->
+                                <tr>
+                                    <td colspan="5" style="text-align:center;"><i class="fas fa-spinner fa-spin"></i>
+                                        Loading Public Media...</td>
                                 </tr>
                             </tbody>
                         </table>

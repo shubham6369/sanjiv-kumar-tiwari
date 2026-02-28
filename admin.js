@@ -21,6 +21,7 @@ function checkAuth() {
             // Start listening to data now that we are authorized
             listenToComplaints();
             listenToGallery();
+            listenToPublicUploads();
         } else {
             // Not logged in or not authorized
             if (user) {
@@ -220,7 +221,10 @@ function listenToComplaints() {
             // Re-ordered Row: ID, Name, Block, Dept, Date, Steps Taken, Status (Editable), Action
             const row = `
                 <tr>
-                    <td><strong>${c.id}</strong></td>
+                    <td>
+                        <strong>${c.id}</strong>
+                        ${c.photoUrl ? `<i class="fas fa-camera" style="margin-left:5px; color:var(--green); font-size:0.75rem;" title="Photo Attached"></i>` : ''}
+                    </td>
                     <td>${c.name}</td>
                     <td>${c.block || 'N/A'}</td>
                     <td>${c.dept}</td>
@@ -309,4 +313,37 @@ function listenToGallery() {
         });
     });
 }
+
+function listenToPublicUploads() {
+    const tbody = document.getElementById('publicUploadsBody');
+    if (!tbody) return;
+    const q = query(collection(db, "complaints"), orderBy("createdAt", "desc"));
+    onSnapshot(q, (snapshot) => {
+        tbody.innerHTML = '';
+        let found = false;
+        snapshot.forEach((docSnapshot) => {
+            const c = docSnapshot.data();
+            if (c.photoUrl) {
+                found = true;
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><a href="${c.photoUrl}" target="_blank"><img src="${c.photoUrl}" style="width:50px; height:50px; object-fit:cover; border-radius:4px; border:1px solid #ddd;"></a></td>
+                    <td><strong>${c.id}</strong></td>
+                    <td>${c.name}</td>
+                    <td>${c.date}</td>
+                    <td>
+                        <a href="${c.photoUrl}" target="_blank" class="action-item-btn" title="View Full Image">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            }
+        });
+        if (!found) {
+            tbody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding:20px; color:#666;">No public images found yet.</td></tr>';
+        }
+    });
+}
+
 
