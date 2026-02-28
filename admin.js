@@ -207,15 +207,46 @@ function listenToComplaints() {
         snapshot.forEach((docSnapshot) => {
             const c = docSnapshot.data();
             const docId = docSnapshot.id;
-            const row = `<tr><td><strong>${c.id}</strong></td><td>${c.name}</td><td>${c.block || 'N/A'}</td><td>${c.dept}</td><td>${getStatusBadge(c.status)}</td><td>${c.date}</td><td><button class="action-btn" onclick="editComplaint('${docId}', '${c.status}')"><i class="fas fa-edit"></i></button><button class="action-btn delete" onclick="deleteComplaint('${docId}')"><i class="fas fa-trash"></i></button></td></tr>`;
+
+            // Re-ordered Row: ID, Name, Block, Dept, Date, Status (Editable), Action
+            const row = `
+                <tr>
+                    <td><strong>${c.id}</strong></td>
+                    <td>${c.name}</td>
+                    <td>${c.block || 'N/A'}</td>
+                    <td>${c.dept}</td>
+                    <td><span class="date-chip">${c.date}</span></td>
+                    <td>
+                        <select class="status-select status-${c.status?.replace(/\s+/g, '-')}" onchange="updateComplaintStatus('${docId}', this.value)">
+                            <option value="Pending" ${c.status === 'Pending' ? 'selected' : ''}>Pending</option>
+                            <option value="In Progress" ${c.status === 'In Progress' ? 'selected' : ''}>In Progress</option>
+                            <option value="Resolved" ${c.status === 'Resolved' ? 'selected' : ''}>Resolved</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button class="action-item-btn delete" onclick="deleteComplaint('${docId}')" title="Delete">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>`;
+
             allHTML += row;
-            if (rowCount < 4) recentHTML += row;
+            if (rowCount < 5) recentHTML += row;
             rowCount++;
         });
         if (allBody) allBody.innerHTML = allHTML;
         if (recentBody) recentBody.innerHTML = recentHTML;
     });
 }
+
+window.updateComplaintStatus = async (docId, newStatus) => {
+    try {
+        await updateDoc(doc(db, "complaints", docId), { status: newStatus });
+    } catch (e) {
+        console.error("Update failed", e);
+        alert("Failed to update status.");
+    }
+};
 
 function initUpload() {
     const area = document.getElementById('uploadArea');

@@ -860,3 +860,71 @@ h6 {
     margin-top: 15px;
     min-height: 20px;
 }
+
+/* ============ DYNAMIC DATA STYLES ============ */
+.status-select {
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid var(--border);
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s;
+    outline: none;
+    width: 130px;
+}
+
+.status-select.status-Pending {
+    background: #fff1f0;
+    color: #cf1322;
+    border-color: #ffa39e;
+}
+
+.status-select.status-In-Progress {
+    background: #fffbe6;
+    color: #d48806;
+    border-color: #ffe58f;
+}
+
+.status-select.status-Resolved {
+    background: #f6ffed;
+    color: #389e0d;
+    border-color: #b7eb8f;
+}
+
+.status-select:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.date-chip {
+    display: inline-block;
+    padding: 4px 10px;
+    background: var(--bg-main);
+    color: var(--text-main);
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.action-item-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: var(--bg-main);
+}
+
+.action-item-btn.delete {
+    color: #cf1322;
+}
+
+.action-item-btn.delete:hover {
+    background: #fff1f0;
+    transform: scale(1.1);
+}
