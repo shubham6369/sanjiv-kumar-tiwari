@@ -252,6 +252,19 @@ function listenToComplaints() {
                         </div>
                     </td>
                     <td>
+                        ${c.statusDocUrl ? `
+                            <div style="display:flex; align-items:center; gap:5px;">
+                                <a href="${c.statusDocUrl}" target="_blank" class="badge-status" style="background:#e6f7ff; color:#1890ff; padding:4px 8px; text-decoration:none;"><i class="fas fa-eye"></i> View</a>
+                                <button class="action-item-btn" style="color:#ef4444; width:24px; height:24px;" onclick="removeStatusDoc('${docId}')" title="Remove Doc"><i class="fas fa-times"></i></button>
+                            </div>
+                        ` : `
+                            <label class="action-item-btn" style="background:#0b5c3b; color:white; cursor:pointer;" title="Upload Status Document">
+                                <i class="fas fa-upload"></i>
+                                <input type="file" accept="image/*,application/pdf" style="display:none;" onchange="uploadStatusDoc('${docId}', this)">
+                            </label>
+                        `}
+                    </td>
+                    <td>
                         <select class="status-select status-${c.status?.replace(/\s+/g, '-')}" onchange="updateComplaintStatus('${docId}', this.value)">
                             <option value="Pending" ${c.status === 'Pending' ? 'selected' : ''}>Pending</option>
                             <option value="In Progress" ${c.status === 'In Progress' ? 'selected' : ''}>In Progress</option>
@@ -293,6 +306,46 @@ window.updateComplaintStatus = async (docId, newStatus) => {
         console.error("Update failed", e);
         alert("Failed to update status.");
     }
+};
+
+window.uploadStatusDoc = async (docId, inputEl) => {
+    const file = inputEl.files[0];
+    if (!file) return;
+
+    const cloudinaryUrl = "https://api.cloudinary.com/v1_1/dt1m4sosv/upload";
+    const uploadPreset = "r1ungxks";
+
+    // Change label temporarily to loading state
+    const label = inputEl.parentElement;
+    const originalHtml = label.innerHTML;
+    label.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+
+    try {
+        const fd = new FormData();
+        fd.append('file', file);
+        fd.append('upload_preset', uploadPreset);
+
+        const res = await fetch(cloudinaryUrl, { method: 'POST', body: fd });
+        const d = await res.json();
+
+        if (d.secure_url) {
+            await updateDoc(doc(db, "complaints", docId), { statusDocUrl: d.secure_url });
+        } else {
+            alert("Upload failed.");
+            label.innerHTML = originalHtml;
+        }
+    } catch (e) {
+        console.error("Status Doc Upload error:", e);
+        alert("Upload error.");
+        label.innerHTML = originalHtml;
+    }
+};
+
+window.removeStatusDoc = async (docId) => {
+    if (!confirm("Are you sure you want to remove the status document from this complaint?")) return;
+    try {
+        await updateDoc(doc(db, "complaints", docId), { statusDocUrl: null });
+    } catch (e) { console.error("Update failed", e); }
 };
 
 function initUpload() {

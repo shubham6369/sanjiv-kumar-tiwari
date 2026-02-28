@@ -251,6 +251,7 @@ async function checkStatus(e) {
                 <strong>विभाग:</strong> ${data.dept}<br>
                 <strong>तिथि:</strong> ${data.date}<br>
                 <strong>स्टेटस:</strong> <span style="color:var(--saffron);font-weight:700">${data.status}</span>
+                ${data.statusDocUrl ? `<div style="margin-top:10px;"><a href="${data.statusDocUrl}" target="_blank" style="display:inline-block; background:#0b5c3b; color:white; padding:8px 15px; border-radius:6px; text-decoration:none; font-weight:600;"><i class="fas fa-file-alt"></i> View Status Document</a></div>` : ''}
                 ${data.photoUrl ? `<div style="margin-top:10px;"><strong>फोटो:</strong><br><a href="${data.photoUrl}" target="_blank"><img src="${data.photoUrl}" style="max-width:100%; border-radius:8px; margin-top:5px; border:1px solid #ddd; max-height:200px; object-fit:contain;"></a></div>` : ''}`;
         } else {
             resultDiv.className = 'status-result not-found';
