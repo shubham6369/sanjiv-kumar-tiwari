@@ -336,14 +336,14 @@ function listenToComplaints() {
                             <!-- 2. Email -->
                             <div style="display:flex; align-items:center; gap:8px; background: white; padding: 6px 12px; border-radius: 6px; border: 1px solid #e2e8f0; border-left: 4px solid #f59e0b;">
                                 <strong><i class="fas fa-envelope"></i> Email:</strong>
-                                <input type="email" placeholder="Enter Email" value="${c.adminEmail || ''}" onblur="updateComplaintField('${docId}', 'adminEmail', this.value)" style="padding:4px 8px; border:1px solid #cbd5e1; border-radius:4px; width:150px; font-size:0.8rem;">
-                                ${c.adminEmail ? `<a href="https://mail.google.com/mail/?view=cm&fs=1&to=${c.adminEmail}${c.extraDocUrl ? '&body=' + encodeURIComponent('Please find the document attached here: ' + c.extraDocUrl) : ''}" target="_blank" style="background:#f59e0b; color:white; padding:4px 8px; border-radius:4px; text-decoration:none;" title="Send Email via Gmail"><i class="fas fa-paper-plane"></i></a>` : ''}
+                                <input type="email" id="email-${docId}" placeholder="Enter Email" value="" style="padding:4px 8px; border:1px solid #cbd5e1; border-radius:4px; width:150px; font-size:0.8rem;">
+                                <button onclick="sendEmail('${docId}', '${c.extraDocUrl || ''}')" style="background:#f59e0b; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;" title="Send Email via Gmail"><i class="fas fa-paper-plane"></i></button>
                             </div>
 
                             <!-- 3. WhatsApp -->
                             <div style="display:flex; align-items:center; gap:8px; background: white; padding: 6px 12px; border-radius: 6px; border: 1px solid #e2e8f0; border-left: 4px solid #22c55e;">
                                 <strong><i class="fab fa-whatsapp"></i> WA No:</strong>
-                                <input type="text" id="wa-${docId}" placeholder="Mobile Number" value="${c.adminWhatsapp || c.mobile || ''}" onblur="updateComplaintField('${docId}', 'adminWhatsapp', this.value)" style="padding:4px 8px; border:1px solid #cbd5e1; border-radius:4px; width:110px; font-size:0.8rem;">
+                                <input type="text" id="wa-${docId}" placeholder="Mobile Number" value="${c.mobile || ''}" style="padding:4px 8px; border:1px solid #cbd5e1; border-radius:4px; width:110px; font-size:0.8rem;">
                                 <button onclick="openWhatsapp('${docId}', '${c.extraDocUrl || ''}')" style="background:#22c55e; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;" title="Open WhatsApp Chat"><i class="fas fa-share"></i></button>
                             </div>
 
@@ -455,6 +455,19 @@ window.openWhatsapp = (docId, docUrl) => {
         window.open(url, '_blank');
     } else {
         alert("Please enter a valid WhatsApp number.");
+    }
+};
+
+window.sendEmail = (docId, docUrl) => {
+    const el = document.getElementById(`email-${docId}`);
+    if (el && el.value) {
+        let url = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(el.value)}`;
+        if (docUrl) {
+            url += `&body=${encodeURIComponent("Please find the document attached here: " + docUrl)}`;
+        }
+        window.open(url, '_blank');
+    } else {
+        alert("Please enter a valid email address.");
     }
 };
 
