@@ -4,22 +4,7 @@
 // ==========================================
 
 // ========== DATA STORE ==========
-const officersData = [
-    { name: 'राजेश सिंह', dept: 'पुलिस', post: 'थानाध्यक्ष', phone: '9876543001', block: 'चैनपुर' },
-    { name: 'सुरेश यादव', dept: 'पुलिस', post: 'उप निरीक्षक', phone: '9876543002', block: 'छतरपुर' },
-    { name: 'अनिल कुमार', dept: 'पुलिस', post: 'दरोगा', phone: '9876543003', block: 'पिपरा' },
-    { name: 'डॉ. प्रिया शर्मा', dept: 'स्वास्थ्य', post: 'मुख्य चिकित्सा अधिकारी', phone: '9876543004', block: 'मेदिनीनगर' },
-    { name: 'डॉ. अमित वर्मा', dept: 'स्वास्थ्य', post: 'CHC प्रभारी', phone: '9876543005', block: 'हुसैनाबाद' },
-    { name: 'डॉ. रीना गुप्ता', dept: 'स्वास्थ्य', post: 'PHC प्रभारी', phone: '9876543006', block: 'पांकी' },
-    { name: 'विजय पाण्डेय', dept: 'शिक्षा', post: 'खण्ड शिक्षा अधिकारी', phone: '9876543007', block: 'पाटन' },
-    { name: 'संगीता मिश्रा', dept: 'शिक्षा', post: 'जिला शिक्षा अधिकारी', phone: '9876543008', block: 'विश्रामपुर' },
-    { name: 'रमेश तिवारी', dept: 'बिजली', post: 'अधिशासी अभियंता', phone: '9876543009', block: 'मेदिनीनगर' },
-    { name: 'सुनील द्विवेदी', dept: 'बिजली', post: 'सहायक अभियंता', phone: '9876543010', block: 'छतरपुर' },
-    { name: 'मनोज सिंह', dept: 'सडक', post: 'खण्ड विकास अधिकारी', phone: '9876543011', block: 'चैनपुर' },
-    { name: 'कमलेश पटेल', dept: 'सडक', post: 'सहायक अभियंता PWD', phone: '9876543012', block: 'हुसैनाबाद' },
-    { name: 'अरुण श्रीवास्तव', dept: 'नगर पालिका', post: 'नगर पालिका अध्यक्ष', phone: '9876543013', block: 'मेदिनीनगर' },
-    { name: 'नीरज मिश्रा', dept: 'नगर पालिका', post: 'कार्यकारी अधिकारी', phone: '9876543014', block: 'विश्रामपुर' },
-];
+let officersData = []; // To be fetched from Firebase
 
 const blocksData = {
     'चैनपुर': {
@@ -337,8 +322,17 @@ function toggleVillages() {
 }
 
 // ========== OFFICERS ==========
-function filterOfficers() {
+async function filterOfficers() {
     const dept = document.getElementById('officerDeptSelect').value;
+
+    // Fetch if not already fetched or if we want fresh data
+    if (officersData.length === 0) {
+        const { db, collection, getDocs } = await import('./firebase-config.js');
+        const querySnapshot = await getDocs(collection(db, "officers"));
+        officersData = [];
+        querySnapshot.forEach(doc => officersData.push(doc.data()));
+    }
+
     const list = dept === 'all' ? officersData : officersData.filter(o => o.dept === dept);
     renderOfficerList('officerListResults', list);
 }
@@ -349,7 +343,13 @@ function showOfficers(dept) {
     filterOfficers();
 }
 
-function populateAllOfficers() {
+async function populateAllOfficers() {
+    if (officersData.length === 0) {
+        const { db, collection, getDocs } = await import('./firebase-config.js');
+        const querySnapshot = await getDocs(collection(db, "officers"));
+        officersData = [];
+        querySnapshot.forEach(doc => officersData.push(doc.data()));
+    }
     renderOfficerList('allOfficersList', officersData);
 }
 

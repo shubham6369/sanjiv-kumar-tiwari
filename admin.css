@@ -972,3 +972,25 @@ h6 {
 .steps-cell:hover .edit-hint {
     opacity: 0.5;
 }
+
+/* Table Photo Styles */
+.table-thumb {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: block;
+}
+
+.table-img-link {
+    display: inline-block;
+    padding: 2px;
+}
+
+.table-img-link:hover .table-thumb {
+    transform: scale(1.15);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    border-color: var(--green);
+}

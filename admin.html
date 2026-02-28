@@ -73,9 +73,6 @@
             <li data-target="gallery">
                 <a href="#"><i class="fas fa-images"></i> <span>Gallery & Media</span></a>
             </li>
-            <li data-target="public-uploads">
-                <a href="#"><i class="fas fa-camera"></i> <span>Public Uploads</span></a>
-            </li>
             <li data-target="settings">
                 <a href="#"><i class="fas fa-cog"></i> <span>Settings</span></a>
             </li>
@@ -123,9 +120,33 @@
                     <p>Live status of your platform activities</p>
                 </div>
 
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon emerald"><i class="fas fa-clipboard-list"></i></div>
+                        <div class="stat-details">
+                            <h3>Total Complaints</h3>
+                            <h2 id="totalComplaints">0</h2>
+                            <p class="trend up"><i class="fas fa-arrow-up"></i> Live</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon gold"><i class="fas fa-clock"></i></div>
+                        <div class="stat-details">
+                            <h3>Pending Issues</h3>
+                            <h2 id="pendingComplaints">0</h2>
+                            <p class="trend"><i class="fas fa-info-circle"></i> Needs Action</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon blue"><i class="fas fa-check-circle"></i></div>
+                        <div class="stat-details">
+                            <h3>Resolved</h3>
+                            <h2 id="resolvedComplaints">0</h2>
+                            <p class="trend up"><i class="fas fa-check"></i> Completed</p>
+                        </div>
+                    </div>
+                </div>
 
-
-                <!-- Recent Activities Table -->
                 <div class="data-table-container">
                     <div class="table-header">
                         <h3>Recent Complaints</h3>
@@ -139,6 +160,7 @@
                                     <th>Name</th>
                                     <th>Block</th>
                                     <th>Department</th>
+                                    <th>Photo</th>
                                     <th>Date</th>
                                     <th>Steps Taken</th>
                                     <th>Status</th>
@@ -177,6 +199,7 @@
                                     <th>Name</th>
                                     <th>Block</th>
                                     <th>Department</th>
+                                    <th>Photo</th>
                                     <th>Date</th>
                                     <th>Steps Taken</th>
                                     <th>Status</th>
@@ -245,32 +268,37 @@
                 </div>
             </section>
 
-            <!-- Public Uploads Section -->
-            <section id="public-uploads" class="page-section">
+
+            <!-- Other placeholders... -->
+            <section id="officers" class="page-section">
                 <div class="section-header">
-                    <h2>Public Uploads</h2>
-                    <p>Images submitted by citizens with complaints and reports</p>
+                    <h2>Officers Directory Manager</h2>
+                    <p>Add, edit or remove government officials from the directory</p>
                 </div>
+
                 <div class="data-table-container">
                     <div class="table-header">
-                        <h3>Public Support Media</h3>
+                        <h3>Official Records</h3>
+                        <button class="primary-btn" onclick="openAddOfficerModal()"><i class="fas fa-plus"></i> Add
+                            Officer</button>
                     </div>
                     <div class="table-responsive">
                         <table class="data-table full-table">
                             <thead>
                                 <tr>
-                                    <th>Photo</th>
-                                    <th>Complaint ID</th>
-                                    <th>Citizen Name</th>
-                                    <th>Date</th>
-                                    <th>Action</th>
+                                    <th>Name</th>
+                                    <th>Department</th>
+                                    <th>Post</th>
+                                    <th>Block</th>
+                                    <th>Phone</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
-                            <tbody id="publicUploadsBody">
+                            <tbody id="officersManagerBody">
                                 <!-- Populated by JS -->
                                 <tr>
-                                    <td colspan="5" style="text-align:center;"><i class="fas fa-spinner fa-spin"></i>
-                                        Loading Public Media...</td>
+                                    <td colspan="6" style="text-align:center;"><i class="fas fa-spinner fa-spin"></i>
+                                        Loading Directory...</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -278,13 +306,62 @@
                 </div>
             </section>
 
-            <!-- Other placeholders... -->
-            <section id="officers" class="page-section">
-                <div class="section-header">
-                    <h2>Officers Directory Manager</h2>
+            <!-- Add/Edit Officer Modal -->
+            <div id="officerModal" class="custom-modal-overlay">
+                <div class="custom-modal" style="max-width: 500px;">
+                    <h3 style="margin-bottom: 20px;" id="officerModalTitle">Add New Officer</h3>
+                    <form id="officerForm">
+                        <input type="hidden" id="editOfficerId">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                            <div class="form-group">
+                                <label style="display:block; margin-bottom:5px; font-size:0.85rem;">Name *</label>
+                                <input type="text" id="offName" required class="custom-modal-input"
+                                    style="margin-bottom:0;">
+                            </div>
+                            <div class="form-group">
+                                <label style="display:block; margin-bottom:5px; font-size:0.85rem;">Dept *</label>
+                                <select id="offDept" required class="custom-modal-input" style="margin-bottom:0;">
+                                    <option value="पुलिस">पुलिस</option>
+                                    <option value="स्वास्थ्य">स्वास्थ्य</option>
+                                    <option value="शिक्षा">शिक्षा</option>
+                                    <option value="बिजली">बिजली</option>
+                                    <option value="सडक">सडक</option>
+                                    <option value="नगर पालिका">नगर पालिका</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+                            <div class="form-group">
+                                <label style="display:block; margin-bottom:5px; font-size:0.85rem;">Post *</label>
+                                <input type="text" id="offPost" required class="custom-modal-input"
+                                    style="margin-bottom:0;">
+                            </div>
+                            <div class="form-group">
+                                <label style="display:block; margin-bottom:5px; font-size:0.85rem;">Block *</label>
+                                <select id="offBlock" required class="custom-modal-input" style="margin-bottom:0;">
+                                    <option>मेदिनीनगर</option>
+                                    <option>चैनपुर</option>
+                                    <option>विश्रामपुर</option>
+                                    <option>छतरपुर</option>
+                                    <option>हुसैनाबाद</option>
+                                    <option>पांकी</option>
+                                    <option>पाटन</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 25px;">
+                            <label style="display:block; margin-bottom:5px; font-size:0.85rem;">Phone *</label>
+                            <input type="tel" id="offPhone" required class="custom-modal-input"
+                                style="margin-bottom:0;">
+                        </div>
+                        <div class="custom-modal-actions">
+                            <button type="submit" id="saveOfficerBtn" class="custom-btn-ok">Save Officer</button>
+                            <button type="button" onclick="closeOfficerModal()"
+                                class="custom-btn-cancel">Cancel</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="placeholder-box"><i class="fas fa-tools"></i></div>
-            </section>
+            </div>
 
             <section id="settings" class="page-section">
                 <div class="section-header">
