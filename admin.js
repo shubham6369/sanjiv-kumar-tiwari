@@ -271,9 +271,14 @@ function listenToComplaints() {
                     <td>${c.dept}</td>
                     <td>
                         ${c.photoUrl ? `
-                            <a href="${c.photoUrl}" target="_blank" class="table-img-link">
-                                <img src="${c.photoUrl}" alt="Photo" class="table-thumb">
-                            </a>
+                            <div style="display:flex; flex-direction:column; gap:5px; align-items:center;">
+                                <a href="${c.photoUrl}" target="_blank" class="table-img-link">
+                                    <img src="${c.photoUrl}" alt="Photo" class="table-thumb">
+                                </a>
+                                <a href="${c.photoUrl.replace('/upload/', '/upload/fl_attachment/')}" target="_blank" download style="font-size: 0.8rem; background: #0b5c3b; color: white; padding: 3px 8px; border-radius: 4px; text-decoration: none; display: flex; align-items: center; gap: 4px;">
+                                    <i class="fas fa-download"></i> Download
+                                </a>
+                            </div>
                         ` : '<span style="color:#ccc; font-size:0.8rem;">N/A</span>'}
                     </td>
                     <td><span class="date-chip">${c.date}</span></td>
