@@ -337,7 +337,7 @@ function listenToComplaints() {
                             <div style="display:flex; align-items:center; gap:8px; background: white; padding: 6px 12px; border-radius: 6px; border: 1px solid #e2e8f0; border-left: 4px solid #f59e0b;">
                                 <strong><i class="fas fa-envelope"></i> Email:</strong>
                                 <input type="email" placeholder="Enter Email" value="${c.adminEmail || ''}" onblur="updateComplaintField('${docId}', 'adminEmail', this.value)" style="padding:4px 8px; border:1px solid #cbd5e1; border-radius:4px; width:150px; font-size:0.8rem;">
-                                ${c.adminEmail ? `<a href="mailto:${c.adminEmail}" style="background:#f59e0b; color:white; padding:4px 8px; border-radius:4px; text-decoration:none;" title="Send Email"><i class="fas fa-paper-plane"></i></a>` : ''}
+                                ${c.adminEmail ? `<a href="https://mail.google.com/mail/?view=cm&fs=1&to=${c.adminEmail}" target="_blank" style="background:#f59e0b; color:white; padding:4px 8px; border-radius:4px; text-decoration:none;" title="Send Email via Gmail"><i class="fas fa-paper-plane"></i></a>` : ''}
                             </div>
 
                             <!-- 3. WhatsApp -->
