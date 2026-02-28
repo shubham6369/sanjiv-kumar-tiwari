@@ -67,9 +67,6 @@
                 <a href="#"><i class="fas fa-clipboard-list"></i> <span>Complaints</span></a>
             </li>
 
-            <li data-target="officers">
-                <a href="#"><i class="fas fa-user-tie"></i> <span>Officers Directory</span></a>
-            </li>
             <li data-target="gallery">
                 <a href="#"><i class="fas fa-images"></i> <span>Gallery & Media</span></a>
             </li>
@@ -269,99 +266,6 @@
             </section>
 
 
-            <!-- Other placeholders... -->
-            <section id="officers" class="page-section">
-                <div class="section-header">
-                    <h2>Officers Directory Manager</h2>
-                    <p>Add, edit or remove government officials from the directory</p>
-                </div>
-
-                <div class="data-table-container">
-                    <div class="table-header">
-                        <h3>Official Records</h3>
-                        <button class="primary-btn" onclick="openAddOfficerModal()"><i class="fas fa-plus"></i> Add
-                            Officer</button>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="data-table full-table">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Department</th>
-                                    <th>Post</th>
-                                    <th>Block</th>
-                                    <th>Phone</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="officersManagerBody">
-                                <!-- Populated by JS -->
-                                <tr>
-                                    <td colspan="6" style="text-align:center;"><i class="fas fa-spinner fa-spin"></i>
-                                        Loading Directory...</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Add/Edit Officer Modal -->
-            <div id="officerModal" class="custom-modal-overlay">
-                <div class="custom-modal" style="max-width: 500px;">
-                    <h3 style="margin-bottom: 20px;" id="officerModalTitle">Add New Officer</h3>
-                    <form id="officerForm">
-                        <input type="hidden" id="editOfficerId">
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
-                            <div class="form-group">
-                                <label style="display:block; margin-bottom:5px; font-size:0.85rem;">Name *</label>
-                                <input type="text" id="offName" required class="custom-modal-input"
-                                    style="margin-bottom:0;">
-                            </div>
-                            <div class="form-group">
-                                <label style="display:block; margin-bottom:5px; font-size:0.85rem;">Dept *</label>
-                                <select id="offDept" required class="custom-modal-input" style="margin-bottom:0;">
-                                    <option value="पुलिस">पुलिस</option>
-                                    <option value="स्वास्थ्य">स्वास्थ्य</option>
-                                    <option value="शिक्षा">शिक्षा</option>
-                                    <option value="बिजली">बिजली</option>
-                                    <option value="सडक">सडक</option>
-                                    <option value="नगर पालिका">नगर पालिका</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
-                            <div class="form-group">
-                                <label style="display:block; margin-bottom:5px; font-size:0.85rem;">Post *</label>
-                                <input type="text" id="offPost" required class="custom-modal-input"
-                                    style="margin-bottom:0;">
-                            </div>
-                            <div class="form-group">
-                                <label style="display:block; margin-bottom:5px; font-size:0.85rem;">Block *</label>
-                                <select id="offBlock" required class="custom-modal-input" style="margin-bottom:0;">
-                                    <option>मेदिनीनगर</option>
-                                    <option>चैनपुर</option>
-                                    <option>विश्रामपुर</option>
-                                    <option>छतरपुर</option>
-                                    <option>हुसैनाबाद</option>
-                                    <option>पांकी</option>
-                                    <option>पाटन</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group" style="margin-bottom: 25px;">
-                            <label style="display:block; margin-bottom:5px; font-size:0.85rem;">Phone *</label>
-                            <input type="tel" id="offPhone" required class="custom-modal-input"
-                                style="margin-bottom:0;">
-                        </div>
-                        <div class="custom-modal-actions">
-                            <button type="submit" id="saveOfficerBtn" class="custom-btn-ok">Save Officer</button>
-                            <button type="button" onclick="closeOfficerModal()"
-                                class="custom-btn-cancel">Cancel</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
 
             <section id="settings" class="page-section">
                 <div class="section-header">

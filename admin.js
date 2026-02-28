@@ -21,7 +21,6 @@ function checkAuth() {
             // Start listening to data now that we are authorized
             listenToComplaints();
             listenToGallery();
-            listenToOfficers();
         } else {
             // Not logged in or not authorized
             if (user) {
@@ -149,8 +148,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('adminLoginForm');
     if (loginForm) loginForm.addEventListener('submit', handleLogin);
 
-    const officerForm = document.getElementById('officerForm');
-    if (officerForm) officerForm.addEventListener('submit', handleOfficerSubmit);
 
     const signOutLink = document.getElementById('adminSignOutBtn');
     if (signOutLink) signOutLink.addEventListener('click', (e) => {
@@ -336,99 +333,5 @@ function listenToGallery() {
         });
     });
 }
-
-
-// ============ OFFICERS MANAGER ============
-function listenToOfficers() {
-    const tbody = document.getElementById('officersManagerBody');
-    if (!tbody) return;
-    onSnapshot(query(collection(db, "officers"), orderBy("name", "asc")), (snapshot) => {
-        tbody.innerHTML = '';
-        snapshot.forEach((docSnap) => {
-            const o = docSnap.data();
-            const id = docSnap.id;
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-                <td><strong>${o.name}</strong></td>
-                <td><span class="badge-status" style="background:var(--emerald-light); color:var(--emerald);">${o.dept}</span></td>
-                <td>${o.post}</td>
-                <td>${o.block}</td>
-                <td><a href="tel:${o.phone}">${o.phone}</a></td>
-                <td>
-                    <button class="action-btn" onclick="editOfficer('${id}', ${JSON.stringify(o).replace(/"/g, '&quot;')})"><i class="fas fa-edit"></i></button>
-                    <button class="action-btn delete" onclick="deleteOfficer('${id}')"><i class="fas fa-trash"></i></button>
-                </td>
-            `;
-            tbody.appendChild(tr);
-        });
-        if (snapshot.empty) {
-            tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:20px; color:#666;">No officers found.</td></tr>';
-        }
-    });
-}
-
-window.openAddOfficerModal = () => {
-    document.getElementById('officerModalTitle').textContent = "Add New Officer";
-    document.getElementById('editOfficerId').value = "";
-    document.getElementById('officerForm').reset();
-    document.getElementById('officerModal').classList.add('show');
-};
-
-window.closeOfficerModal = () => {
-    document.getElementById('officerModal').classList.remove('show');
-};
-
-window.editOfficer = (id, data) => {
-    document.getElementById('officerModalTitle').textContent = "Edit Officer";
-    document.getElementById('editOfficerId').value = id;
-    document.getElementById('offName').value = data.name;
-    document.getElementById('offDept').value = data.dept;
-    document.getElementById('offPost').value = data.post;
-    document.getElementById('offBlock').value = data.block;
-    document.getElementById('offPhone').value = data.phone;
-    document.getElementById('officerModal').classList.add('show');
-};
-
-async function handleOfficerSubmit(e) {
-    e.preventDefault();
-    const id = document.getElementById('editOfficerId').value;
-    const btn = document.getElementById('saveOfficerBtn');
-    const originalText = btn.textContent;
-
-    const data = {
-        name: document.getElementById('offName').value,
-        dept: document.getElementById('offDept').value,
-        post: document.getElementById('offPost').value,
-        block: document.getElementById('offBlock').value,
-        phone: document.getElementById('offPhone').value,
-        updatedAt: new Date()
-    };
-
-    btn.disabled = true;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
-
-    try {
-        if (id) {
-            await updateDoc(doc(db, "officers", id), data);
-        } else {
-            data.createdAt = new Date();
-            await addDoc(collection(db, "officers"), data);
-        }
-        closeOfficerModal();
-    } catch (err) {
-        console.error(err);
-        alert("Error saving officer data.");
-    } finally {
-        btn.disabled = false;
-        btn.textContent = originalText;
-    }
-}
-
-window.deleteOfficer = async (id) => {
-    if (!confirm("Are you sure you want to delete this officer record?")) return;
-    try {
-        await deleteDoc(doc(db, "officers", id));
-    } catch (err) { console.error(err); }
-};
 
 
