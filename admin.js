@@ -264,7 +264,6 @@ function listenToComplaints() {
             if (c.status === 'Resolved') resolved++;
 
             // ... rest of row generation ...
-            const isEven = rowCount % 2 === 0;
 
             // Col 8: Communication Method
             const commMethodHtml = `
@@ -288,7 +287,7 @@ function listenToComplaints() {
             if (!docsHtml) docsHtml = '<label style="background:#0b5c3b; color:white; padding:4px 8px; border-radius:4px; font-size:0.7rem; cursor:pointer;" title="Upload Response"><i class="fas fa-upload"></i> Upload <input type="file" accept="image/*,application/pdf" style="display:none;" onchange="uploadStatusDoc(\'${docId}\', this)"></label>';
 
             const row = `
-                <tr class="animate-row" style="background: ${isEven ? '#fff' : '#f9f9f9'}; animation-delay: ${rowCount * 0.05}s">
+                <tr class="animate-row" style="background: #ffffff; animation-delay: ${rowCount * 0.05}s">
                     <td style="font-weight:700;">${c.id}</td>
                     <td>${c.name}</td>
                     <td style="text-align:left; font-size:0.75rem;">${c.description}</td>
