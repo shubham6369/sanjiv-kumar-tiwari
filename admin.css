@@ -486,10 +486,10 @@ h6 {
     text-align: center;
     padding: 12px 10px;
     font-size: 0.9rem;
-    background: #ffff00;
-    /* Bright Yellow */
-    color: #000080;
-    /* Dark Blue */
+    background: #e6f9e6;
+    /* Light Green */
+    color: #0b5c3b;
+    /* Dark Green Text */
     font-weight: 700;
     text-transform: capitalize;
     line-height: 1.2;

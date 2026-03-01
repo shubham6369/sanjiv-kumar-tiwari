@@ -150,19 +150,37 @@
             box-shadow: var(--shadow-md);
             overflow-x: auto;
             border: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        /* Custom scrollbar */
+        .complaint-table-container::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .complaint-table-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .complaint-table-container::-webkit-scrollbar-thumb {
+            background: #0b5c3b;
+            border-radius: 10px;
         }
 
         .complaint-table {
             width: 100%;
+            min-width: 1400px;
+            /* Force scroll */
             border-collapse: collapse;
             font-size: 0.85rem;
         }
 
         .complaint-table th {
-            background: #ffff00;
-            /* Yellow */
-            color: #000080;
-            /* Dark Blue */
+            background: #e6f9e6;
+            /* Light Green */
+            color: #0b5c3b;
+            /* Dark Green */
             padding: 12px 8px;
             text-align: center;
             font-size: 0.85rem;
