@@ -296,7 +296,7 @@ function listenToComplaints() {
                     <td style="border-bottom: none;">
                         ${c.statusDocUrl ? `
                             <div style="display:flex; align-items:center; gap:5px;">
-                                <a href="${c.statusDocUrl}" target="_blank" class="badge-status" style="background:#e6f7ff; color:#1890ff; padding:4px 8px; text-decoration:none;"><i class="fas fa-eye"></i> View</a>
+                                <a href="${c.statusDocUrl.replace('/upload/', '/upload/fl_attachment:false/')}" target="_blank" class="badge-status" style="background:#e6f7ff; color:#1890ff; padding:4px 8px; text-decoration:none;" title="View Document"><i class="fas fa-eye"></i> View</a>
                                 <button class="action-item-btn" style="color:#ef4444; width:24px; height:24px;" onclick="removeStatusDoc('${docId}')" title="Remove Doc"><i class="fas fa-times"></i></button>
                             </div>
                         ` : `
@@ -327,7 +327,7 @@ function listenToComplaints() {
                                 <strong><i class="fas fa-paperclip"></i> Extra Doc:</strong>
                                 ${c.extraDocUrl ?
                     `<div style="display:flex; gap:10px; align-items:center;">
-                                        <a href="${c.extraDocUrl}" target="_blank" style="color:#0ea5e9;text-decoration:none;font-weight:600;"><i class="fas fa-eye"></i> View</a>
+                                        <a href="${c.extraDocUrl.replace('/upload/', '/upload/fl_attachment:false/')}" target="_blank" style="color:#0ea5e9;text-decoration:none;font-weight:600;"><i class="fas fa-eye"></i> View</a>
                                         <button onclick="copyDocToClipboard('${c.extraDocUrl}')" style="color:#8b5cf6;border:none;background:none;cursor:pointer;" title="Copy Document Link"><i class="fas fa-copy"></i></button>
                                         <button onclick="removeExtraDoc('${docId}')" style="color:#ef4444;border:none;background:none;cursor:pointer;" title="Remove Document"><i class="fas fa-times-circle"></i></button>
                                      </div>` :
@@ -399,7 +399,7 @@ window.uploadStatusDoc = async (docId, inputEl) => {
     const file = inputEl.files[0];
     if (!file) return;
 
-    const cloudinaryUrl = "https://api.cloudinary.com/v1_1/dt1m4sosv/upload";
+    const cloudinaryUrl = "https://api.cloudinary.com/v1_1/dt1m4sosv/auto/upload";
     const uploadPreset = "r1ungxks";
 
     // Change label temporarily to loading state
@@ -500,7 +500,7 @@ window.uploadExtraDoc = async (docId, inputEl) => {
     const file = inputEl.files[0];
     if (!file) return;
 
-    const cloudinaryUrl = "https://api.cloudinary.com/v1_1/dt1m4sosv/upload";
+    const cloudinaryUrl = "https://api.cloudinary.com/v1_1/dt1m4sosv/auto/upload";
     const uploadPreset = "r1ungxks";
 
     const label = inputEl.parentElement;
@@ -538,7 +538,7 @@ window.removeExtraDoc = async (docId) => {
 function initUpload() {
     const area = document.getElementById('uploadArea');
     if (!area) return;
-    const cloudinaryUrl = "https://api.cloudinary.com/v1_1/dt1m4sosv/upload";
+    const cloudinaryUrl = "https://api.cloudinary.com/v1_1/dt1m4sosv/auto/upload";
     const uploadPreset = "r1ungxks";
     ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(ev => area.addEventListener(ev, e => { e.preventDefault(); e.stopPropagation(); }));
     area.addEventListener('drop', e => { if (e.dataTransfer.files.length) upload(e.dataTransfer.files[0]); });

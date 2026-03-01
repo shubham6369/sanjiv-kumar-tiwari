@@ -388,7 +388,12 @@
                                 <td>${d.dept}</td>
                                 <td>${d.date}</td>
                                 <td><span class="status-badge status-${statusClass}">${d.status}</span></td>
-                                <td><small style="color: #555;">${d.stepsTaken || 'No action yet'}</small></td>
+                                <td>
+                                    <div style="display:flex; flex-direction:column; gap:5px;">
+                                        <small style="color: #555;">${d.stepsTaken || 'No action yet'}</small>
+                                        ${d.statusDocUrl ? `<a href="${d.statusDocUrl.replace('/upload/', '/upload/fl_attachment:false/')}" target="_blank" style="display:inline-flex; align-items:center; gap:5px; background:#e6f7ff; border:1px solid #91d5ff; color:#1890ff; padding:4px 8px; border-radius:4px; font-size:0.75rem; font-weight:600; text-decoration:none; width: fit-content;"><i class="fas fa-file-pdf"></i> View Status Doc</a>` : ''}
+                                    </div>
+                                </td>
                             </tr>
                         `;
                     });
