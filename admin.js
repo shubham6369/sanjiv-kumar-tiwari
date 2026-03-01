@@ -608,8 +608,57 @@ function listenToReporters() {
 
 window.updateReporterStatus = async (id, status) => {
     try {
+        const { getDoc, setDoc } = await import('./firebase-config.js');
+
+        // 1. Update the application status
         await updateDoc(doc(db, "reporter_applications", id), { status: status });
-    } catch (e) { console.error(e); }
+
+        // 2. If approved, add to block members
+        if (status === 'Approved') {
+            const appSnap = await getDoc(doc(db, "reporter_applications", id));
+            if (appSnap.exists()) {
+                const appData = appSnap.data();
+                const block = appData.block;
+
+                if (block) {
+                    const blockRef = doc(db, "block_members", block);
+                    const blockSnap = await getDoc(blockRef);
+
+                    let members = Array(5).fill({ name: '', village: '', photoUrl: '' });
+                    if (blockSnap.exists() && blockSnap.data().members) {
+                        members = blockSnap.data().members;
+                        // Ensure it's an array of 5
+                        while (members.length < 5) members.push({ name: '', village: '', photoUrl: '' });
+                    }
+
+                    // Find first empty slot
+                    let added = false;
+                    for (let i = 0; i < 5; i++) {
+                        if (!members[i].name) {
+                            members[i] = {
+                                name: appData.name,
+                                village: appData.village,
+                                photoUrl: appData.photoUrl || ''
+                            };
+                            added = true;
+                            break;
+                        }
+                    }
+
+                    if (added) {
+                        await setDoc(blockRef, { members: members, block: block, updatedAt: new Date() });
+                        if (document.getElementById('adminBlockSelect')?.value === block) {
+                            // Refresh block members view if currently viewing it
+                            typeof window.loadAdminBlockMembers === 'function' && window.loadAdminBlockMembers();
+                        }
+                        alert(`Application approved and ${appData.name} added to ${block} block members.`);
+                    } else {
+                        alert(`Application approved, but the ${block} block already has 5 members. Please open 'Manage Block Members' to manage slots.`);
+                    }
+                }
+            }
+        }
+    } catch (e) { console.error(e); alert("Error updating status."); }
 };
 
 window.deleteReporter = async (id) => {
