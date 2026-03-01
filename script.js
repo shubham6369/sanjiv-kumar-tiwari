@@ -167,23 +167,18 @@ async function submitComplaint(e) {
         const fileInput = form.querySelector('input[type="file"]');
         let photoUrl = "";
 
-        // If a photo is selected, upload it to Cloudinary first
-        if (fileInput && fileInput.files[0]) {
-            const formData = new FormData();
-            formData.append('file', fileInput.files[0]);
-            formData.append('upload_preset', "r1ungxks"); // Using the existing preset from admin.js
-
-            const cloudRes = await fetch("https://api.cloudinary.com/v1_1/dt1m4sosv/auto/upload", {
-                method: 'POST',
-                body: formData
-            });
-            const cloudData = await cloudRes.json();
-            photoUrl = cloudData.secure_url || "";
-        }
-
-        // We will dynamically import firebase to not block initial page load load
-        const { db, collection, addDoc, auth } = await import('./firebase-config.js');
+        // We will dynamically import firebase to not block initial page load
+        const { db, collection, addDoc, auth, storage, ref, uploadBytesResumable, getDownloadURL } = await import('./firebase-config.js');
         const user = auth.currentUser;
+
+        // If a photo/PDF is selected, upload it to Firebase Storage
+        if (fileInput && fileInput.files[0]) {
+            const file = fileInput.files[0];
+            const fileName = `complaints/${Date.now()}_${file.name}`;
+            const storageRef = ref(storage, fileName);
+            const uploadTask = await uploadBytesResumable(storageRef, file);
+            photoUrl = await getDownloadURL(uploadTask.ref);
+        }
 
         const timestamp = new Date();
         const num = Math.floor(1000 + Math.random() * 9000); // 4 digit random number
@@ -419,20 +414,17 @@ async function submitReport(e) {
         const fileInput = form.querySelector('input[type="file"]');
         let photoUrl = "";
 
-        if (fileInput && fileInput.files[0]) {
-            const formData = new FormData();
-            formData.append('file', fileInput.files[0]);
-            formData.append('upload_preset', "r1ungxks");
+        const { db, collection, addDoc, auth, storage, ref, uploadBytesResumable, getDownloadURL } = await import('./firebase-config.js');
+        const user = auth.currentUser;
 
-            const cloudRes = await fetch("https://api.cloudinary.com/v1_1/dt1m4sosv/auto/upload", {
-                method: 'POST', body: formData
-            });
-            const cloudData = await cloudRes.json();
-            photoUrl = cloudData.secure_url || "";
+        if (fileInput && fileInput.files[0]) {
+            const file = fileInput.files[0];
+            const fileName = `issues/${Date.now()}_${file.name}`;
+            const storageRef = ref(storage, fileName);
+            const uploadTask = await uploadBytesResumable(storageRef, file);
+            photoUrl = await getDownloadURL(uploadTask.ref);
         }
 
-        const { db, collection, addDoc, auth } = await import('./firebase-config.js');
-        const user = auth.currentUser;
         const timestamp = new Date();
         const id = `RPT-${timestamp.getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
 
@@ -475,19 +467,15 @@ async function submitReporter(e) {
         const fileInput = form.querySelector('input[type="file"]');
         let photoUrl = "";
 
+        const { db, collection, addDoc, storage, ref, uploadBytesResumable, getDownloadURL } = await import('./firebase-config.js');
+
         if (fileInput && fileInput.files[0]) {
-            const formData = new FormData();
-            formData.append('file', fileInput.files[0]);
-            formData.append('upload_preset', "r1ungxks");
-
-            const cloudRes = await fetch("https://api.cloudinary.com/v1_1/dt1m4sosv/auto/upload", {
-                method: 'POST', body: formData
-            });
-            const cloudData = await cloudRes.json();
-            photoUrl = cloudData.secure_url || "";
+            const file = fileInput.files[file.name ? 0 : 0]; // accessing first file
+            const fileName = `reporters/${Date.now()}_${fileInput.files[0].name}`;
+            const storageRef = ref(storage, fileName);
+            const uploadTask = await uploadBytesResumable(storageRef, fileInput.files[0]);
+            photoUrl = await getDownloadURL(uploadTask.ref);
         }
-
-        const { db, collection, addDoc } = await import('./firebase-config.js');
 
         await addDoc(collection(db, "reporter_applications"), {
             name: form.querySelectorAll('input[type="text"]')[0].value,

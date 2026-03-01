@@ -1,4 +1,4 @@
-import { db, collection, onSnapshot, query, orderBy, updateDoc, doc, deleteDoc, addDoc, adminAuth as auth, onAuthStateChanged, signInWithEmailAndPassword, signOut, setPersistence, browserSessionPersistence, sendPasswordResetEmail } from './firebase-config.js';
+import { db, collection, onSnapshot, query, orderBy, updateDoc, doc, deleteDoc, addDoc, adminAuth as auth, onAuthStateChanged, signInWithEmailAndPassword, signOut, setPersistence, browserSessionPersistence, sendPasswordResetEmail, storage, ref, uploadBytesResumable, getDownloadURL } from './firebase-config.js';
 
 const ADMIN_EMAILS = ['admin@sanjeevkumartiwari.com', 'sk.tiwari@gmail.com', 'sktjmm@gmail.com']; // Authorized admin list
 
@@ -409,28 +409,18 @@ window.uploadStatusDoc = async (docId, inputEl) => {
     const file = inputEl.files[0];
     if (!file) return;
 
-    const cloudinaryUrl = "https://api.cloudinary.com/v1_1/dt1m4sosv/auto/upload";
-    const uploadPreset = "r1ungxks";
-
     // Change label temporarily to loading state
     const label = inputEl.parentElement;
     const originalHtml = label.innerHTML;
     label.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
 
     try {
-        const fd = new FormData();
-        fd.append('file', file);
-        fd.append('upload_preset', uploadPreset);
+        const fileName = `status_docs/${Date.now()}_${file.name}`;
+        const storageRef = ref(storage, fileName);
+        const uploadTask = await uploadBytesResumable(storageRef, file);
+        const downloadUrl = await getDownloadURL(uploadTask.ref);
 
-        const res = await fetch(cloudinaryUrl, { method: 'POST', body: fd });
-        const d = await res.json();
-
-        if (d.secure_url) {
-            await updateDoc(doc(db, "complaints", docId), { statusDocUrl: d.secure_url });
-        } else {
-            alert("Upload failed.");
-            label.innerHTML = originalHtml;
-        }
+        await updateDoc(doc(db, "complaints", docId), { statusDocUrl: downloadUrl });
     } catch (e) {
         console.error("Status Doc Upload error:", e);
         alert("Upload error.");
@@ -529,27 +519,17 @@ window.uploadExtraDoc = async (docId, inputEl) => {
     const file = inputEl.files[0];
     if (!file) return;
 
-    const cloudinaryUrl = "https://api.cloudinary.com/v1_1/dt1m4sosv/auto/upload";
-    const uploadPreset = "r1ungxks";
-
     const label = inputEl.parentElement;
     const originalHtml = label.innerHTML;
     label.innerHTML = '<span style="color:#3b82f6;"><i class="fas fa-spinner fa-spin"></i> Uploading...</span>';
 
     try {
-        const fd = new FormData();
-        fd.append('file', file);
-        fd.append('upload_preset', uploadPreset);
+        const fileName = `extra_docs/${Date.now()}_${file.name}`;
+        const storageRef = ref(storage, fileName);
+        const uploadTask = await uploadBytesResumable(storageRef, file);
+        const downloadUrl = await getDownloadURL(uploadTask.ref);
 
-        const res = await fetch(cloudinaryUrl, { method: 'POST', body: fd });
-        const d = await res.json();
-
-        if (d.secure_url) {
-            await updateDoc(doc(db, "complaints", docId), { extraDocUrl: d.secure_url });
-        } else {
-            alert("Upload failed.");
-            label.innerHTML = originalHtml;
-        }
+        await updateDoc(doc(db, "complaints", docId), { extraDocUrl: downloadUrl });
     } catch (e) {
         console.error("Upload error:", e);
         alert("Upload error.");
@@ -578,12 +558,21 @@ function initUpload() {
     input.onchange = () => { if (input.files.length) upload(input.files[0]); };
     async function upload(file) {
         area.innerHTML = `<h3><i class="fas fa-spinner fa-spin"></i> Uploading...</h3>`;
-        const fd = new FormData(); fd.append('file', file); fd.append('upload_preset', uploadPreset);
-        const res = await fetch(cloudinaryUrl, { method: 'POST', body: fd });
-        const d = await res.json();
-        if (d.secure_url) {
-            await addDoc(collection(db, "gallery"), { url: d.secure_url, caption: document.getElementById('uploadCaption').value, timestamp: new Date() });
+        try {
+            const fileName = `gallery/${Date.now()}_${file.name}`;
+            const storageRef = ref(storage, fileName);
+            const uploadTask = await uploadBytesResumable(storageRef, file);
+            const downloadUrl = await getDownloadURL(uploadTask.ref);
+
+            await addDoc(collection(db, "gallery"), {
+                url: downloadUrl,
+                caption: document.getElementById('uploadCaption').value,
+                timestamp: new Date()
+            });
             area.innerHTML = `<h3 style="color:green;">Success!</h3><button class="upload-btn" onclick="location.reload()">Upload Another</button>`;
+        } catch (e) {
+            console.error("Gallery upload error:", e);
+            area.innerHTML = `<h3 style="color:red;">Error!</h3><button class="upload-btn" onclick="location.reload()">Try Again</button>`;
         }
     }
 }
