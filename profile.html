@@ -335,7 +335,7 @@
     </footer>
 
     <script type="module">
-        import { auth, db, doc, onAuthStateChanged, collection, query, where, getDocs, signOut, getDoc } from './firebase-config.js';
+        import { auth, db, doc, onAuthStateChanged, collection, query, where, getDocs, signOut, getDoc, onSnapshot } from './firebase-config.js';
 
         onAuthStateChanged(auth, async (user) => {
             if (!user) {
