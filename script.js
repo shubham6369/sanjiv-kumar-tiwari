@@ -1189,15 +1189,18 @@ window.loadPublicBlockMembers = async () => {
     row.innerHTML = '<div style="grid-column:1/-1;text-align:center;"><i class="fas fa-spinner fa-spin" style="font-size:2rem;color:#0b5c3b;"></i> Loading...</div>';
 
     try {
-        const { doc, getDoc, db } = await import('./firebase-config.js');
-        const docRef = doc(db, "block_members", block);
-        const snap = await getDoc(docRef);
+        const { collection, query, where, getDocs, db } = await import('./firebase-config.js');
+        const q = query(
+            collection(db, "reporter_applications"),
+            where("block", "==", block)
+        );
+        const snap = await getDocs(q);
 
         let html = '';
-        if (snap.exists() && snap.data().members) {
-            const members = snap.data().members;
-            members.forEach(m => {
-                if (m.name || m.village) {
+        if (!snap.empty) {
+            snap.forEach(docSnap => {
+                const m = docSnap.data();
+                if (m.status === "Approved" && (m.name || m.village)) {
                     const photo = m.photoUrl ? `<img src="${m.photoUrl}" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">` : '<i class="fas fa-user"></i>';
                     html += `
                         <div class="rep-card">
