@@ -265,115 +265,59 @@ function listenToComplaints() {
 
             // ... rest of row generation ...
             const isEven = rowCount % 2 === 0;
-            const rowBg = isEven ? '#cbd5e1' : '#bbf7d0'; // Even denser slate or denser emerald
+
+            // Col 8: Communication Method
+            const commMethodHtml = `
+                <div style="display:flex; flex-direction:column; gap:8px;">
+                    <div style="display:flex; align-items:center; gap:5px;">
+                        <input type="email" id="email-${docId}" placeholder="Email" value="" style="padding:2px; border:1px solid #999; width:90px; font-size:0.7rem;">
+                        <button onclick="sendEmail('${docId}')" style="background:#f59e0b; color:white; border:none; padding:2px 5px; border-radius:3px; cursor:pointer;" title="Send Email"><i class="fas fa-envelope"></i></button>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:5px;">
+                        <input type="text" id="wa-${docId}" placeholder="WA No" value="" style="padding:2px; border:1px solid #999; width:90px; font-size:0.7rem;">
+                        <button onclick="openWhatsapp('${docId}')" style="background:#22c55e; color:white; border:none; padding:2px 5px; border-radius:3px; cursor:pointer;" title="WA"><i class="fab fa-whatsapp"></i></button>
+                    </div>
+                </div>
+            `;
+
+            // Col 10: Documents
+            let docsHtml = '';
+            if (c.photoUrl) docsHtml += `<button onclick="viewDocument('${c.photoUrl}')" style="background:#e8f5e9; color:#2e7d32; border:1px solid #2e7d32; padding:3px 8px; border-radius:4px; font-size:0.7rem; cursor:pointer; margin:2px;" title="User File"><i class="fas fa-file-image"></i> User File</button>`;
+            if (c.statusDocUrl) docsHtml += `<button onclick="viewDocument('${c.statusDocUrl}')" style="background:#e3f2fd; color:#1565c0; border:1px solid #1565c0; padding:3px 8px; border-radius:4px; font-size:0.7rem; cursor:pointer; margin:2px;" title="Status Doc"><i class="fas fa-file-pdf"></i> PDF View</button>`;
+            if (c.extraDocUrl) docsHtml += `<button onclick="viewDocument('${c.extraDocUrl}')" style="background:#fff3e0; color:#ef6c00; border:1px solid #ef6c00; padding:3px 8px; border-radius:4px; font-size:0.7rem; cursor:pointer; margin:2px;" title="Extra Doc"><i class="fas fa-paperclip"></i> Extra</button>`;
+            if (!docsHtml) docsHtml = '<label style="background:#0b5c3b; color:white; padding:4px 8px; border-radius:4px; font-size:0.7rem; cursor:pointer;" title="Upload Response"><i class="fas fa-upload"></i> Upload <input type="file" accept="image/*,application/pdf" style="display:none;" onchange="uploadStatusDoc(\'${docId}\', this)"></label>';
 
             const row = `
-                <tr class="animate-row" style="background: ${rowBg}; animation-delay: ${rowCount * 0.05}s">
-                    <td style="border-bottom: none;"><strong>${c.id}</strong></td>
-                    <td style="border-bottom: none;">${c.name}</td>
-                    <td style="border-bottom: none;">${c.block || 'N/A'}</td>
-                    <td style="border-bottom: none;">${c.dept}</td>
-                    <td style="border-bottom: none;">
-                        ${c.photoUrl ? (c.photoUrl.toLowerCase().includes('.pdf') ? `
-                            <div style="display:flex; flex-direction:column; gap:5px; align-items:center;">
-                                <button onclick="viewDocument('${c.photoUrl}')" class="table-img-link" style="border:none;background:#e6f7ff;cursor:pointer;padding:8px;border-radius:6px;color:#1890ff; display:flex; flex-direction:column; align-items:center;" title="View PDF">
-                                    <i class="fas fa-file-pdf" style="font-size:1.5rem; margin-bottom: 2px;"></i> View
-                                </button>
-                                <a href="${c.photoUrl}" target="_blank" download style="font-size: 0.8rem; background: #0b5c3b; color: white; padding: 3px 8px; border-radius: 4px; text-decoration: none; display: flex; align-items: center; gap: 4px;">
-                                    <i class="fas fa-download"></i> DL
-                                </a>
-                            </div>
-                        ` : `
-                            <div style="display:flex; flex-direction:column; gap:5px; align-items:center;">
-                                <button onclick="viewDocument('${c.photoUrl}')" class="table-img-link" style="border:none;background:none;padding:0;cursor:pointer;" title="View Image">
-                                    <img src="${c.photoUrl}" alt="Photo" class="table-thumb">
-                                </button>
-                                <a href="${c.photoUrl}" target="_blank" download style="font-size: 0.8rem; background: #0b5c3b; color: white; padding: 3px 8px; border-radius: 4px; text-decoration: none; display: flex; align-items: center; gap: 4px;">
-                                    <i class="fas fa-download"></i> DL
-                                </a>
-                            </div>
-                        `) : '<span style="color:#ccc; font-size:0.8rem;">N/A</span>'}
+                <tr class="animate-row" style="background: ${isEven ? '#fff' : '#f9f9f9'}; animation-delay: ${rowCount * 0.05}s">
+                    <td style="font-weight:700;">${c.id}</td>
+                    <td>${c.name}</td>
+                    <td style="text-align:left; font-size:0.75rem;">${c.description}</td>
+                    <td>
+                        <input type="text" class="steps-input" value="${c.stepsTaken || ''}" 
+                            placeholder="Add action takern..." 
+                            onblur="updateStepsTaken('${docId}', this.value)"
+                            style="width:100%; font-size:0.75rem; border:1px solid #999; padding:4px;">
                     </td>
-                    <td style="border-bottom: none;"><span class="date-chip">${c.date}</span></td>
-                    <td style="border-bottom: none;">
-                        <div class="steps-cell">
-                            <input type="text" class="steps-input" value="${c.stepsTaken || ''}" 
-                                placeholder="Add action taken..." 
-                                onblur="updateStepsTaken('${docId}', this.value)">
-                            <i class="fas fa-edit edit-hint"></i>
-                        </div>
-                    </td>
-                    <td style="border-bottom: none;">
-                        ${c.statusDocUrl ? `
-                            <div style="display:flex; align-items:center; gap:5px;">
-                                <button onclick="viewDocument('${c.statusDocUrl}')" class="badge-status" style="background:#e6f7ff; color:#1890ff; padding:4px 8px; text-decoration:none; border:none; cursor:pointer;" title="View Document"><i class="fas fa-eye"></i> View</button>
-                                <button class="action-item-btn" style="color:#ef4444; width:24px; height:24px;" onclick="removeStatusDoc('${docId}')" title="Remove Doc"><i class="fas fa-times"></i></button>
-                            </div>
-                        ` : `
-                            <label class="action-item-btn" style="background:#0b5c3b; color:white; cursor:pointer;" title="Upload Status Document">
-                                <i class="fas fa-upload"></i>
-                                <input type="file" accept="image/*,application/pdf" style="display:none;" onchange="uploadStatusDoc('${docId}', this)">
-                            </label>
-                        `}
-                    </td>
-                    <td style="border-bottom: none;">
-                        <select class="status-select status-${c.status?.replace(/\s+/g, '-')}" onchange="updateComplaintStatus('${docId}', this.value)">
+                    <td>${c.dept}</td>
+                    <td>
+                        <select onchange="updateComplaintStatus('${docId}', this.value)" style="font-size:0.8rem; padding:3px; border-radius:4px; background:${c.status === 'Resolved' ? '#e6f4ed' : c.status === 'Pending' ? '#ffebee' : '#fff8e1'}">
                             <option value="Pending" ${c.status === 'Pending' ? 'selected' : ''}>Pending</option>
                             <option value="In Progress" ${c.status === 'In Progress' ? 'selected' : ''}>In Progress</option>
                             <option value="Resolved" ${c.status === 'Resolved' ? 'selected' : ''}>Resolved</option>
                         </select>
                     </td>
-                    <td style="border-bottom: none;">
+                    <td style="font-size:0.75rem;">${c.replyDate || '---'}</td>
+                    <td>${commMethodHtml}</td>
+                    <td style="font-size:0.8rem; font-weight:700; color:${c.status === 'Resolved' ? '#2e7d32' : '#c62828'}">${c.status}</td>
+                    <td>${docsHtml}</td>
+                    <td style="font-size:0.8rem;">${c.status === 'Resolved' ? '✅ Resolved' : '🔄 Pending'}</td>
+                    <td>
                         <button class="action-item-btn delete" onclick="deleteComplaint('${docId}')" title="Delete">
                             <i class="fas fa-trash"></i>
                         </button>
                     </td>
                 </tr>
-                <tr class="animate-row" style="background: ${rowBg}; animation-delay: ${(rowCount * 0.05) + 0.02}s">
-                    <td colspan="10" style="padding: 12px 15px; border-bottom: none;">
-                        <div style="display:flex; gap:20px; align-items:center; flex-wrap:wrap; font-size: 0.85rem;">
-                            <!-- 1. PDF/Image -->
-                            <div style="display:flex; align-items:center; gap:10px; background: white; padding: 6px 12px; border-radius: 6px; border: 1px solid #e2e8f0; border-left: 4px solid #3b82f6;">
-                                <strong><i class="fas fa-paperclip"></i> Extra Doc:</strong>
-                                ${c.extraDocUrl ?
-                    `<div style="display:flex; gap:10px; align-items:center;">
-                                        <button onclick="viewDocument('${c.extraDocUrl}')" style="color:#0ea5e9;border:none;background:none;cursor:pointer;font-weight:600;font-size:0.95rem;padding:0;"><i class="fas fa-eye"></i> View</button>
-                                        <button onclick="copyDocToClipboard('${c.extraDocUrl}')" style="color:#8b5cf6;border:none;background:none;cursor:pointer;" title="Copy Document Link"><i class="fas fa-copy"></i></button>
-                                        <button onclick="removeExtraDoc('${docId}')" style="color:#ef4444;border:none;background:none;cursor:pointer;" title="Remove Document"><i class="fas fa-times-circle"></i></button>
-                                     </div>` :
-                    `<div style="position:relative; overflow:hidden;">
-                                        <input type="file" accept="image/*,.pdf" onchange="uploadExtraDoc('${docId}', this)" style="max-width:180px;font-size:0.8rem;">
-                                     </div>`
-                }
-                            </div>
-
-                            <!-- 2. Email -->
-                            <div style="display:flex; align-items:center; gap:8px; background: white; padding: 6px 12px; border-radius: 6px; border: 1px solid #e2e8f0; border-left: 4px solid #f59e0b;">
-                                <strong><i class="fas fa-envelope"></i> Email:</strong>
-                                <input type="email" id="email-${docId}" placeholder="Enter Email" value="" style="padding:4px 8px; border:1px solid #cbd5e1; border-radius:4px; width:150px; font-size:0.8rem;">
-                                <button onclick="sendEmail('${docId}')" style="background:#f59e0b; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;" title="Send Email via Gmail"><i class="fas fa-paper-plane"></i></button>
-                            </div>
-
-                            <!-- 3. WhatsApp -->
-                            <div style="display:flex; align-items:center; gap:8px; background: white; padding: 6px 12px; border-radius: 6px; border: 1px solid #e2e8f0; border-left: 4px solid #22c55e;">
-                                <strong><i class="fab fa-whatsapp"></i> WA No:</strong>
-                                <input type="text" id="wa-${docId}" placeholder="Mobile Number" value="" style="padding:4px 8px; border:1px solid #cbd5e1; border-radius:4px; width:110px; font-size:0.8rem;">
-                                <button onclick="openWhatsapp('${docId}')" style="background:#22c55e; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;" title="Open WhatsApp Chat"><i class="fas fa-share"></i></button>
-                            </div>
-
-                            <!-- 4. Post Number -->
-                            <div style="display:flex; align-items:center; gap:8px; background: white; padding: 6px 12px; border-radius: 6px; border: 1px solid #e2e8f0; border-left: 4px solid #8b5cf6;">
-                                <strong><i class="fas fa-box"></i> Post No:</strong>
-                                <input type="text" id="post-${docId}" placeholder="Tracking / Post No" value="${c.postNumber || ''}" onblur="updateComplaintField('${docId}', 'postNumber', this.value)" style="padding:4px 8px; border:1px solid #cbd5e1; border-radius:4px; width:140px; font-size:0.8rem;">
-                                <button onclick="copyDocToClipboard('${c.extraDocUrl || ''}')" style="background:#8b5cf6; color:white; border:none; padding:5px 10px; border-radius:4px; cursor:pointer;" title="Copy Document Link"><i class="fas fa-copy"></i></button>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <!-- Spacer Row -->
-                <tr style="height: 20px; background: #ffffff;">
-                    <td colspan="10" style="padding: 0; border: none;"></td>
-                </tr>`;
+            `;
 
             allHTML += row;
             if (rowCount < 5) recentHTML += row;
