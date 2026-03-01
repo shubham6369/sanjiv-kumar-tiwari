@@ -3904,3 +3904,119 @@ button {
     font-weight: 800;
     font-size: 0.8rem;
 }
+
+/* ========== USEFUL NUMBERS SECTION ========== */
+.useful-numbers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.numbers-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--tr);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.numbers-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-md);
+}
+
+.numbers-card-header {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--white);
+}
+
+.numbers-card-header i {
+    font-size: 1.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+}
+
+.numbers-card-header h3 {
+    font-size: 1.25rem;
+    margin: 0;
+    font-weight: 800;
+}
+
+.numbers-list {
+    padding: 10px 20px 20px;
+}
+
+.number-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px dashed #eee;
+}
+
+.number-row:last-child {
+    border-bottom: none;
+}
+
+.number-name {
+    font-weight: 600;
+    color: var(--navy);
+    font-size: 0.95rem;
+}
+
+.number-val {
+    font-family: 'Outfit', sans-serif;
+    background: var(--gray-bg);
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-weight: 800;
+    color: var(--green-dark);
+    font-size: 0.95rem;
+    transition: var(--tr);
+}
+
+.number-val:hover {
+    background: var(--green);
+    color: var(--white);
+    transform: scale(1.05);
+}
+
+.bg-gradient-blue {
+    background: linear-gradient(135deg, #1565c0, #1976d2);
+}
+
+.bg-gradient-red {
+    background: linear-gradient(135deg, #c62828, #d32f2f);
+}
+
+.bg-gradient-pink {
+    background: linear-gradient(135deg, #ad1457, #d81b60);
+}
+
+.bg-gradient-yellow {
+    background: linear-gradient(135deg, #f9a825, #fbc02d);
+}
+
+.bg-gradient-orange {
+    background: linear-gradient(135deg, #ef6c00, #f57c00);
+}
+
+.bg-gradient-green {
+    background: linear-gradient(135deg, #2e7d32, #388e3c);
+}
+
+@media (max-width: 768px) {
+    .useful-numbers-grid {
+        grid-template-columns: 1fr;
+    }
+}
