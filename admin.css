@@ -62,9 +62,14 @@ h6 {
     top: 0;
     left: 0;
     z-index: 1000;
-    transition: transform 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
+}
+
+/* Collapsed State */
+.sidebar.collapsed {
+    transform: translateX(-100%);
 }
 
 .sidebar-header {
@@ -83,6 +88,7 @@ h6 {
     display: flex;
     align-items: center;
     gap: 10px;
+    white-space: nowrap;
 }
 
 .sidebar-header .close-sidebar {
@@ -98,10 +104,11 @@ h6 {
     list-style: none;
     padding: 24px 0;
     flex: 1;
+    overflow-y: auto;
 }
 
 .nav-links li {
-    padding: 12px 24px;
+    padding: 5px 15px;
     margin-bottom: 5px;
 }
 
@@ -113,7 +120,7 @@ h6 {
     gap: 15px;
     font-size: 0.95rem;
     transition: all 0.3s ease;
-    padding: 10px 15px;
+    padding: 12px 15px;
     border-radius: var(--radius);
 }
 
@@ -126,7 +133,6 @@ h6 {
 .nav-links li.active a {
     border-left: 4px solid var(--gold);
     background: linear-gradient(90deg, rgba(212, 175, 55, 0.15) 0%, transparent 100%);
-    padding-left: 11px;
 }
 
 .sidebar-footer {
@@ -157,7 +163,11 @@ h6 {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    transition: margin-left 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.main-content.expanded {
+    margin-left: 0;
 }
 
 /* ============ TOP NAV ============ */
@@ -188,12 +198,23 @@ h6 {
 }
 
 .menu-toggle {
-    display: none;
-    background: transparent;
+    display: block !important;
+    background: #02482e;
     border: none;
-    font-size: 1.25rem;
-    color: var(--text-main);
+    font-size: 1.4rem;
+    color: var(--gold);
     cursor: pointer;
+    padding: 10px;
+    border-radius: 8px;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+.menu-toggle:hover {
+    background: #035a3a;
 }
 
 .search-bar {

@@ -132,7 +132,13 @@ function initNavigation() {
     });
 
     if (menuToggle) menuToggle.addEventListener('click', () => {
-        sidebar.classList.add('open');
+        if (window.innerWidth > 768) {
+            sidebar.classList.toggle('collapsed');
+            const mainContent = document.querySelector('.main-content');
+            if (mainContent) mainContent.classList.toggle('expanded');
+        } else {
+            sidebar.classList.toggle('open');
+        }
     });
 
     if (closeSidebar) closeSidebar.addEventListener('click', () => {
