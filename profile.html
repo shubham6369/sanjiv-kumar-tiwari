@@ -430,11 +430,11 @@
                     actionHtml += `<div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:5px;">`;
 
                     if (d.statusDocUrl) {
-                        actionHtml += `<a href="${d.statusDocUrl.replace('/upload/', '/upload/fl_attachment:false/')}" target="_blank" class="doc-link" title="Status Document"><i class="fas fa-file-invoice"></i> Status Doc</a>`;
+                        actionHtml += `<a href="${d.statusDocUrl}" target="_blank" class="doc-link" title="Status Document"><i class="fas fa-file-invoice"></i> Status Doc</a>`;
                     }
 
                     if (d.extraDocUrl) {
-                        actionHtml += `<a href="${d.extraDocUrl.replace('/upload/', '/upload/fl_attachment:false/')}" target="_blank" class="doc-link" style="background:#f0f7ff; color:#007bff; border-color:#0ea5e9;" title="Extra Document"><i class="fas fa-paperclip"></i> Extra Doc</a>`;
+                        actionHtml += `<a href="${d.extraDocUrl}" target="_blank" class="doc-link" style="background:#f0f7ff; color:#007bff; border-color:#0ea5e9;" title="Extra Document"><i class="fas fa-paperclip"></i> Extra Doc</a>`;
                     }
 
                     if (d.postNumber) {

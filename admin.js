@@ -279,16 +279,16 @@ function listenToComplaints() {
                                 <button onclick="viewDocument('${c.photoUrl}')" class="table-img-link" style="border:none;background:#e6f7ff;cursor:pointer;padding:8px;border-radius:6px;color:#1890ff; display:flex; flex-direction:column; align-items:center;" title="View PDF">
                                     <i class="fas fa-file-pdf" style="font-size:1.5rem; margin-bottom: 2px;"></i> View
                                 </button>
-                                <a href="${c.photoUrl.replace('/upload/', '/upload/fl_attachment/')}" target="_blank" download style="font-size: 0.8rem; background: #0b5c3b; color: white; padding: 3px 8px; border-radius: 4px; text-decoration: none; display: flex; align-items: center; gap: 4px;">
+                                <a href="${c.photoUrl}" target="_blank" download style="font-size: 0.8rem; background: #0b5c3b; color: white; padding: 3px 8px; border-radius: 4px; text-decoration: none; display: flex; align-items: center; gap: 4px;">
                                     <i class="fas fa-download"></i> DL
                                 </a>
                             </div>
                         ` : `
                             <div style="display:flex; flex-direction:column; gap:5px; align-items:center;">
                                 <button onclick="viewDocument('${c.photoUrl}')" class="table-img-link" style="border:none;background:none;padding:0;cursor:pointer;" title="View Image">
-                                    <img src="${c.photoUrl.replace('/upload/', '/upload/fl_attachment:false/')}" alt="Photo" class="table-thumb">
+                                    <img src="${c.photoUrl}" alt="Photo" class="table-thumb">
                                 </button>
-                                <a href="${c.photoUrl.replace('/upload/', '/upload/fl_attachment/')}" target="_blank" download style="font-size: 0.8rem; background: #0b5c3b; color: white; padding: 3px 8px; border-radius: 4px; text-decoration: none; display: flex; align-items: center; gap: 4px;">
+                                <a href="${c.photoUrl}" target="_blank" download style="font-size: 0.8rem; background: #0b5c3b; color: white; padding: 3px 8px; border-radius: 4px; text-decoration: none; display: flex; align-items: center; gap: 4px;">
                                     <i class="fas fa-download"></i> DL
                                 </a>
                             </div>
@@ -457,13 +457,9 @@ window.viewDocument = (url) => {
     const content = document.getElementById('docViewerContent');
     const downloadBtn = document.getElementById('docViewerDownloadBtn');
 
-    let safeUrl = url;
-    if (url.includes('/upload/')) {
-        safeUrl = url.replace('/upload/', '/upload/fl_attachment:false/');
-        downloadBtn.href = url.replace('/upload/', '/upload/fl_attachment/');
-    } else {
-        downloadBtn.href = url;
-    }
+    // Use original URL to avoid 401 errors on unknown/restricted transformations
+    const safeUrl = url.replace('/fl_attachment/', '/').replace('/fl_attachment:false/', '/');
+    downloadBtn.href = url;
 
     if (url.toLowerCase().includes('.pdf')) {
         content.innerHTML = `<iframe src="${safeUrl}" style="width: 100%; height: 100%; border: none;"></iframe>`;
