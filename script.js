@@ -1171,3 +1171,53 @@ document.addEventListener('DOMContentLoaded', () => {
         fetchPublicMeetings();
     }
 });
+
+// Community Reporters Block Switcher
+window.loadPublicBlockMembers = async () => {
+    const block = document.getElementById('publicBlockMembersSelect').value;
+    const row = document.getElementById('publicBlockMembersRow');
+    if (!block) {
+        row.innerHTML = `
+            <div style="grid-column: 1/-1; text-align: center; color: #555; font-size: 1.1rem; padding: 20px;">
+                <i class="fas fa-hand-pointer" style="font-size: 2rem; color: #0b5c3b; margin-bottom: 10px;"></i>
+                <p>कृपया अपना ब्लॉक चुनें। (Please select your block to see reporters.)</p>
+            </div>
+        `;
+        return;
+    }
+
+    row.innerHTML = '<div style="grid-column:1/-1;text-align:center;"><i class="fas fa-spinner fa-spin" style="font-size:2rem;color:#0b5c3b;"></i> Loading...</div>';
+
+    try {
+        const { doc, getDoc, db } = await import('./firebase-config.js');
+        const docRef = doc(db, "block_members", block);
+        const snap = await getDoc(docRef);
+
+        let html = '';
+        if (snap.exists() && snap.data().members) {
+            const members = snap.data().members;
+            members.forEach(m => {
+                if (m.name || m.village) {
+                    const photo = m.photoUrl ? `<img src="${m.photoUrl}" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">` : '<i class="fas fa-user"></i>';
+                    html += `
+                        <div class="rep-card">
+                            <div class="rep-photo" style="${m.photoUrl ? 'padding:0; overflow:hidden; border:2px solid #0b5c3b;' : ''}">${photo}</div>
+                            <h4>${m.name || '---'}</h4>
+                            <p>${m.village || '---'}</p>
+                        </div>
+                    `;
+                }
+            });
+        }
+
+        if (!html) {
+            html = '<div style="grid-column:1/-1;text-align:center;color:#666;font-style:italic;">इस ब्लॉक के लिए अभी तक किसी प्रतिनिधि को नियुक्त नहीं किया गया है। (No members assigned yet.)</div>';
+        }
+
+        row.innerHTML = html;
+
+    } catch (e) {
+        console.error("Error loading members:", e);
+        row.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:red;">Failed to load members. Please try again.</div>';
+    }
+};

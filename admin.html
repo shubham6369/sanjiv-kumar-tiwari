@@ -81,6 +81,9 @@
             <li data-target="meetings">
                 <a href="#"><i class="fas fa-users"></i> <span>Meeting Monitoring</span></a>
             </li>
+            <li data-target="block_members">
+                <a href="#"><i class="fas fa-users-cog"></i> <span>Block Members</span></a>
+            </li>
             <li data-target="settings">
                 <a href="#"><i class="fas fa-cog"></i> <span>Settings</span></a>
             </li>
@@ -495,6 +498,62 @@
                                 <tr>
                                     <td colspan="10" style="padding:20px; text-align:center;"><i
                                             class="fas fa-spinner fa-spin"></i> Loading Database...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="block_members" class="page-section">
+                <div class="section-header">
+                    <h2>Manage Block Members / जनसमस्या प्रतिनिधि</h2>
+                    <p>Assign up to 5 members per block</p>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <select id="adminBlockSelect" onchange="loadAdminBlockMembers()"
+                        style="padding:10px; border:1px solid #ccc; border-radius:5px; font-size:1rem; min-width:250px;">
+                        <option value="">-- Select Block --</option>
+                        <option>मेदिनीनगर</option>
+                        <option>चैनपुर</option>
+                        <option>विश्रामपुर</option>
+                        <option>छतरपुर</option>
+                        <option>हुसैनाबाद</option>
+                        <option>हैदरनगर</option>
+                        <option>हरिहरगंज</option>
+                        <option>लेस्लीगंज</option>
+                        <option>मनातू</option>
+                        <option>मोहम्मदगंज</option>
+                        <option>नावाबाजार</option>
+                        <option>नौडीहा बाजार</option>
+                        <option>पांडू</option>
+                        <option>पंडवा</option>
+                        <option>पांकी</option>
+                        <option>पाटन</option>
+                        <option>पिपरा</option>
+                        <option>सतबरवा</option>
+                        <option>तरहसी</option>
+                        <option>उंटारी रोड</option>
+                    </select>
+                </div>
+
+                <div class="data-table-container">
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Slot</th>
+                                    <th>Name</th>
+                                    <th>Village</th>
+                                    <th>Photo</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="blockMembersBody">
+                                <tr>
+                                    <td colspan="5" style="text-align:center;">Select a block to manage its members.
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

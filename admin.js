@@ -766,3 +766,64 @@ window.exportMeetingsToExcel = () => {
     link.click();
     document.body.removeChild(link);
 };
+
+window.loadAdminBlockMembers = async () => {
+    const block = document.getElementById('adminBlockSelect').value;
+    const tbody = document.getElementById('blockMembersBody');
+    if (!block) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">Select a block to manage its members.</td></tr>';
+        return;
+    }
+    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>';
+
+    try {
+        const { doc, getDoc } = await import('./firebase-config.js');
+        const docRef = doc(db, "block_members", block);
+        const snap = await getDoc(docRef);
+        let members = Array(5).fill({ name: '', village: '', photoUrl: '' });
+
+        if (snap.exists()) {
+            const data = snap.data();
+            if (data.members) {
+                for (let i = 0; i < 5; i++) {
+                    if (data.members[i]) members[i] = Object.assign({}, members[i], data.members[i]);
+                }
+            }
+        }
+
+        tbody.innerHTML = '';
+        for (let i = 0; i < 5; i++) {
+            tbody.innerHTML += `
+                <tr>
+                    <td>Member ${i + 1}</td>
+                    <td><input type="text" id="bm_name_${i}" value="${members[i].name}" placeholder="Name" style="padding:5px;width:100%;"></td>
+                    <td><input type="text" id="bm_village_${i}" value="${members[i].village}" placeholder="Village/Area" style="padding:5px;width:100%;"></td>
+                    <td><input type="text" id="bm_photo_${i}" value="${members[i].photoUrl}" placeholder="Photo URL (Optional)" style="padding:5px;width:100%;"></td>
+                    <td>${i === 0 ? `<button onclick="saveAdminBlockMember('${block}')" style="background:#0b5c3b;color:white;border:none;border-radius:4px;padding:8px 12px;cursor:pointer;">Save Block</button>` : ''}</td>
+                </tr>
+            `;
+        }
+    } catch (e) {
+        console.error("Error loading block members:", e);
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:red;">Failed to load data.</td></tr>';
+    }
+};
+
+window.saveAdminBlockMember = async (block) => {
+    let members = [];
+    for (let i = 0; i < 5; i++) {
+        members.push({
+            name: document.getElementById(`bm_name_${i}`).value.trim(),
+            village: document.getElementById(`bm_village_${i}`).value.trim(),
+            photoUrl: document.getElementById(`bm_photo_${i}`).value.trim()
+        });
+    }
+    try {
+        const { doc, setDoc } = await import('./firebase-config.js');
+        await setDoc(doc(db, "block_members", block), { members: members, block: block, updatedAt: new Date() });
+        alert("Block members saved successfully!");
+    } catch (e) {
+        console.error("Error saving block members:", e);
+        alert("Failed to save. Check console for details.");
+    }
+};

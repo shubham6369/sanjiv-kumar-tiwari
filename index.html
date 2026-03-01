@@ -848,34 +848,44 @@
 
 
         <!-- ====== Community Reporters ====== -->
-        <section class="section-white" id="contact">
+        <section class="section-white" id="contact" style="position: relative;">
             <div class="container">
-                <h2 class="sec-title">हमारे जनसमस्या प्रतिनिधि | Our Community Reporters</h2>
-                <div class="rep-row">
-                    <div class="rep-card">
-                        <div class="rep-photo"><i class="fas fa-user"></i></div>
-                        <h4>NAME</h4>
-                        <p>गांव / सोनाल्डा</p>
-                    </div>
-                    <div class="rep-card">
-                        <div class="rep-photo"><i class="fas fa-user"></i></div>
-                        <h4>NAME</h4>
-                        <p>गांव / संगामत</p>
-                    </div>
-                    <div class="rep-card">
-                        <div class="rep-photo"><i class="fas fa-user"></i></div>
-                        <h4>NAME</h4>
-                        <p>गांव / वंनालडा</p>
-                    </div>
-                    <div class="rep-card">
-                        <div class="rep-photo"><i class="fas fa-user"></i></div>
-                        <h4>NAME</h4>
-                        <p>गांव / संभावहरा</p>
-                    </div>
-                    <div class="rep-card">
-                        <div class="rep-photo"><i class="fas fa-user"></i></div>
-                        <h4>NAME</h4>
-                        <p>गांव / सोनालडा</p>
+                <div
+                    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 15px;">
+                    <!-- Select button in left upper corner for blocks -->
+                    <select id="publicBlockMembersSelect" onchange="loadPublicBlockMembers()"
+                        style="padding:10px 15px; border-radius:6px; border:2px solid #0b5c3b; font-size:1.05rem; font-weight:700; color:#0b5c3b; background:#f1f8e9; outline:none; max-width: 100%;">
+                        <option value="">-- ब्लॉक चुनें / Select Block --</option>
+                        <option value="मेदिनीनगर">मेदिनीनगर</option>
+                        <option value="चैनपुर">चैनपुर</option>
+                        <option value="विश्रामपुर">विश्रामपुर</option>
+                        <option value="छतरपुर">छतरपुर</option>
+                        <option value="हुसैनाबाद">हुसैनाबाद</option>
+                        <option value="हैदरनगर">हैदरनगर</option>
+                        <option value="हरिहरगंज">हरिहरगंज</option>
+                        <option value="लेस्लीगंज">लेस्लीगंज</option>
+                        <option value="मनातू">मनातू</option>
+                        <option value="मोहम्मदगंज">मोहम्मदगंज</option>
+                        <option value="नावाबाजार">नावाबाजार</option>
+                        <option value="नौडीहा बाजार">नौडीहा बाजार</option>
+                        <option value="पांडू">पांडू</option>
+                        <option value="पंडवा">पंडवा</option>
+                        <option value="पांकी">पांकी</option>
+                        <option value="पाटन">पाटन</option>
+                        <option value="पिपरा">पिपरा</option>
+                        <option value="सतबरवा">सतबरवा</option>
+                        <option value="तरहसी">तरहसी</option>
+                        <option value="उंटारी रोड">उंटारी रोड</option>
+                    </select>
+                </div>
+
+                <h2 class="sec-title" style="margin-top: 0;">हमारे जनसमस्या प्रतिनिधि | Our Community Reporters</h2>
+                <div class="rep-row" id="publicBlockMembersRow">
+                    <!-- Dynamic state loaded by JS -->
+                    <div style="grid-column: 1/-1; text-align: center; color: #555; font-size: 1.1rem; padding: 20px;">
+                        <i class="fas fa-hand-pointer"
+                            style="font-size: 2rem; color: #0b5c3b; margin-bottom: 10px;"></i>
+                        <p>कृपया अपना ब्लॉक चुनें। (Please select your block to see reporters.)</p>
                     </div>
                 </div>
                 <div class="center mt-1">
