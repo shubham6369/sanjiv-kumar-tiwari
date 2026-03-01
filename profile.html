@@ -159,7 +159,7 @@
         }
 
         .complaint-table th {
-            background: #ff0000;
+            background: #2e7d32;
             color: #fff;
             text-align: center;
             padding: 12px 8px;
@@ -202,16 +202,25 @@
         .file-link-btn {
             color: #1a0dab;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
-            border: 1px solid #ddd;
-            padding: 4px 8px;
-            border-radius: 4px;
-            background: #f8f9fa;
+            border: 1px solid #34a853;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: #fff;
+            font-size: 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin: 3px;
+            transition: all 0.2s ease;
         }
 
         .file-link-btn:hover {
-            background: #e2e6ea;
+            background: #34a853;
+            color: #fff;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .no-data {
@@ -344,7 +353,7 @@
                                 <th>Complaint File (PDF/Image/Video)</th>
                                 <th>Contact Information (Email/Phone)</th>
                                 <th>Status (Pending/ Resolved)</th>
-                                <th>Final Resolution Method (Email/Whats App/Speed Post)</th>
+                                <th>Steps Taken / कार्रवाई (PDF/Image)</th>
                                 <th>Public Reply (Date)</th>
                                 <th>Public Feedback</th>
                             </tr>
@@ -450,15 +459,18 @@
             snap.forEach(doc => {
                 const d = doc.data();
 
-                // Final Resolution Method Logic
-                let method = "Not Set";
-                if (d.postNumber) method = "Speed Post";
-                else if (d.resolutionMethod) method = d.resolutionMethod;
-                else if (d.stepsTaken?.toLowerCase().includes('whatsapp')) method = "WhatsApp";
-                else if (d.stepsTaken?.toLowerCase().includes('email')) method = "Email";
-
                 // Public Reply Date
                 let replyDate = d.replyDate || d.updatedAt?.toDate().toLocaleDateString('hi-IN') || "---";
+
+                // Admin Docs (Steps Taken)
+                let adminDocsHtml = '';
+                if (d.statusDocUrl) {
+                    adminDocsHtml += `<button class="file-link-btn" onclick="viewDocument('${d.statusDocUrl}')" title="View Status Document"><i class="fas fa-file-invoice"></i> PDF/Img</button>`;
+                }
+                if (d.extraDocUrl) {
+                    adminDocsHtml += `<button class="file-link-btn" onclick="viewDocument('${d.extraDocUrl}')" title="View Extra Document"><i class="fas fa-paperclip"></i> Extra Doc</button>`;
+                }
+                if (!adminDocsHtml) adminDocsHtml = "Processing...";
 
                 html += `
                     <tr>
@@ -468,14 +480,14 @@
                         <td>${d.dept || '---'}</td>
                         <td style="white-space:nowrap;">${d.date || '---'}</td>
                         <td>
-                            ${d.photoUrl ? `<button class="file-link-btn" onclick="viewDocument('${d.photoUrl}')">[File Link]</button>` : 'None'}
+                            ${d.photoUrl ? `<button class="file-link-btn" onclick="viewDocument('${d.photoUrl}')" title="User Uploaded File"><i class="fas fa-file-image"></i> User File</button>` : 'None'}
                         </td>
                         <td style="font-size:0.75rem;">
                             ${d.email ? d.email + '<br>' : ''}
                             ${d.mobile || ''}
                         </td>
                         <td><span class="status-badge-live status-${d.status?.replace(/\s+/g, '-')}">${d.status}</span></td>
-                        <td>${method}</td>
+                        <td>${adminDocsHtml}</td>
                         <td>${replyDate}</td>
                         <td>${d.stepsTaken || 'Pending'}</td>
                     </tr>
