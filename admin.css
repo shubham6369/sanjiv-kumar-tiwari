@@ -164,6 +164,9 @@ h6 {
     flex-direction: column;
     min-height: 100vh;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    min-width: 0;
+    /* Prevents flex-item from expanding past viewport */
+    max-width: 100%;
 }
 
 .main-content.expanded {
@@ -306,6 +309,8 @@ h6 {
 .page-content {
     padding: 30px;
     flex: 1;
+    min-width: 0;
+    max-width: 100%;
 }
 
 .page-section {
@@ -460,6 +465,11 @@ h6 {
     border-radius: var(--radius);
     box-shadow: var(--shadow-soft);
     padding: 24px;
+    width: 100%;
+    overflow: hidden;
+    /* Contains the responsive table */
+    max-width: 100%;
+    margin-bottom: 25px;
 }
 
 .table-header {

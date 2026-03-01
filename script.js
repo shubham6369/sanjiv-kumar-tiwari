@@ -1054,3 +1054,118 @@ function renderVillageDirectory() {
 
 // Call on module load
 renderVillageDirectory();
+
+// ==========================================
+// PUBLIC MEETINGS PORTAL
+// ==========================================
+let pubMeetingsData = [];
+
+async function fetchPublicMeetings() {
+    try {
+        const { db, collection, getDocs, orderBy, query } = await import('./firebase-config.js');
+        const q = query(collection(db, "village_meetings"), orderBy("timestamp", "desc"));
+        const snapshot = await getDocs(q);
+        pubMeetingsData = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        renderPublicMeetings();
+    } catch (error) {
+        console.error("Error fetching meetings: ", error);
+        const tbody = document.getElementById('pubMeetingsBody');
+        if (tbody) tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:red;">Failed to load data.</td></tr>';
+    }
+}
+
+function renderPublicMeetings() {
+    const tbody = document.getElementById('pubMeetingsBody');
+    if (!tbody) return;
+
+    const stSearch = document.getElementById('pubMSearch')?.value.toLowerCase() || "";
+    const stDate = document.getElementById('pubMDate')?.value || "";
+    const stStatus = document.getElementById('pubMStatus')?.value || "";
+
+    const filtered = pubMeetingsData.filter(m => {
+        const matchSearch = m.village.toLowerCase().includes(stSearch) || m.block.toLowerCase().includes(stSearch);
+        const matchDate = stDate ? m.date === stDate : true;
+        const matchStatus = stStatus ? m.status === stStatus : true;
+        return matchSearch && matchDate && matchStatus;
+    });
+
+    // Update Stats
+    document.getElementById('pubTotalMeetings').textContent = filtered.length;
+    const uniqueVillages = new Set(filtered.map(m => m.village.trim().toLowerCase())).size;
+    document.getElementById('pubTotalVillages').textContent = uniqueVillages;
+
+    let issues = 0, solved = 0, pending = 0;
+    filtered.forEach(m => {
+        issues++;
+        if (m.status === 'Solved') solved++;
+        if (m.status === 'Pending') pending++;
+    });
+    document.getElementById('pubTotalIssues').textContent = issues;
+    document.getElementById('pubSolvedPending').textContent = `${solved} / ${pending}`;
+
+    if (filtered.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:20px;color:#64748b;">No meetings found matching the filters.</td></tr>';
+        return;
+    }
+
+    tbody.innerHTML = filtered.map(m => {
+        let mediaHtml = '-';
+        if (m.fileUrl || m.videoUrl) {
+            mediaHtml = '<div style="display:flex;gap:12px;justify-content:center;">';
+            if (m.fileUrl) mediaHtml += `<a href="${m.fileUrl}" target="_blank" style="color:#d32f2f; font-size:1.1rem;" title="View Document"><i class="fas fa-file-pdf"></i></a>`;
+            if (m.videoUrl) mediaHtml += `<a href="${m.videoUrl}" target="_blank" style="color:#1976d2; font-size:1.1rem;" title="Watch Video"><i class="fas fa-play-circle"></i></a>`;
+            mediaHtml += '</div>';
+        }
+
+        let badgeCol = '';
+        if (m.status === 'Solved') badgeCol = 'background:#e8f5e9; color:#2e7d32;';
+        else if (m.status === 'Pending') badgeCol = 'background:#ffebee; color:#c62828;';
+        else if (m.status === 'Forwarded') badgeCol = 'background:#e3f2fd; color:#1565c0;';
+        else badgeCol = 'background:#fff8e1; color:#f9a825;';
+
+        return `
+            <tr style="border-bottom: 1px solid #f1f5f9; transition: background 0.3s; cursor: default;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='white'">
+                <td style="padding: 15px 10px; width: 100px;">${m.date}</td>
+                <td style="padding: 15px 10px; font-weight: 600; color: #334155;">${m.village}</td>
+                <td style="padding: 15px 10px; color: #475569;">${m.block}</td>
+                <td style="padding: 15px 10px; text-align: center;">${m.peopleAttended}</td>
+                <td style="padding: 15px 10px; font-size: 0.9em; color:#475569;">${m.problems}</td>
+                <td style="padding: 15px 10px; font-size: 0.9em; color:#475569;">${m.actionTaken}</td>
+                <td style="padding: 15px 10px; text-align: center;"><span style="padding:6px 15px; border-radius:20px; font-size:0.75rem; font-weight:600; white-space:nowrap; display:inline-block; ${badgeCol}">${m.status}</span></td>
+                <td style="padding: 15px 10px; text-align: center;">${mediaHtml}</td>
+            </tr>
+        `;
+    }).join('');
+}
+
+window.exportPublicMeetingsToExcel = function () {
+    let excelContent = "Date\tVillage\tBlock\tAttendees\tProblems Raised\tAction Taken\tStatus\n";
+
+    pubMeetingsData.forEach(row => {
+        let cleanProblems = (row.problems || "").replace(/\n/g, ' ').replace(/\t/g, ' ');
+        let cleanAction = (row.actionTaken || "").replace(/\n/g, ' ').replace(/\t/g, ' ');
+        excelContent += `${row.date}\t${row.village}\t${row.block}\t${row.peopleAttended}\t${cleanProblems}\t${cleanAction}\t${row.status}\n`;
+    });
+
+    const blob = new Blob([excelContent], { type: 'application/vnd.ms-excel' });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "Public_Meeting_Records.xls";
+    link.click();
+}
+
+// Add event listeners for filters if they exist
+document.addEventListener('DOMContentLoaded', () => {
+    const sInput = document.getElementById('pubMSearch');
+    const dInput = document.getElementById('pubMDate');
+    const stSelect = document.getElementById('pubMStatus');
+
+    if (sInput) sInput.addEventListener('input', renderPublicMeetings);
+    if (dInput) dInput.addEventListener('change', renderPublicMeetings);
+    if (stSelect) stSelect.addEventListener('change', renderPublicMeetings);
+
+    // Initial fetch
+    if (document.getElementById('pubMeetingsTable')) {
+        fetchPublicMeetings();
+    }
+});

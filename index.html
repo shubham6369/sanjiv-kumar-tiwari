@@ -85,6 +85,7 @@
                 <li><a href="#blocks">Find Blocks</a></li>
                 <li><a href="#officers">Officer Directory</a></li>
                 <li><a href="#useful-numbers">Mere Kaam Ke Number</a></li>
+                <li><a href="#meetings">Meeting Portal</a></li>
                 <li><a href="#departments">Government departments</a></li>
                 <li><a href="#services">Quicken Up</a></li>
                 <li><a href="#reports">Reports</a></li>
@@ -397,6 +398,132 @@
                         </div>
                     </div>
 
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== Village Meeting Monitoring (Public) ====== -->
+        <section id="meetings" class="section-white">
+            <div class="container">
+                <h2 class="sec-title">गांव-वार मीटिंग मॉनिटरिंग पोर्टल<br><small
+                        style="font-size:0.6em;color:var(--text-light);font-weight:500;">Village Meeting Monitoring
+                        Portal</small></h2>
+                <p class="center" style="margin-bottom: 30px; color: var(--text-light);">
+                    संजीव कुमार तिवारी द्वारा विभिन्न गांवों में की गई जन-सुनवाई, लिए गए एक्शन और उनकी स्थिति का डिजिटल
+                    रिकॉर्ड।
+                </p>
+
+                <!-- Public Dashboard Stats -->
+                <div class="stats-grid"
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 30px;">
+                    <div
+                        style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 15px; border-left: 5px solid #0b5c3b;">
+                        <div
+                            style="background: #e6f4ed; color: #0b5c3b; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 10px; font-size: 1.5rem;">
+                            <i class="fas fa-handshake"></i></div>
+                        <div>
+                            <h3 style="font-size: 0.9rem; color: #64748b; margin-bottom: 5px;">Total Meetings</h3>
+                            <h2 id="pubTotalMeetings"
+                                style="font-size: 1.8rem; color: #1e293b; font-family: 'Inter', sans-serif;">0</h2>
+                        </div>
+                    </div>
+                    <div
+                        style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 15px; border-left: 5px solid #1565c0;">
+                        <div
+                            style="background: #e3f2fd; color: #1565c0; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 10px; font-size: 1.5rem;">
+                            <i class="fas fa-map-marked-alt"></i></div>
+                        <div>
+                            <h3 style="font-size: 0.9rem; color: #64748b; margin-bottom: 5px;">Villages Covered</h3>
+                            <h2 id="pubTotalVillages"
+                                style="font-size: 1.8rem; color: #1e293b; font-family: 'Inter', sans-serif;">0</h2>
+                        </div>
+                    </div>
+                    <div
+                        style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 15px; border-left: 5px solid #d4af37;">
+                        <div
+                            style="background: #fff8e1; color: #d4af37; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 10px; font-size: 1.5rem;">
+                            <i class="fas fa-exclamation-circle"></i></div>
+                        <div>
+                            <h3 style="font-size: 0.9rem; color: #64748b; margin-bottom: 5px;">Total Issues</h3>
+                            <h2 id="pubTotalIssues"
+                                style="font-size: 1.8rem; color: #1e293b; font-family: 'Inter', sans-serif;">0</h2>
+                        </div>
+                    </div>
+                    <div
+                        style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; align-items: center; gap: 15px; border-left: 5px solid #c62828;">
+                        <div
+                            style="background: #ffebee; color: #c62828; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 10px; font-size: 1.5rem;">
+                            <i class="fas fa-check-double"></i></div>
+                        <div>
+                            <h3 style="font-size: 0.9rem; color: #64748b; margin-bottom: 5px;">Solved/Pending</h3>
+                            <h2 id="pubSolvedPending"
+                                style="font-size: 1.8rem; color: #1e293b; font-family: 'Inter', sans-serif;">0 / 0</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filters & Export -->
+                <div
+                    style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px; justify-content: space-between; align-items: center; background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap; align-items: center;">
+                        <input type="text" id="pubMSearch" placeholder="Search Village/Block..."
+                            style="padding:10px 15px; border:1px solid #e2e8f0; border-radius:6px; outline:none; font-family:inherit; min-width: 200px;">
+                        <input type="date" id="pubMDate"
+                            style="padding:10px 15px; border:1px solid #e2e8f0; border-radius:6px; outline:none; font-family:inherit;">
+                        <select id="pubMStatus"
+                            style="padding:10px 15px; border:1px solid #e2e8f0; border-radius:6px; outline:none; font-family:inherit; background:white;">
+                            <option value="">All Statuses</option>
+                            <option value="Solved">Solved</option>
+                            <option value="Work in Progress">In Progress</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Forwarded">Forwarded</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button onclick="exportPublicMeetingsToExcel()"
+                            style="background:#1d6f42; color:white; border:none; padding:10px 20px; border-radius:6px; cursor:pointer; font-weight:600; display:flex; align-items:center; gap:8px;"><i
+                                class="fas fa-file-excel"></i> Export Excel</button>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div
+                    style="background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; width: 100%;">
+                    <div style="overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: collapse; min-width: 900px;" id="pubMeetingsTable">
+                            <thead style="background: #f1f8e9; color: #2e7d32; font-size: 0.95rem;">
+                                <tr>
+                                    <th style="padding: 15px 10px; border-bottom: 1px solid #d1e2c4; text-align: left;">
+                                        Date</th>
+                                    <th style="padding: 15px 10px; border-bottom: 1px solid #d1e2c4; text-align: left;">
+                                        Village</th>
+                                    <th style="padding: 15px 10px; border-bottom: 1px solid #d1e2c4; text-align: left;">
+                                        Block</th>
+                                    <th style="padding: 15px 10px; border-bottom: 1px solid #d1e2c4; text-align: left;">
+                                        Attendees</th>
+                                    <th
+                                        style="padding: 15px 10px; border-bottom: 1px solid #d1e2c4; text-align: left; min-width: 250px;">
+                                        Problems Raised</th>
+                                    <th
+                                        style="padding: 15px 10px; border-bottom: 1px solid #d1e2c4; text-align: left; min-width: 250px;">
+                                        Action Taken</th>
+                                    <th
+                                        style="padding: 15px 10px; border-bottom: 1px solid #d1e2c4; text-align: center;">
+                                        Status</th>
+                                    <th
+                                        style="padding: 15px 10px; border-bottom: 1px solid #d1e2c4; text-align: center;">
+                                        Docs/Video</th>
+                                </tr>
+                            </thead>
+                            <tbody id="pubMeetingsBody">
+                                <!-- Populated by JS -->
+                                <tr>
+                                    <td colspan="8" style="padding: 30px; text-align: center; color: #64748b;"><i
+                                            class="fas fa-spinner fa-spin"></i> Loading Meetings...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </section>
