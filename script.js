@@ -1044,8 +1044,10 @@ function renderVillageDirectory() {
                 <span class="vb-title"><i class="fas fa-chevron-right"></i> ${bd.name}</span>
                 <span class="vb-count">(${villages.length} गाँव)</span>
             </summary>
-            <div class="vb-list">
-                ${villages.join(', ')}
+            <div class="vb-list" style="padding: 15px;">
+                <ol style="columns: 2; column-gap: 20px; padding-left: 20px; margin: 0;">
+                    ${villages.map(v => `<li style="margin-bottom: 8px; break-inside: avoid; font-size: 0.95rem;">${v}</li>`).join('')}
+                </ol>
             </div>
         `;
         grid.appendChild(details);
