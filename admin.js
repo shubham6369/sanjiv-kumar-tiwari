@@ -273,16 +273,25 @@ function listenToComplaints() {
                     <td style="border-bottom: none;">${c.block || 'N/A'}</td>
                     <td style="border-bottom: none;">${c.dept}</td>
                     <td style="border-bottom: none;">
-                        ${c.photoUrl ? `
+                        ${c.photoUrl ? (c.photoUrl.toLowerCase().includes('.pdf') ? `
                             <div style="display:flex; flex-direction:column; gap:5px; align-items:center;">
-                                <a href="${c.photoUrl}" target="_blank" class="table-img-link">
-                                    <img src="${c.photoUrl}" alt="Photo" class="table-thumb">
-                                </a>
+                                <button onclick="viewDocument('${c.photoUrl}')" class="table-img-link" style="border:none;background:#e6f7ff;cursor:pointer;padding:8px;border-radius:6px;color:#1890ff; display:flex; flex-direction:column; align-items:center;" title="View PDF">
+                                    <i class="fas fa-file-pdf" style="font-size:1.5rem; margin-bottom: 2px;"></i> View
+                                </button>
                                 <a href="${c.photoUrl.replace('/upload/', '/upload/fl_attachment/')}" target="_blank" download style="font-size: 0.8rem; background: #0b5c3b; color: white; padding: 3px 8px; border-radius: 4px; text-decoration: none; display: flex; align-items: center; gap: 4px;">
-                                    <i class="fas fa-download"></i> Download
+                                    <i class="fas fa-download"></i> DL
                                 </a>
                             </div>
-                        ` : '<span style="color:#ccc; font-size:0.8rem;">N/A</span>'}
+                        ` : `
+                            <div style="display:flex; flex-direction:column; gap:5px; align-items:center;">
+                                <button onclick="viewDocument('${c.photoUrl}')" class="table-img-link" style="border:none;background:none;padding:0;cursor:pointer;" title="View Image">
+                                    <img src="${c.photoUrl.replace('/upload/', '/upload/fl_attachment:false/')}" alt="Photo" class="table-thumb">
+                                </button>
+                                <a href="${c.photoUrl.replace('/upload/', '/upload/fl_attachment/')}" target="_blank" download style="font-size: 0.8rem; background: #0b5c3b; color: white; padding: 3px 8px; border-radius: 4px; text-decoration: none; display: flex; align-items: center; gap: 4px;">
+                                    <i class="fas fa-download"></i> DL
+                                </a>
+                            </div>
+                        `) : '<span style="color:#ccc; font-size:0.8rem;">N/A</span>'}
                     </td>
                     <td style="border-bottom: none;"><span class="date-chip">${c.date}</span></td>
                     <td style="border-bottom: none;">
