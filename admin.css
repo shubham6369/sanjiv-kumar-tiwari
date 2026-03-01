@@ -450,10 +450,35 @@ h6 {
 
 .table-responsive {
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    padding-bottom: 10px;
+    /* Space for scrollbar */
+}
+
+/* Custom scrollbar for better visibility */
+.table-responsive::-webkit-scrollbar {
+    height: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background: #0b5c3b;
+    border-radius: 10px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+    background: #094a2e;
 }
 
 .data-table {
     width: 100%;
+    min-width: 1400px;
+    /* Forces scrolling for 11 columns */
     border-collapse: collapse;
 }
 
