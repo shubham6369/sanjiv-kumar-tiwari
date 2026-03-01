@@ -392,13 +392,21 @@ function listenToComplaints() {
 
 window.updateStepsTaken = async (docId, value) => {
     try {
-        await updateDoc(doc(db, "complaints", docId), { stepsTaken: value });
+        await updateDoc(doc(db, "complaints", docId), {
+            stepsTaken: value,
+            replyDate: new Date().toLocaleDateString('hi-IN'),
+            updatedAt: new Date()
+        });
     } catch (e) { console.error("Update failed", e); }
 };
 
 window.updateComplaintStatus = async (docId, newStatus) => {
     try {
-        await updateDoc(doc(db, "complaints", docId), { status: newStatus });
+        await updateDoc(doc(db, "complaints", docId), {
+            status: newStatus,
+            replyDate: new Date().toLocaleDateString('hi-IN'),
+            updatedAt: new Date()
+        });
     } catch (e) {
         console.error("Update failed", e);
         alert("Failed to update status.");
@@ -493,11 +501,21 @@ window.copyDocToClipboard = async (docUrl) => {
     }
 };
 
-window.openWhatsapp = (docId) => {
+window.openWhatsapp = async (docId) => {
     const el = document.getElementById(`wa-${docId}`);
     if (el && el.value) {
         let num = el.value.replace(/\D/g, '');
         if (num.length === 10) num = "91" + num;
+
+        // Update live data for user profile
+        try {
+            await updateDoc(doc(db, "complaints", docId), {
+                resolutionMethod: "WhatsApp",
+                replyDate: new Date().toLocaleDateString('hi-IN'),
+                updatedAt: new Date()
+            });
+        } catch (e) { console.error("Update failed", e); }
+
         let url = `https://wa.me/${num}`;
         window.open(url, '_blank');
     } else {
@@ -505,9 +523,18 @@ window.openWhatsapp = (docId) => {
     }
 };
 
-window.sendEmail = (docId) => {
+window.sendEmail = async (docId) => {
     const el = document.getElementById(`email-${docId}`);
     if (el && el.value) {
+        // Update live data for user profile
+        try {
+            await updateDoc(doc(db, "complaints", docId), {
+                resolutionMethod: "Email",
+                replyDate: new Date().toLocaleDateString('hi-IN'),
+                updatedAt: new Date()
+            });
+        } catch (e) { console.error("Update failed", e); }
+
         let url = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(el.value)}`;
         window.open(url, '_blank');
     } else {
