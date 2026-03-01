@@ -296,7 +296,7 @@ function listenToComplaints() {
                     <td style="border-bottom: none;">
                         ${c.statusDocUrl ? `
                             <div style="display:flex; align-items:center; gap:5px;">
-                                <a href="${c.statusDocUrl.replace('/upload/', '/upload/fl_attachment:false/')}" target="_blank" class="badge-status" style="background:#e6f7ff; color:#1890ff; padding:4px 8px; text-decoration:none;" title="View Document"><i class="fas fa-eye"></i> View</a>
+                                <button onclick="viewDocument('${c.statusDocUrl}')" class="badge-status" style="background:#e6f7ff; color:#1890ff; padding:4px 8px; text-decoration:none; border:none; cursor:pointer;" title="View Document"><i class="fas fa-eye"></i> View</button>
                                 <button class="action-item-btn" style="color:#ef4444; width:24px; height:24px;" onclick="removeStatusDoc('${docId}')" title="Remove Doc"><i class="fas fa-times"></i></button>
                             </div>
                         ` : `
@@ -327,7 +327,7 @@ function listenToComplaints() {
                                 <strong><i class="fas fa-paperclip"></i> Extra Doc:</strong>
                                 ${c.extraDocUrl ?
                     `<div style="display:flex; gap:10px; align-items:center;">
-                                        <a href="${c.extraDocUrl.replace('/upload/', '/upload/fl_attachment:false/')}" target="_blank" style="color:#0ea5e9;text-decoration:none;font-weight:600;"><i class="fas fa-eye"></i> View</a>
+                                        <button onclick="viewDocument('${c.extraDocUrl}')" style="color:#0ea5e9;border:none;background:none;cursor:pointer;font-weight:600;font-size:0.95rem;padding:0;"><i class="fas fa-eye"></i> View</button>
                                         <button onclick="copyDocToClipboard('${c.extraDocUrl}')" style="color:#8b5cf6;border:none;background:none;cursor:pointer;" title="Copy Document Link"><i class="fas fa-copy"></i></button>
                                         <button onclick="removeExtraDoc('${docId}')" style="color:#ef4444;border:none;background:none;cursor:pointer;" title="Remove Document"><i class="fas fa-times-circle"></i></button>
                                      </div>` :
@@ -439,6 +439,29 @@ window.updateComplaintField = async (docId, field, value) => {
     try {
         await updateDoc(doc(db, "complaints", docId), { [field]: value });
     } catch (e) { console.error("Update failed", e); }
+};
+
+window.viewDocument = (url) => {
+    if (!url) return;
+    const modal = document.getElementById('docViewerModal');
+    const content = document.getElementById('docViewerContent');
+    const downloadBtn = document.getElementById('docViewerDownloadBtn');
+
+    let safeUrl = url;
+    if (url.includes('/upload/')) {
+        safeUrl = url.replace('/upload/', '/upload/fl_attachment:false/');
+        downloadBtn.href = url.replace('/upload/', '/upload/fl_attachment/');
+    } else {
+        downloadBtn.href = url;
+    }
+
+    if (url.toLowerCase().includes('.pdf')) {
+        content.innerHTML = `<iframe src="${safeUrl}" style="width: 100%; height: 100%; border: none;"></iframe>`;
+    } else {
+        content.innerHTML = `<img src="${safeUrl}" style="max-width: 100%; max-height: 100%; object-fit: contain; padding: 20px;">`;
+    }
+
+    modal.style.display = 'flex';
 };
 
 window.copyDocToClipboard = async (docUrl) => {
