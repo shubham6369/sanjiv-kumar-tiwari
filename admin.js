@@ -22,6 +22,7 @@ function checkAuth() {
             listenToComplaints();
             listenToGallery();
             listenToReporters();
+            listenToMeetings();
         } else {
             // Not logged in or not authorized
             if (user) {
@@ -145,6 +146,9 @@ document.addEventListener('DOMContentLoaded', () => {
     checkAuth();
     initNavigation();
     initUpload();
+
+    const meetingForm = document.getElementById('meetingForm');
+    if (meetingForm) meetingForm.addEventListener('submit', handleMeetingSubmit);
 
     const loginForm = document.getElementById('adminLoginForm');
     if (loginForm) loginForm.addEventListener('submit', handleLogin);
@@ -609,3 +613,150 @@ window.deleteReporter = async (id) => {
 };
 
 
+/* Village Meeting Monitoring Portal Logic */
+function listenToMeetings() {
+    const tbody = document.getElementById('meetingsTableBody');
+    if (!tbody) return;
+
+    // Filters
+    const searchInput = document.getElementById('mSearch');
+    const dateInput = document.getElementById('mFilterDate');
+    const statusSelect = document.getElementById('mFilterStatus');
+
+    const q = query(collection(db, "village_meetings"), orderBy("date", "desc"));
+    onSnapshot(q, (snapshot) => {
+        let allMeetings = [];
+        snapshot.forEach(d => allMeetings.push({ id: d.id, ...d.data() }));
+
+        const render = () => {
+            const searchTerm = searchInput.value?.toLowerCase() || "";
+            const filterDate = dateInput.value;
+            const filterStatus = statusSelect.value;
+
+            const filtered = allMeetings.filter(m => {
+                const matchesSearch = !searchTerm ||
+                    m.village?.toLowerCase().includes(searchTerm) ||
+                    m.block?.toLowerCase().includes(searchTerm) ||
+                    m.problems?.toLowerCase().includes(searchTerm);
+                const matchesDate = !filterDate || m.date === filterDate;
+                const matchesStatus = !filterStatus || m.status === filterStatus;
+                return matchesSearch && matchesDate && matchesStatus;
+            });
+
+            tbody.innerHTML = '';
+
+            // Update Summary
+            const totalMeetings = allMeetings.length;
+            const villagesCovered = new Set(allMeetings.map(m => m.village)).size;
+            const totalIssues = allMeetings.length;
+            const solved = allMeetings.filter(m => m.status === 'Solved').length;
+            const pending = allMeetings.filter(m => m.status === 'Pending').length;
+
+            if (document.getElementById('totalMeetings')) document.getElementById('totalMeetings').textContent = totalMeetings;
+            if (document.getElementById('totalMeetingVillages')) document.getElementById('totalMeetingVillages').textContent = villagesCovered;
+            if (document.getElementById('totalMeetingIssues')) document.getElementById('totalMeetingIssues').textContent = totalIssues;
+            if (document.getElementById('meetingsSolvedPending')) document.getElementById('meetingsSolvedPending').textContent = `${solved} / ${pending}`;
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="10" style="padding:20px; text-align:center;">No records found.</td></tr>';
+                return;
+            }
+
+            filtered.forEach((m, index) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${filtered.length - index}</td>
+                    <td>${m.date}</td>
+                    <td><strong>${m.village}</strong></td>
+                    <td>${m.block}</td>
+                    <td>${m.people}</td>
+                    <td style="text-align:left; font-size:0.8rem;">${m.problems}</td>
+                    <td style="text-align:left; font-size:0.8rem;">${m.action}</td>
+                    <td><span class="badge-status badge-${m.status?.toLowerCase().replace(/\s+/g, '-')}">${m.status}</span></td>
+                    <td>
+                        <div style="display:flex; gap:5px; justify-content:center;">
+                            ${m.fileUrl ? `<button onclick="viewDocument('${m.fileUrl}')" class="action-btn" title="View Doc"><i class="fas fa-file-alt"></i></button>` : ''}
+                            ${m.videoUrl ? `<a href="${m.videoUrl}" target="_blank" class="action-btn" title="Watch Video"><i class="fas fa-video"></i></a>` : ''}
+                        </div>
+                    </td>
+                    <td>
+                        <button class="action-item-btn delete" onclick="deleteMeeting('${m.id}')" title="Delete"><i class="fas fa-trash"></i></button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        };
+
+        if (searchInput) searchInput.oninput = render;
+        if (dateInput) dateInput.onchange = render;
+        if (statusSelect) statusSelect.onchange = render;
+        render();
+    });
+}
+
+window.deleteMeeting = async (id) => {
+    if (confirm("Delete this meeting record?")) {
+        try { await deleteDoc(doc(db, "village_meetings", id)); } catch (e) { console.error(e); }
+    }
+};
+
+async function handleMeetingSubmit(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitMeetingBtn');
+    const originalText = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+
+    const date = document.getElementById('mDate').value;
+    const village = document.getElementById('mVillage').value;
+    const block = document.getElementById('mBlock').value;
+    const people = document.getElementById('mPeople').value;
+    const problems = document.getElementById('mProblems').value;
+    const action = document.getElementById('mAction').value;
+    const video = document.getElementById('mVideo').value;
+    const status = document.querySelector('input[name="mStatus"]:checked').value;
+    const file = document.getElementById('mFile').files[0];
+
+    try {
+        let fileUrl = null;
+        if (file) {
+            const fileName = `meetings/${Date.now()}_${file.name}`;
+            const storageRef = ref(storage, fileName);
+            const uploadTask = await uploadBytesResumable(storageRef, file);
+            fileUrl = await getDownloadURL(uploadTask.ref);
+        }
+
+        await addDoc(collection(db, "village_meetings"), {
+            date, village, block, people, problems, action, videoUrl: video, status, fileUrl,
+            createdAt: new Date()
+        });
+
+        alert("Meeting record saved successfully!");
+        document.getElementById('meetingForm').reset();
+    } catch (e) {
+        console.error("Save failed", e);
+        alert("Error saving record.");
+    } finally {
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+    }
+}
+
+window.exportMeetingsToExcel = () => {
+    const table = document.getElementById("meetingsTableBody").parentElement;
+    const rows = Array.from(table.rows);
+    let csvContent = "data:text/csv;charset=utf-8,";
+
+    rows.forEach(row => {
+        const cols = Array.from(row.cells).map(cell => `"${cell.innerText.replace(/"/g, '""')}"`);
+        csvContent += cols.join(",") + "\n";
+    });
+
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", `Village_Meetings_${new Date().toLocaleDateString()}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+};

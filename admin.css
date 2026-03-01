@@ -536,12 +536,14 @@ h6 {
     color: var(--emerald);
 }
 
-.badge-progress {
+.badge-progress,
+.badge-work-in-progress {
     background: #fff8e1;
     color: var(--saffron);
 }
 
-.badge-approved {
+.badge-approved,
+.badge-forwarded {
     background: #e8f5e9;
     color: #2e7d32;
 }

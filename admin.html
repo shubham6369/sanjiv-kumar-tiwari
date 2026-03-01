@@ -78,6 +78,9 @@
             <li data-target="reporters">
                 <a href="#"><i class="fas fa-user-pen"></i> <span>Reporter Apps</span></a>
             </li>
+            <li data-target="meetings">
+                <a href="#"><i class="fas fa-users"></i> <span>Meeting Monitoring</span></a>
+            </li>
             <li data-target="settings">
                 <a href="#"><i class="fas fa-cog"></i> <span>Settings</span></a>
             </li>
@@ -306,6 +309,192 @@
                                 <tr>
                                     <td colspan="7" style="text-align:center;"><i class="fas fa-spinner fa-spin"></i>
                                         Loading...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Village Meeting Monitoring Portal Section -->
+            <section id="meetings" class="page-section">
+                <div class="section-header">
+                    <h2>Village Meeting Monitoring Portal / गांव-वार मीटिंग रिकॉर्ड</h2>
+                    <p>Track village meetings, public issues, and resolutions digitally.</p>
+                </div>
+
+                <!-- Dashboard Summary -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon emerald"><i class="fas fa-handshake"></i></div>
+                        <div class="stat-details">
+                            <h3>Total Meetings</h3>
+                            <h2 id="totalMeetings">0</h2>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon blue"><i class="fas fa-map-marked-alt"></i></div>
+                        <div class="stat-details">
+                            <h3>Villages Covered</h3>
+                            <h2 id="totalMeetingVillages">0</h2>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon gold"><i class="fas fa-exclamation-circle"></i></div>
+                        <div class="stat-details">
+                            <h3>Total Issues</h3>
+                            <h2 id="totalMeetingIssues">0</h2>
+                        </div>
+                    </div>
+                    <div class="stat-card" style="min-width: 280px;">
+                        <div class="stat-icon crimson"><i class="fas fa-check-double"></i></div>
+                        <div class="stat-details">
+                            <h3>Solved / Pending</h3>
+                            <h2 id="meetingsSolvedPending">0 / 0</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add New Meeting Form -->
+                <div class="data-table-container"
+                    style="margin-bottom: 30px; padding: 25px; border-left: 5px solid #0b5c3b;">
+                    <h3 style="margin-bottom: 20px; color: #0b5c3b;"><i class="fas fa-plus-circle"></i> Record New
+                        Village Meeting / नई मीटिंग जोड़ें</h3>
+                    <form id="meetingForm"
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                        <div class="form-group">
+                            <label style="font-weight:600; font-size: 0.85rem;">Meeting Date *</label>
+                            <input type="date" id="mDate" required
+                                style="width:100%; padding:8px; border:1px solid #999; border-radius:4px;">
+                        </div>
+                        <div class="form-group">
+                            <label style="font-weight:600; font-size: 0.85rem;">Village Name *</label>
+                            <input type="text" id="mVillage" placeholder="Village Name" required
+                                style="width:100%; padding:8px; border:1px solid #999; border-radius:4px;">
+                        </div>
+                        <div class="form-group">
+                            <label style="font-weight:600; font-size: 0.85rem;">Block Name *</label>
+                            <select id="mBlock" required
+                                style="width:100%; padding:8px; border:1px solid #999; border-radius:4px;">
+                                <option value="">-- Select Block --</option>
+                                <option>मेदिनीनगर</option>
+                                <option>चैनपुर</option>
+                                <option>विश्रामपुर</option>
+                                <option>छतरपुर</option>
+                                <option>हुसैनाबाद</option>
+                                <option>हैदरनगर</option>
+                                <option>हरिहरगंज</option>
+                                <option>लेस्लीगंज</option>
+                                <option>मनातू</option>
+                                <option>मोहम्मदगंज</option>
+                                <option>नावाबाजार</option>
+                                <option>नौडीहा बाजार</option>
+                                <option>पांडू</option>
+                                <option>पंडवा</option>
+                                <option>पांकी</option>
+                                <option>पाटन</option>
+                                <option>पिपरा</option>
+                                <option>सतबरवा</option>
+                                <option>तरहसी</option>
+                                <option>उंटारी रोड</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label style="font-weight:600; font-size: 0.85rem;">Total People Attended *</label>
+                            <input type="number" id="mPeople" placeholder="Number" required
+                                style="width:100%; padding:8px; border:1px solid #999; border-radius:4px;">
+                        </div>
+                        <div class="form-group" style="grid-column: span 2;">
+                            <label style="font-weight:600; font-size: 0.85rem;">Problems Raised *</label>
+                            <textarea id="mProblems" placeholder="Village issues..." required
+                                style="width:100%; padding:8px; border:1px solid #999; border-radius:4px; height:60px;"></textarea>
+                        </div>
+                        <div class="form-group" style="grid-column: span 2;">
+                            <label style="font-weight:600; font-size: 0.85rem;">Action Taken *</label>
+                            <textarea id="mAction" placeholder="Action taken..." required
+                                style="width:100%; padding:8px; border:1px solid #999; border-radius:4px; height:60px;"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label style="font-weight:600; font-size: 0.85rem;">Upload Doc (Max 5MB)</label>
+                            <input type="file" id="mFile" accept=".pdf,.doc,.docx,image/*"
+                                style="width:100%; padding:5px; border:1px solid #999; border-radius:4px;">
+                        </div>
+                        <div class="form-group">
+                            <label style="font-weight:600; font-size: 0.85rem;">Video Link (FB/YouTube)</label>
+                            <input type="url" id="mVideo" placeholder="https://..."
+                                style="width:100%; padding:8px; border:1px solid #999; border-radius:4px;">
+                        </div>
+                        <div class="form-group" style="grid-column: span 2;">
+                            <label style="font-weight:600; font-size: 0.85rem;">Meeting Status *</label>
+                            <div style="display: flex; gap: 15px; margin-top: 5px; flex-wrap: wrap;">
+                                <label style="font-size:0.85rem;"><input type="radio" name="mStatus" value="Solved">
+                                    Solved</label>
+                                <label style="font-size:0.85rem;"><input type="radio" name="mStatus"
+                                        value="Work in Progress"> In Progress</label>
+                                <label style="font-size:0.85rem;"><input type="radio" name="mStatus" value="Pending"
+                                        checked> Pending</label>
+                                <label style="font-size:0.85rem;"><input type="radio" name="mStatus" value="Forwarded">
+                                    Forwarded</label>
+                            </div>
+                        </div>
+                        <div style="grid-column: 1/-1; text-align: right; margin-top: 10px;">
+                            <button type="submit" id="submitMeetingBtn" class="primary-btn"
+                                style="padding: 10px 30px;"><i class="fas fa-save"></i> Save Meeting Record</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Records List -->
+                <div class="data-table-container">
+                    <div class="table-header">
+                        <h3>Meeting Repository / डेटाबेस</h3>
+                        <div style="display: flex; gap: 8px;">
+                            <button onclick="exportMeetingsToExcel()"
+                                style="background:#1d6f42; color:white; border:none; padding:6px 15px; border-radius:4px; cursor:pointer; font-size:0.85rem;"><i
+                                    class="fas fa-file-excel"></i> Excel</button>
+                            <button onclick="window.print()"
+                                style="background:#334155; color:white; border:none; padding:6px 15px; border-radius:4px; cursor:pointer; font-size:0.85rem;"><i
+                                    class="fas fa-print"></i> Print</button>
+                        </div>
+                    </div>
+
+                    <!-- Filters -->
+                    <div class="filter-bar"
+                        style="background: #f8fafc; padding: 12px; border: 1px solid #e2e8f0; border-radius: 6px; margin-bottom: 15px; display: flex; gap: 10px; flex-wrap: wrap;">
+                        <input type="text" id="mSearch" placeholder="Search Village/Block..."
+                            style="padding:6px 12px; border:1px solid #999; border-radius:4px; width: 200px;">
+                        <input type="date" id="mFilterDate"
+                            style="padding:6px 12px; border:1px solid #999; border-radius:4px;">
+                        <select id="mFilterStatus" style="padding:6px 12px; border:1px solid #999; border-radius:4px;">
+                            <option value="">All Status</option>
+                            <option value="Solved">Solved</option>
+                            <option value="Work in Progress">In Progress</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Forwarded">Forwarded</option>
+                        </select>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>S/N</th>
+                                    <th>Date</th>
+                                    <th>Village</th>
+                                    <th>Block</th>
+                                    <th>Attend.</th>
+                                    <th style="min-width:180px;">Problems Raised</th>
+                                    <th style="min-width:180px;">Action Taken</th>
+                                    <th>Status</th>
+                                    <th>Media</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="meetingsTableBody">
+                                <!-- Populated by JS -->
+                                <tr>
+                                    <td colspan="10" style="padding:20px; text-align:center;"><i
+                                            class="fas fa-spinner fa-spin"></i> Loading Database...</td>
                                 </tr>
                             </tbody>
                         </table>
