@@ -510,7 +510,41 @@ h6 {
     color: var(--saffron);
 }
 
+.badge-approved {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.badge-rejected {
+    background: #ffebee;
+    color: #c62828;
+}
+
 /* Actions */
+.action-item-btn {
+    background: #f1f5f9;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #64748b;
+}
+
+.action-item-btn:hover {
+    background: #e2e8f0;
+    color: var(--emerald);
+}
+
+.action-item-btn.delete:hover {
+    background: #fee2e2;
+    color: #ef4444;
+}
+
 .action-btn {
     background: transparent;
     border: none;

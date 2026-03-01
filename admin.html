@@ -75,6 +75,9 @@
             <li data-target="gallery">
                 <a href="#"><i class="fas fa-images"></i> <span>Gallery & Media</span></a>
             </li>
+            <li data-target="reporters">
+                <a href="#"><i class="fas fa-user-pen"></i> <span>Reporter Apps</span></a>
+            </li>
             <li data-target="settings">
                 <a href="#"><i class="fas fa-cog"></i> <span>Settings</span></a>
             </li>
@@ -273,6 +276,38 @@
             </section>
 
 
+
+            <!-- Reporter Applications Section -->
+            <section id="reporters" class="page-section">
+                <div class="section-header">
+                    <h2>Reporter Applications</h2>
+                    <p>Manage applications for the public reporter program</p>
+                </div>
+                <div class="data-table-container">
+                    <div class="table-responsive">
+                        <table class="data-table full-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Mobile</th>
+                                    <th>Village / Block</th>
+                                    <th>Reason</th>
+                                    <th>Photo</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="reportersBody">
+                                <!-- Populated by JS -->
+                                <tr>
+                                    <td colspan="7" style="text-align:center;"><i class="fas fa-spinner fa-spin"></i>
+                                        Loading...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
 
             <section id="settings" class="page-section">
                 <div class="section-header">

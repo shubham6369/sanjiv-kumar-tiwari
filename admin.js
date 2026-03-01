@@ -21,6 +21,7 @@ function checkAuth() {
             // Start listening to data now that we are authorized
             listenToComplaints();
             listenToGallery();
+            listenToReporters();
         } else {
             // Not logged in or not authorized
             if (user) {
@@ -607,5 +608,49 @@ function listenToGallery() {
         });
     });
 }
+
+function listenToReporters() {
+    const tbody = document.getElementById('reportersBody');
+    if (!tbody) return;
+    onSnapshot(query(collection(db, "reporter_applications"), orderBy("createdAt", "desc")), (s) => {
+        tbody.innerHTML = '';
+        s.forEach((d, i) => {
+            const data = d.data();
+            const id = d.id;
+            const tr = document.createElement('tr');
+            tr.className = 'animate-row';
+            tr.style.animationDelay = `${i * 0.05}s`;
+            tr.innerHTML = `
+                <td>${data.name}</td>
+                <td>${data.mobile}</td>
+                <td>${data.village} / ${data.block}</td>
+                <td style="max-width:250px; font-size:0.85rem">${data.reason || ''}</td>
+                <td><img src="${data.photoUrl}" style="width:50px; cursor:pointer;" onclick="viewDocument('${data.photoUrl}')"></td>
+                <td><span class="badge-status badge-${data.status?.toLowerCase() || 'pending'}">${data.status || 'Pending'}</span></td>
+                <td>
+                    <select onchange="updateReporterStatus('${id}', this.value)" style="padding:4px; border-radius:4px;">
+                        <option value="Pending" ${data.status === 'Pending' ? 'selected' : ''}>Pending</option>
+                        <option value="Approved" ${data.status === 'Approved' ? 'selected' : ''}>Approve</option>
+                        <option value="Rejected" ${data.status === 'Rejected' ? 'selected' : ''}>Reject</option>
+                    </select>
+                    <button class="action-item-btn delete" onclick="deleteReporter('${id}')" style="margin-left:5px;"><i class="fas fa-trash"></i></button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    });
+}
+
+window.updateReporterStatus = async (id, status) => {
+    try {
+        await updateDoc(doc(db, "reporter_applications", id), { status: status });
+    } catch (e) { console.error(e); }
+};
+
+window.deleteReporter = async (id) => {
+    if (confirm("Delete this application?")) {
+        try { await deleteDoc(doc(db, "reporter_applications", id)); } catch (e) { console.error(e); }
+    }
+};
 
 

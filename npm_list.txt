@@ -1,0 +1,4 @@
+political-biography@1.0.0 C:\Users\hp\political biography
+Γö£ΓöÇΓöÇ firebase@12.9.0 invalid: "^12.10.0" from the root project
+ΓööΓöÇΓöÇ vite@5.4.21 invalid: "^7.3.1" from the root project
+
