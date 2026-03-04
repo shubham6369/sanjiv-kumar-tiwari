@@ -1949,6 +1949,10 @@ button {
     background: #25D366
 }
 
+.social-icon.yt:hover {
+    background: #FF0000
+}
+
 /* Column: Links */
 .footer-links ul {
     list-style: none
